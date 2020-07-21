@@ -7,7 +7,7 @@ using Crawler.Provider.ZVG.WebClient;
 
 namespace Crawler.Provider.ZVG
 {
-    public class ZvgClient : IPropertyProvider
+    internal class ZvgClient : IPropertyProvider
     {
         private readonly IZvgWebClient _zvgWebClient;
         private readonly IZvgOptionsReader _optionsReader;

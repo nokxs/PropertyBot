@@ -19,7 +19,7 @@ namespace Crawler.Service
                 {
                     services.AddSingleton<IEnumerable<IPropertyProvider>>(serviceProvider =>
                     {
-                        return new IPropertyProvider[]
+                        return new[]
                         {
                             ZvgProviderFactory.CreateClient()
                         };
