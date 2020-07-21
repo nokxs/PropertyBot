@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Crawler.ZVG.ZVG.Entity
+namespace Crawler.Provider.ZVG.Entity
 {
-    public class ZvgObject
+    internal class ZvgObject
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }

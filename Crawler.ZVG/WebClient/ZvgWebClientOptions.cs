@@ -1,8 +1,8 @@
-﻿namespace Crawler.ZVG.ZVG.WebClient
+﻿namespace Crawler.Provider.ZVG.WebClient
 {
     public class ZvgWebClientOptions
     {
-        public ZvgWebClientOptions(string stateId, string courtIds, string objectKindIds)
+        internal ZvgWebClientOptions(string stateId, string courtIds, string objectKindIds)
         {
             StateId = stateId;
             CourtIds = courtIds;

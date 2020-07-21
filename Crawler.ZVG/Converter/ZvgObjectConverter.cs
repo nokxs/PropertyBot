@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Crawler.ZVG.Informer;
-using Crawler.ZVG.ZVG.Entity;
+using Crawler.Interface;
+using Crawler.Provider.ZVG.Entity;
 
-namespace Crawler.ZVG.ZVG.Converter
+namespace Crawler.Provider.ZVG.Converter
 {
-    public class ZvgObjectConverter : IZvgObjectConverter
+    internal class ZvgObjectConverter : IZvgObjectConverter
     {
         private const string ImageUriRegex = "src='(.*)' style";
         private const string PriceRegex = "Verkehrswert:(.*)EURO";

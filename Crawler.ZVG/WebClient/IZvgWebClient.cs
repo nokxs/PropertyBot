@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Crawler.ZVG.ZVG.Entity;
+using Crawler.Provider.ZVG.Entity;
 
-namespace Crawler.ZVG.ZVG.WebClient
+namespace Crawler.Provider.ZVG.WebClient
 {
-    public interface IZvgWebClient
+    internal interface IZvgWebClient
     {
         Task<ZvgRows> GetZvgObjects(ZvgWebClientOptions options);
     }

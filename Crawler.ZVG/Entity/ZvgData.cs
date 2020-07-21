@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Crawler.ZVG.ZVG.Entity
+namespace Crawler.Provider.ZVG.Entity
 {
-    public class ZvgData
+    internal class ZvgData
     {
         [JsonPropertyName("0")]
         public string ImageTag { get; set; }

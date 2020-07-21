@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Crawler.ZVG.Informer;
-using Crawler.ZVG.ZVG.Converter;
-using Crawler.ZVG.ZVG.Options;
-using Crawler.ZVG.ZVG.WebClient;
+using Crawler.Interface;
+using Crawler.Provider.ZVG.Converter;
+using Crawler.Provider.ZVG.Options;
+using Crawler.Provider.ZVG.WebClient;
 
-namespace Crawler.ZVG.ZVG
+namespace Crawler.Provider.ZVG
 {
-    public class ZvgClient
+    public class ZvgClient : IPropertyProvider
     {
         private readonly IZvgWebClient _zvgWebClient;
         private readonly IZvgOptionsReader _optionsReader;

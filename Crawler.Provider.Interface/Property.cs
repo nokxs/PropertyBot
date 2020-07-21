@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Crawler.ZVG.Informer
+namespace Crawler.Interface
 {
     public class Property
     {

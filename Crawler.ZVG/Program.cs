@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Crawler.ZVG.ZVG;
-using Crawler.ZVG.ZVG.Converter;
-using Crawler.ZVG.ZVG.Options;
-using Crawler.ZVG.ZVG.WebClient;
+using Crawler.Provider.ZVG.Converter;
+using Crawler.Provider.ZVG.Options;
+using Crawler.Provider.ZVG.WebClient;
 
-namespace Crawler.ZVG
+namespace Crawler.Provider.ZVG
 {
     //https://www.zvg.com/appl/termine.prg?act=getGridData&vt=&id_b=4&ids=159,114,49,86,105,&ido=35,4,5,49,&sort=a
     class Program

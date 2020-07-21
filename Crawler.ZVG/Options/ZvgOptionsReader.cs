@@ -1,9 +1,9 @@
 ﻿using System;
-using Crawler.ZVG.ZVG.WebClient;
+using Crawler.Provider.ZVG.WebClient;
 
-namespace Crawler.ZVG.ZVG.Options
+namespace Crawler.Provider.ZVG.Options
 {
-    public class ZvgOptionsReader : IZvgOptionsReader
+    internal class ZvgOptionsReader : IZvgOptionsReader
     {
         public ZvgWebClientOptions GetWebClientOptions()
         {
