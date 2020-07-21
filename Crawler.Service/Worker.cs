@@ -25,11 +25,11 @@ namespace Crawler.Service
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                var properties = GetAllProperties();
+                var properties = await GetAllProperties().ToListAsync(stoppingToken);
 
                 foreach (var sender in _messageSenders)
                 {
-                    sender.SendMessage(properties);
+                    await sender.SendMessage(properties);
                 }
 
                 await Task.Delay(1000, stoppingToken);

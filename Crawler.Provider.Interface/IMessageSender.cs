@@ -5,6 +5,6 @@ namespace Crawler.Interface
 {
     public interface IMessageSender
     {
-        Task SendMessage(IAsyncEnumerable<Property> properties);
+        Task SendMessage(IEnumerable<Property> properties);
     }
 }
