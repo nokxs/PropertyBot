@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Crawler.Interface;
@@ -25,7 +26,7 @@ namespace Crawler.Provider.ZVG.Converter
             var id = zvgObject.Id;
             var description = zvgObject.Data.Skip(1).First();
             var imageUri = GetImageUrl(zvgObject.Data.First());
-            var addDate = DateTime.Parse(zvgObject.Data.Last());
+            var addDate = DateTime.Parse(zvgObject.Data.Last(), new CultureInfo("de-DE"));
             var price = GetPrice(zvgObject.Data.Skip(1).First());
             var details = new Uri($"https://www.zvg.com/appl/termine.prg?act=getText&id={id}");
             var additionalDetails = new Dictionary<string, string>

@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Crawler.Persistence\Crawler.Persistence.MongoDB.csproj" />
     <ProjectReference Include="..\Crawler.Provider.Interface\Crawler.Interface.csproj" />
     <ProjectReference Include="..\Crawler.ZVG\Crawler.Provider.ZVG.csproj" />
   </ItemGroup>

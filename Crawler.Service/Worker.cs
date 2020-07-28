@@ -13,12 +13,14 @@ namespace Crawler.Service
         private readonly ILogger<Worker> _logger;
         private readonly IEnumerable<IPropertyProvider> _propertyProviders;
         private readonly IEnumerable<IMessageSender> _messageSenders;
+        private readonly IDataProvider _dataProvider;
 
-        public Worker(ILogger<Worker> logger, IEnumerable<IPropertyProvider> propertyProviders, IEnumerable<IMessageSender> messageSenders)
+        public Worker(ILogger<Worker> logger, IEnumerable<IPropertyProvider> propertyProviders, IEnumerable<IMessageSender> messageSenders, IDataProvider dataProvider)
         {
             _logger = logger;
             _propertyProviders = propertyProviders;
             _messageSenders = messageSenders;
+            _dataProvider = dataProvider;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -26,10 +28,15 @@ namespace Crawler.Service
             while (!stoppingToken.IsCancellationRequested)
             {
                 var properties = await GetAllProperties().ToListAsync(stoppingToken);
+                var newProperties = GetNewProperties(properties).ToList();
+
+                UpdateDatabase(newProperties);
+
+                _logger.LogInformation($"Found {properties.Count} properties, from which {newProperties.Count} are new.");
 
                 foreach (var sender in _messageSenders)
                 {
-                    await sender.SendMessage(properties);
+                    await sender.SendMessage(newProperties);
                 }
 
                 await Task.Delay(1000, stoppingToken);
@@ -46,6 +53,19 @@ namespace Crawler.Service
                 {
                     yield return property;
                 }
+            }
+        }
+
+        private IEnumerable<Property> GetNewProperties(IEnumerable<Property> properties)
+        {
+            return properties.Where(property => !_dataProvider.Contains(property));
+        }
+
+        private void UpdateDatabase(IEnumerable<Property> properties)
+        {
+            foreach (var property in properties)
+            {
+                _dataProvider.Add(property);
             }
         }
     }
