@@ -25,6 +25,8 @@ namespace Crawler.Service
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            _dataProvider.Init(); // TODO: Do not init here!
+
             while (!stoppingToken.IsCancellationRequested)
             {
                 var properties = await GetAllProperties().ToListAsync(stoppingToken);
@@ -63,10 +65,7 @@ namespace Crawler.Service
 
         private void UpdateDatabase(IEnumerable<Property> properties)
         {
-            foreach (var property in properties)
-            {
-                _dataProvider.Add(property);
-            }
+            _dataProvider.AddMany(properties);
         }
     }
 }

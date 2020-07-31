@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Crawler.Interface;
 using Crawler.Persistence.MongoDB;
 using Crawler.Provider.ZVG;
+using Crawler.Sender.Telegram;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -24,8 +25,6 @@ namespace Crawler.Service
                     services.AddSingleton<IDataProvider, MongoDbDataProvider>();
 
                     services.AddHostedService<Worker>();
-
-                    services.BuildServiceProvider().GetService<IDataProvider>().Init();
                 });
 
         private static void RegisterPropertyProviders(IServiceCollection services)
@@ -43,7 +42,10 @@ namespace Crawler.Service
         {
             services.AddSingleton<IEnumerable<IMessageSender>>(serviceProvider =>
             {
-                return new List<IMessageSender>();
+                return new[]
+                {
+                    new TelegramSender()
+                };
             });
         }
     }

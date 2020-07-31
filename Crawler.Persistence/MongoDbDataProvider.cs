@@ -13,14 +13,14 @@ namespace Crawler.Persistence.MongoDB
 
         public void Init()
         {
-            _client = new MongoClient("mongodb://mongo:27017"); // TODO: Do not hard code
-            _database = _client.GetDatabase("property-crawler");
+            _client = new MongoClient("mongodb://crawler:crawlerPassword@mongo"); // TODO: Do not hard code
+            _database = _client.GetDatabase("propertyCrawler");
             _collection = _database.GetCollection<Property>("properties");
         }
 
-        public Task<bool> Contains(Property property)
+        public bool Contains(Property property)
         {
-            return _collection.Find(prop => prop.Id == property.Id).AnyAsync();
+            return _collection.Find(prop => prop.Id == property.Id)?.Any() ?? false;
         }
 
         public Task Add(Property property)

@@ -7,7 +7,7 @@ namespace Crawler.Interface
     {
         public void Init();
 
-        public Task<bool> Contains(Property property);
+        public bool Contains(Property property);
 
         public Task Add(Property property);
 

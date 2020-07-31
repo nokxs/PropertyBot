@@ -6,6 +6,10 @@ services:
     build:
       context: .
       dockerfile: Crawler.Service/Dockerfile
+    environment:
+      MongoDB__Host: mongo
+    depends_on:
+      - mongo
   
   mongo:
     image: mongo
@@ -13,6 +17,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: crawler
       MONGO_INITDB_ROOT_PASSWORD: crawlerPassword
+    ports:
+      - 27017:27017
 
   mongo-express:
     image: mongo-express
@@ -22,3 +28,5 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: crawler
       ME_CONFIG_MONGODB_ADMINPASSWORD: crawlerPassword
+    depends_on:
+      - mongo
