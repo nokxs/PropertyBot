@@ -5,6 +5,8 @@ namespace Crawler.Interface
 {
     public interface IMessageSender
     {
-        Task SendMessage(IEnumerable<Property> properties);
+        Task SendMessages(IEnumerable<Property> properties);
+
+        void Init();
     }
 }

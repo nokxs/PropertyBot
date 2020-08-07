@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Crawler.Interface
 {
-    public interface IDataProvider
+    public interface IPropertyDataProvider
     {
         public void Init();
 

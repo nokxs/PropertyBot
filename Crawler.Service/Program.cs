@@ -22,7 +22,7 @@ namespace Crawler.Service
                     RegisterPropertyProviders(services);
                     RegisterMessageSenders(services);
 
-                    services.AddSingleton<IDataProvider, MongoDbDataProvider>();
+                    services.AddSingleton<IPropertyDataProvider, MongoDbPropertyDataProvider>();
 
                     services.AddHostedService<Worker>();
                 });
@@ -42,9 +42,12 @@ namespace Crawler.Service
         {
             services.AddSingleton<IEnumerable<IMessageSender>>(serviceProvider =>
             {
+                var senderDataProvider = new MongoDbSenderDataProvider();
+                senderDataProvider.Init();
+
                 return new[]
                 {
-                    new TelegramSender()
+                    new TelegramSender(senderDataProvider)
                 };
             });
         }

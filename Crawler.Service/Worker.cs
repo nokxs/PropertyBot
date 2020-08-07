@@ -13,19 +13,23 @@ namespace Crawler.Service
         private readonly ILogger<Worker> _logger;
         private readonly IEnumerable<IPropertyProvider> _propertyProviders;
         private readonly IEnumerable<IMessageSender> _messageSenders;
-        private readonly IDataProvider _dataProvider;
+        private readonly IPropertyDataProvider _propertyDataProvider;
 
-        public Worker(ILogger<Worker> logger, IEnumerable<IPropertyProvider> propertyProviders, IEnumerable<IMessageSender> messageSenders, IDataProvider dataProvider)
+        public Worker(ILogger<Worker> logger, IEnumerable<IPropertyProvider> propertyProviders, IEnumerable<IMessageSender> messageSenders, IPropertyDataProvider propertyDataProvider)
         {
             _logger = logger;
             _propertyProviders = propertyProviders;
             _messageSenders = messageSenders;
-            _dataProvider = dataProvider;
+            _propertyDataProvider = propertyDataProvider;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _dataProvider.Init(); // TODO: Do not init here!
+            _propertyDataProvider.Init(); // TODO: Do not init here!
+            foreach (var sender in _messageSenders)
+            {
+                sender.Init();
+            }
 
             while (!stoppingToken.IsCancellationRequested)
             {
@@ -38,10 +42,10 @@ namespace Crawler.Service
 
                 foreach (var sender in _messageSenders)
                 {
-                    await sender.SendMessage(newProperties);
+                    await sender.SendMessages(newProperties);
                 }
 
-                await Task.Delay(1000, stoppingToken);
+                await Task.Delay(1000 * 60, stoppingToken);
             }
         }
 
@@ -60,12 +64,12 @@ namespace Crawler.Service
 
         private IEnumerable<Property> GetNewProperties(IEnumerable<Property> properties)
         {
-            return properties.Where(property => !_dataProvider.Contains(property));
+            return properties.Where(property => !_propertyDataProvider.Contains(property));
         }
 
         private void UpdateDatabase(IEnumerable<Property> properties)
         {
-            _dataProvider.AddMany(properties);
+            _propertyDataProvider.AddMany(properties);
         }
     }
 }

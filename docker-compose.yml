@@ -8,6 +8,7 @@ services:
       dockerfile: Crawler.Service/Dockerfile
     environment:
       MongoDB__Host: mongo
+      TELEGRAM_API_TOKEN: 12345
     depends_on:
       - mongo
   
@@ -17,6 +18,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: crawler
       MONGO_INITDB_ROOT_PASSWORD: crawlerPassword
+    volumes:
+        - /docker/crawler/mongo:/data/db
     ports:
       - 27017:27017
 

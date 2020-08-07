@@ -5,7 +5,7 @@ namespace Crawler.Interface
 {
     public class Property
     {
-        public Property(string id, string description, Uri image, DateTime addDate, int price, IDictionary<string, string> additionalDetails, Uri details)
+        public Property(string id, string description, Uri image, DateTime addDate, int price, IDictionary<string, string> additionalDetails, Uri details, MessageFormat messageFormat)
         {
             Id = id;
             Description = description;
@@ -14,6 +14,7 @@ namespace Crawler.Interface
             Price = price;
             AdditionalDetails = additionalDetails;
             Details = details;
+            MessageFormat = messageFormat;
         }
 
         public string Id { get; }
@@ -28,6 +29,8 @@ namespace Crawler.Interface
 
         public Uri Details { get; }
 
-        public IDictionary<string, string> AdditionalDetails { get;  }
+        public IDictionary<string, string> AdditionalDetails { get; }
+
+        public MessageFormat MessageFormat { get; }
     }
 }

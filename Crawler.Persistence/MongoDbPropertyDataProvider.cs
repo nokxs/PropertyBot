@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace Crawler.Persistence.MongoDB
 {
-    public class MongoDbDataProvider : IDataProvider
+    public class MongoDbPropertyDataProvider : IPropertyDataProvider
     {
         private MongoClient _client;
         private IMongoDatabase _database;
