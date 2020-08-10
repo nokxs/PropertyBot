@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 using PropertyBot.Interface;
@@ -13,7 +14,10 @@ namespace PropertyBot.Persistence.MongoDB
 
         public void Init()
         {
-            _client = new MongoClient("mongodb://crawler:crawlerPassword@mongo"); // TODO: Do not hard code
+            var user = GetMandatoryEnvironmentVariable(EnvironmentConstants.MONGO_DB_USER);
+            var password = GetMandatoryEnvironmentVariable(EnvironmentConstants.MONGO_DB_PASSWORD);
+
+            _client = new MongoClient($"mongodb://{user}:{password}@mongo");
             _database = _client.GetDatabase("propertyCrawler");
             _collection = _database.GetCollection<Property>("properties");
         }
@@ -31,6 +35,11 @@ namespace PropertyBot.Persistence.MongoDB
         public Task AddMany(IEnumerable<Property> properties)
         {
             return _collection.InsertManyAsync(properties);
+        }
+
+        public string GetMandatoryEnvironmentVariable(string variable)
+        {
+            return Environment.GetEnvironmentVariable(variable) ?? throw new ArgumentException($"The mandatory environment variable {variable} is not set.");
         }
     }
 }
