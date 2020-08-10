@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.ZVG", "Crawler.ZVG\PropertyBot.Provider.ZVG.csproj", "{87A9A6B1-1E0B-4AF6-AF53-9966F5D342C5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Service", "Crawler.Service\PropertyBot.Service.csproj", "{B4D57E8D-B7D9-4BF4-9222-BBB0F97740CB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Interface", "Crawler.Provider.Interface\PropertyBot.Interface.csproj", "{B0D7A2FB-A542-405A-8839-73A4D7F4B4A6}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Sender.Telegram", "Crawler.Sender.Telegram\PropertyBot.Sender.Telegram.csproj", "{8DB4BD72-01FE-415A-AF8E-F85419DE40EF}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Persistence.MongoDB", "Crawler.Persistence\PropertyBot.Persistence.MongoDB.csproj", "{0CE958F5-D766-4C8C-9307-0F53C8F0F54B}"
-EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D5277D21-A01D-4621-9AD9-069156A7CEE0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.ZVG", "PropertyBot.ZVG\PropertyBot.Provider.ZVG.csproj", "{87A9A6B1-1E0B-4AF6-AF53-9966F5D342C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Service", "PropertyBot.Service\PropertyBot.Service.csproj", "{B4D57E8D-B7D9-4BF4-9222-BBB0F97740CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Interface", "PropertyBot.Provider.Interface\PropertyBot.Interface.csproj", "{B0D7A2FB-A542-405A-8839-73A4D7F4B4A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Sender.Telegram", "PropertyBot.Sender.Telegram\PropertyBot.Sender.Telegram.csproj", "{8DB4BD72-01FE-415A-AF8E-F85419DE40EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Persistence.MongoDB", "PropertyBot.Persistence\PropertyBot.Persistence.MongoDB.csproj", "{0CE958F5-D766-4C8C-9307-0F53C8F0F54B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
