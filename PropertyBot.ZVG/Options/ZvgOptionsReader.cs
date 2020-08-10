@@ -1,4 +1,4 @@
-﻿using System;
+﻿using PropertyBot.Common;
 using PropertyBot.Provider.ZVG.WebClient;
 
 namespace PropertyBot.Provider.ZVG.Options
@@ -7,12 +7,10 @@ namespace PropertyBot.Provider.ZVG.Options
     {
         public ZvgWebClientOptions GetWebClientOptions()
         {
-            //https://www.zvg.com/appl/termine.prg?act=getGridData&vt=&id_b=4&ids=159,114,49,86,105,&ido=35,4,5,49,&sort=a
+            var stateId = EnvironmentConstants.PROVIDER_ZVG_STATE_ID.GetAsOptionalEnvironmentVariable("4"); // default is "Baden-Württemberg"
+            var courtIds = EnvironmentConstants.PROVIDER_ZVG_COURT_IDS.GetAsOptionalEnvironmentVariable("49"); // default is "Stuttgart"
+            var objectKindIds = EnvironmentConstants.PROVIDER_ZVG_OBJECT_KIND_ID.GetAsOptionalEnvironmentVariable("4"); // default is "Einfamilienhaus"
 
-            var stateId = Environment.GetEnvironmentVariable(EnvironmentConstants.PROVIDER_ZVG_STATE_ID);
-            var courtIds = Environment.GetEnvironmentVariable(EnvironmentConstants.PROVIDER_ZVG_COURT_IDS);
-            var objectKindIds = Environment.GetEnvironmentVariable(EnvironmentConstants.PROVIDER_ZVG_OBJECT_KIND_ID);
-            
             return new ZvgWebClientOptions(stateId, courtIds, objectKindIds);
         }
     }

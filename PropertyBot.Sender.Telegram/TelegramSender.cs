@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PropertyBot.Common;
 using PropertyBot.Interface;
 using Telegram.Bot;
 using Telegram.Bot.Types.Enums;
@@ -21,13 +22,8 @@ namespace PropertyBot.Sender.Telegram
 
         public void Init()
         {
-            var token = Environment.GetEnvironmentVariable(EnvironmentConstants.TELEGRAM_API_TOKEN);
-
-            if (token == null)
-            {
-                throw new ArgumentException($"The environment variable {EnvironmentConstants.TELEGRAM_API_TOKEN} is not set!");
-            }
-
+            var token = EnvironmentConstants.TELEGRAM_API_TOKEN.GetAsMandatoryEnvironmentVariable();
+            
             _botClient = new TelegramBotClient(token);
             ListenForNewUsers();
         }
