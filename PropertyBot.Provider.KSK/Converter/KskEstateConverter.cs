@@ -54,7 +54,7 @@ namespace PropertyBot.Provider.KSK.Converter
 
         private string CreateDescription(Estate estate)
         {
-            return estate.Freitexte.Objekttitel;
+            return $"<b>{estate.Freitexte.Objekttitel}</b>";
         }
     }
 }
