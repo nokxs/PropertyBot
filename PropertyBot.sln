@@ -15,6 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Sender.Telegram
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Persistence.MongoDB", "PropertyBot.Persistence\PropertyBot.Persistence.MongoDB.csproj", "{0CE958F5-D766-4C8C-9307-0F53C8F0F54B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DA98F149-FFF0-4DB2-896A-14F1029DA104}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyBot.Common", "PropertyBot.Common\PropertyBot.Common.csproj", "{3DCA079B-C58B-43A1-8D05-9852E3B0B5D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +52,10 @@ Global
 		{0CE958F5-D766-4C8C-9307-0F53C8F0F54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CE958F5-D766-4C8C-9307-0F53C8F0F54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CE958F5-D766-4C8C-9307-0F53C8F0F54B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DCA079B-C58B-43A1-8D05-9852E3B0B5D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DCA079B-C58B-43A1-8D05-9852E3B0B5D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DCA079B-C58B-43A1-8D05-9852E3B0B5D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DCA079B-C58B-43A1-8D05-9852E3B0B5D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Driver;
+using PropertyBot.Common;
 using PropertyBot.Interface;
 
 namespace PropertyBot.Persistence.MongoDB
@@ -13,7 +14,10 @@ namespace PropertyBot.Persistence.MongoDB
 
         public void Init()
         {
-            _client = new MongoClient("mongodb://crawler:crawlerPassword@mongo"); // TODO: Do not hard code
+            var user = EnvironmentConstants.MONGO_DB_USER.GetAsMandatoryEnvironmentVariable();
+            var password = EnvironmentConstants.MONGO_DB_PASSWORD.GetAsMandatoryEnvironmentVariable();
+
+            _client = new MongoClient($"mongodb://{user}:{password}@mongo");
             _database = _client.GetDatabase("propertyCrawler");
             _collection = _database.GetCollection<Property>("properties");
         }
