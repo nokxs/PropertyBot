@@ -2,6 +2,10 @@
 
 This bot can crawl websites with properties and notify the user if something new with his search criteria is found.
 
+## Docker image
+
+You can use the pre-build docker image [`liofly/property-bot`](https://hub.docker.com/r/liofly/property-bot).
+
 ## Data providers
 
 The following property data providers are currently supported:

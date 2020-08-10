@@ -29,3 +29,4 @@ jobs:
         repository: liofly/property-bot
         dockerfile: PropertyBot.Service/Dockerfile
         tag_with_ref: true
+        tags: latest
