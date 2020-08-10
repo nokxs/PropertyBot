@@ -13,7 +13,7 @@ namespace PropertyBot.Sender.Telegram
     public class TelegramSender : IMessageSender
     {
         private readonly ISenderDataProvider _senderDataProvider;
-        private TelegramBotClient _botClient;   
+        private TelegramBotClient _botClient;
 
         public TelegramSender(ISenderDataProvider senderDataProvider)
         {
@@ -23,7 +23,7 @@ namespace PropertyBot.Sender.Telegram
         public void Init()
         {
             var token = EnvironmentConstants.TELEGRAM_API_TOKEN.GetAsMandatoryEnvironmentVariable();
-            
+
             _botClient = new TelegramBotClient(token);
             ListenForNewUsers();
         }
@@ -71,7 +71,7 @@ namespace PropertyBot.Sender.Telegram
                     {
                         await _botClient.SendTextMessageAsync(user.ChatId, $"ERROR: Could not send the following message as {property.MessageFormat}: \n {message} \n\n Exception: {e.Message}\n\n{e.StackTrace}");
                     }
-                    
+
                     await Task.Delay(1500);
                 }
             }
@@ -92,13 +92,8 @@ namespace PropertyBot.Sender.Telegram
 
         private string GetHtmlMessage(Property property)
         {
-            var normalizedDescription = property
-                .Description
-                .Replace("<br>", " \n ")
-                .Replace("<span>", string.Empty)
-                .Replace("</span>", string.Empty);
-
-            return $"{normalizedDescription} \n\n <i>Preis: {property.Price} €</i> \n\n{GetDetails(property)} \n\n <a href=\"{property.DetailsUrl}\">Mehr...</a>";
+            var normalizedDescription = Normalize(property.Description);
+            return $"{normalizedDescription} \n\n<i>Preis: {property.Price} €</i> \n\n{GetDetails(property)} \n\n<a href=\"{property.DetailsUrl}\">Mehr...</a>";
         }
 
         private string GetDetails(Property property)
@@ -107,7 +102,7 @@ namespace PropertyBot.Sender.Telegram
 
             foreach (var detail in property.AdditionalDetails)
             {
-                ret += $"• {detail.Key}: {detail.Value}\n";
+                ret += $"• {detail.Key}: {Normalize(detail.Value)}\n";
             }
 
             return ret;
@@ -124,6 +119,14 @@ namespace PropertyBot.Sender.Telegram
                 default:
                     return ParseMode.Default;
             }
+        }
+
+        private string Normalize(string s)
+        {
+            return s
+                .Replace("<br>", " \n ")
+                .Replace("<span>", string.Empty)
+                .Replace("</span>", string.Empty);
         }
     }
 }
