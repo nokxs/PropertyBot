@@ -11,6 +11,7 @@ You can use the pre-build docker image [`liofly/property-bot`](https://hub.docke
 The following property data providers are currently supported:
 
 - [zvg.com](https://zvg.com): [Readme](PropertyBot.ZVG/README.md)
+- [Kreissparkasse Böblingen](https://www.kskbb.de/de/home/privatkunden/immobilien/immobilienportal.html): [Readme](PropertyBot.Provider.KSK/README.md)
 
 ## Senders
 
@@ -24,7 +25,15 @@ Only one persistence provider is allowed at runtime. Currently only mongo db is 
 
 The following environment variables are mandatory:
 
-| Environment Variable | Description                |
-|----------------------|----------------------------|
-| MONGO_DB_USER        | User for the mongo db      |
-| MONGO_DB_PASSWORD    | Password of the given user |
+| Environment Variable | Description                | Mandatory |
+|----------------------|----------------------------|-----------|
+| MONGO_DB_PASSWORD    | Password of the given user | yes		|
+| MONGO_DB_USER        | User for the mongo db      | yes		| 
+
+## Common
+
+The following common environment variables can also be used:
+
+| Environment Variable                 | Description                                    | Mandatory | Default |
+|--------------------------------------|------------------------------------------------|-----------|---------|
+| PROPERTY_POLLING_INTERVAL_IN_SECONDS | The time in seconds between polling properties | no        | 600     |

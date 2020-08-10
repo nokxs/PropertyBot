@@ -8,10 +8,16 @@ services:
       dockerfile: PropertyBot.Service/Dockerfile
     environment:
       MongoDB__Host: mongo
-      TELEGRAM_API_TOKEN: "12345"
-      PROVIDER_ZVG_STATE_ID: "4"
+      PROPERTY_POLLING_INTERVAL_IN_SECONDS: 60
+      TELEGRAM_API_TOKEN: 12345
+      PROVIDER_ZVG_STATE_ID: 4
       PROVIDER_ZVG_COURT_IDS: "35,4,5,49"
       PROVIDER_ZVG_OBJECT_KIND_ID: "159,114,49,86,105"
+      PROVIDER_KSK_ZIPS: 70173
+      PROVIDER_KSK_PERIMETERS_IN_KM: 15
+      PROVIDER_KSK_LIMIT: 9
+      PROVIDER_KSK_REGIO_CLIENT_ID: 60350130
+      PROVIDER_KSK_MARKETING_USAGE_OBJECT_TYPES: "buy_residential_property,buy_residential_house"
       MONGO_DB_USER: crawler
       MONGO_DB_PASSWORD: crawlerPassword
     depends_on:

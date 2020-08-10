@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PropertyBot.Interface;
 using PropertyBot.Persistence.MongoDB;
+using PropertyBot.Provider.KSK;
 using PropertyBot.Provider.ZVG;
 using PropertyBot.Sender.Telegram;
 
@@ -40,7 +41,8 @@ namespace PropertyBot.Service
             {
                 return new[]
                 {
-                    ZvgProviderFactory.CreateClient()
+                    ZvgProviderFactory.CreateProvider(),
+                    KskProviderFactory.CreateProvider()
                 };
             });
         }

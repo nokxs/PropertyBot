@@ -13,5 +13,15 @@ namespace PropertyBot.Common
         {
             return Environment.GetEnvironmentVariable(variable) ?? defaultValue;
         }
+
+        public static int ToInt(this string s)
+        {
+            return int.Parse(s);
+        }
+
+        public static long ToLong(this string s)
+        {
+            return long.Parse(s);
+        }
     }
 }

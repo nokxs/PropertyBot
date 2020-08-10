@@ -7,7 +7,7 @@ namespace PropertyBot.Provider.ZVG
 {
     public static class ZvgProviderFactory
     {
-        public static IPropertyProvider CreateClient()
+        public static IPropertyProvider CreateProvider()
         {
             IZvgWebClient webClient = new ZvgWebClient();
             IZvgOptionsReader optionsReader = new ZvgOptionsReader();
