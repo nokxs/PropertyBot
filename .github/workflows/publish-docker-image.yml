@@ -32,27 +32,5 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: liofly/property-bot
-          # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
-          tags: $RELEASE_VERSION
-          # Automatically tags the built image with the git reference as per the readme
-          tag_with_ref: # optional
-          # Automatically tags the built image with the git short SHA as per the readme
-          tag_with_sha: # optional
-          # Path to the build context
-          path: # optional, default is .
-          # Path to the Dockerfile (Default is '{path}/Dockerfile')
-          dockerfile: # optional
-          # Sets the target stage to build
-          target: # optional
-          # Always attempt to pull a newer version of the image
-          always_pull: # optional
-          # Comma-delimited list of build-time variables
-          build_args: # optional
-          # Comma-delimited list of images to consider as cache sources
-          cache_froms: # optional
-          # Comma-delimited list of labels to add to the built image
-          labels: # optional
-          # Adds labels with git repository information to the built image
-          add_git_labels: # optional
-          # Whether to push the image
-          push: # optional, default is true
+          tag_with_ref: yes
+          dockerfile: Crawler.Service/Dockerfile
