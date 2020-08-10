@@ -1,8 +1,10 @@
-﻿namespace PropertyBot.Provider.KSK.WebClient
+﻿using System.Collections.Generic;
+
+namespace PropertyBot.Provider.KSK.WebClient
 {
     internal class KskWebClientOptions
     {
-        internal KskWebClientOptions(int zipRadiusSearch, int perimeterInKm, int limit, long regioClientId, string marketingUsageObjectType)
+        internal KskWebClientOptions(int zipRadiusSearch, int perimeterInKm, int limit, long regioClientId, IEnumerable<string> marketingUsageObjectType)
         {
             ZipRadiusSearch = zipRadiusSearch;
             PerimeterInKm = perimeterInKm;
@@ -19,6 +21,8 @@
 
         public long RegioClientId { get; }
 
-        public string MarketingUsageObjectType { get; }
+        public IEnumerable<string> MarketingUsageObjectType { get; }
+
+
     }
 }

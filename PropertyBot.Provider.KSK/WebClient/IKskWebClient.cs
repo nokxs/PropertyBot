@@ -6,6 +6,6 @@ namespace PropertyBot.Provider.KSK.WebClient
 {
     internal interface IKskWebClient
     {
-        Task<IEnumerable<Estate>> GetObjects(KskWebClientOptions options);
+        public Task<IEnumerable<Estate>> GetObjects(KskWebClientOptions options);
     }
 }

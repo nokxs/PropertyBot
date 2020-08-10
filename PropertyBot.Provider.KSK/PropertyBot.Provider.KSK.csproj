@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PropertyBot.Common\PropertyBot.Common.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.Interface\PropertyBot.Interface.csproj" />
   </ItemGroup>
 

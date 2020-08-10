@@ -65,7 +65,7 @@ namespace PropertyBot.Sender.Telegram
 
                     try
                     {
-                        await _botClient.SendPhotoAsync(user.ChatId, new InputOnlineFile(property.Image), message, GetParseMode(property.MessageFormat));
+                        await _botClient.SendPhotoAsync(user.ChatId, new InputOnlineFile(property.ImageUrl), message, GetParseMode(property.MessageFormat));
                     }
                     catch (Exception e)
                     {
@@ -98,7 +98,7 @@ namespace PropertyBot.Sender.Telegram
                 .Replace("<span>", string.Empty)
                 .Replace("</span>", string.Empty);
 
-            return $"{normalizedDescription} \n\n <i>Preis: {property.Price} €</i> \n\n <a href=\"{property.Details}\">Mehr...</a>";
+            return $"{normalizedDescription} \n\n <i>Preis: {property.Price} €</i> \n\n <a href=\"{property.DetailsUrl}\">Mehr...</a>";
         }
 
         private ParseMode GetParseMode(MessageFormat messageFormat)

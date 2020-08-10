@@ -2,9 +2,13 @@
 
 namespace PropertyBot.Provider.KSK.Entity
 {
-    public class Flaechen    {
+    public class Flaechen
+    {
         [JsonPropertyName("wohnflaeche")]
-        public string Wohnflaeche { get; set; } 
+        public string Wohnflaeche { get; set; }
+        
+        [JsonPropertyName("grundstuecksflaeche")]
+        public string Grundstuecksflaeche { get; set; }
 
         [JsonPropertyName("anzahl_zimmer")]
         public string AnzahlZimmer { get; set; } 

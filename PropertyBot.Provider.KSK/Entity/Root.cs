@@ -2,23 +2,27 @@
 
 namespace PropertyBot.Provider.KSK.Entity
 {
-    public class Root    {
-        [JsonPropertyName("_links")]
+    public class Root    
+    {
         [JsonIgnore]
+        [JsonPropertyName("_links")]
         public Links Links { get; set; } 
 
         [JsonPropertyName("_embedded")]
         public Embedded Embedded { get; set; } 
 
         [JsonPropertyName("page_count")]
-        public int PageCount { get; set; } 
+        public int PageCount { get; set; }
 
+        [JsonIgnore]
         [JsonPropertyName("page_size")]
-        public int PageSize { get; set; } 
+        public int PageSize { get; set; }
 
+        [JsonIgnore]
         [JsonPropertyName("total_items")]
-        public int TotalItems { get; set; } 
+        public int TotalItems { get; set; }
 
+        [JsonIgnore]
         [JsonPropertyName("page")]
         public int Page { get; set; } 
     }
