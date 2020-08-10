@@ -11,6 +11,7 @@ You can use the pre-build docker image [`liofly/property-bot`](https://hub.docke
 The following property data providers are currently supported:
 
 - [zvg.com](https://zvg.com): [Readme](PropertyBot.ZVG/README.md)
+- [Kreissparkasse Böblingen](https://www.kskbb.de/de/home/privatkunden/immobilien/immobilienportal.html): [Readme](PropertyBot.Provider.KSK/README.md)
 
 ## Senders
 
