@@ -5,16 +5,16 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["Crawler.Service/Crawler.Service.csproj", "Crawler.Service/"]
-RUN dotnet restore "Crawler.Service/Crawler.Service.csproj"
+COPY ["PropertyBot.Service/PropertyBot.Service.csproj", "PropertyBot.Service/"]
+RUN dotnet restore "PropertyBot.Service/PropertyBot.Service.csproj"
 COPY . .
-WORKDIR "/src/Crawler.Service"
-RUN dotnet build "Crawler.Service.csproj" -c Release -o /app/build
+WORKDIR "/src/PropertyBot.Service"
+RUN dotnet build "PropertyBot.Service.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Crawler.Service.csproj" -c Release -o /app/publish
+RUN dotnet publish "PropertyBot.Service.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Crawler.Service.dll"]
+ENTRYPOINT ["dotnet", "PropertyBot.Service.dll"]
