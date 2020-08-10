@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Crawler.Provider.Interface\Crawler.Interface.csproj" />
+    <ProjectReference Include="..\Crawler.Provider.Interface\PropertyBot.Interface.csproj" />
   </ItemGroup>
 
 </Project>

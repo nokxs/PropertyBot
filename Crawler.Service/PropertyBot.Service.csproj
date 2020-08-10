@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Crawler.Persistence\Crawler.Persistence.MongoDB.csproj" />
-    <ProjectReference Include="..\Crawler.Provider.Interface\Crawler.Interface.csproj" />
-    <ProjectReference Include="..\Crawler.Sender.Telegram\Crawler.Sender.Telegram.csproj" />
-    <ProjectReference Include="..\Crawler.ZVG\Crawler.Provider.ZVG.csproj" />
+    <ProjectReference Include="..\Crawler.Persistence\PropertyBot.Persistence.MongoDB.csproj" />
+    <ProjectReference Include="..\Crawler.Provider.Interface\PropertyBot.Interface.csproj" />
+    <ProjectReference Include="..\Crawler.Sender.Telegram\PropertyBot.Sender.Telegram.csproj" />
+    <ProjectReference Include="..\Crawler.ZVG\PropertyBot.Provider.ZVG.csproj" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Crawler.Provider.Interface\Crawler.Interface.csproj" />
+    <ProjectReference Include="..\Crawler.Provider.Interface\PropertyBot.Interface.csproj" />
   </ItemGroup>
 
 </Project>
