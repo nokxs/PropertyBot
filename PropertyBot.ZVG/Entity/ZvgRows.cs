@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Crawler.Provider.ZVG.Entity
+namespace PropertyBot.Provider.ZVG.Entity
 {
     internal class ZvgRows
     {

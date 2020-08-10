@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Crawler.Interface;
-using Crawler.Provider.ZVG.Entity;
+using PropertyBot.Interface;
+using PropertyBot.Provider.ZVG.Entity;
 
-namespace Crawler.Provider.ZVG.Converter
+namespace PropertyBot.Provider.ZVG.Converter
 {
     internal interface IZvgObjectConverter
     {

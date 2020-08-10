@@ -2,9 +2,9 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Crawler.Provider.ZVG.Entity;
+using PropertyBot.Provider.ZVG.Entity;
 
-namespace Crawler.Provider.ZVG.WebClient
+namespace PropertyBot.Provider.ZVG.WebClient
 {
     internal class ZvgWebClient : IZvgWebClient
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Crawler.Interface
+namespace PropertyBot.Interface
 {
     public interface IPropertyDataProvider
     {

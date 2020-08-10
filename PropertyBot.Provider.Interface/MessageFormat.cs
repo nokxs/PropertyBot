@@ -1,4 +1,4 @@
-﻿namespace Crawler.Interface
+﻿namespace PropertyBot.Interface
 {
     public enum MessageFormat
     {

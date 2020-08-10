@@ -1,12 +1,12 @@
 using System.Collections.Generic;
-using Crawler.Interface;
-using Crawler.Persistence.MongoDB;
-using Crawler.Provider.ZVG;
-using Crawler.Sender.Telegram;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PropertyBot.Interface;
+using PropertyBot.Persistence.MongoDB;
+using PropertyBot.Provider.ZVG;
+using PropertyBot.Sender.Telegram;
 
-namespace Crawler.Service
+namespace PropertyBot.Service
 {
     public class Program
     {

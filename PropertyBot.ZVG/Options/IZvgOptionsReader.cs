@@ -1,6 +1,6 @@
-﻿using Crawler.Provider.ZVG.WebClient;
+﻿using PropertyBot.Provider.ZVG.WebClient;
 
-namespace Crawler.Provider.ZVG.Options
+namespace PropertyBot.Provider.ZVG.Options
 {
     internal interface IZvgOptionsReader
     {

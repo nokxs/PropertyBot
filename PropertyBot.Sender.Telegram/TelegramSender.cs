@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Crawler.Interface;
+using PropertyBot.Interface;
 using Telegram.Bot;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.InputFiles;
 
-namespace Crawler.Sender.Telegram
+namespace PropertyBot.Sender.Telegram
 {
     public class TelegramSender : IMessageSender
     {

@@ -17,5 +17,9 @@
     <ProjectReference Include="..\Crawler.Provider.Interface\PropertyBot.Interface.csproj" />
     <ProjectReference Include="..\Crawler.Sender.Telegram\PropertyBot.Sender.Telegram.csproj" />
     <ProjectReference Include="..\Crawler.ZVG\PropertyBot.Provider.ZVG.csproj" />
+    <ProjectReference Include="..\PropertyBot.Persistence\PropertyBot.Persistence.MongoDB.csproj" />
+    <ProjectReference Include="..\PropertyBot.Provider.Interface\PropertyBot.Interface.csproj" />
+    <ProjectReference Include="..\PropertyBot.Sender.Telegram\PropertyBot.Sender.Telegram.csproj" />
+    <ProjectReference Include="..\PropertyBot.ZVG\PropertyBot.Provider.ZVG.csproj" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Crawler.Interface
+namespace PropertyBot.Interface
 {
     public class Property
     {

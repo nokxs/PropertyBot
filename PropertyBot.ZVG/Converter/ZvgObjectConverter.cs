@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Crawler.Interface;
-using Crawler.Provider.ZVG.Entity;
+using PropertyBot.Interface;
+using PropertyBot.Provider.ZVG.Entity;
 
-namespace Crawler.Provider.ZVG.Converter
+namespace PropertyBot.Provider.ZVG.Converter
 {
     internal class ZvgObjectConverter : IZvgObjectConverter
     {

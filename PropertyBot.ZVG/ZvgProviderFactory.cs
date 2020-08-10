@@ -1,9 +1,9 @@
-﻿using Crawler.Interface;
-using Crawler.Provider.ZVG.Converter;
-using Crawler.Provider.ZVG.Options;
-using Crawler.Provider.ZVG.WebClient;
+﻿using PropertyBot.Interface;
+using PropertyBot.Provider.ZVG.Converter;
+using PropertyBot.Provider.ZVG.Options;
+using PropertyBot.Provider.ZVG.WebClient;
 
-namespace Crawler.Provider.ZVG
+namespace PropertyBot.Provider.ZVG
 {
     public static class ZvgProviderFactory
     {

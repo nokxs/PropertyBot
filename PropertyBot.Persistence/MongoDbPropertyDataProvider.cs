@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Crawler.Interface;
 using MongoDB.Driver;
+using PropertyBot.Interface;
 
-namespace Crawler.Persistence.MongoDB
+namespace PropertyBot.Persistence.MongoDB
 {
     public class MongoDbPropertyDataProvider : IPropertyDataProvider
     {

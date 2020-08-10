@@ -1,4 +1,4 @@
-﻿namespace Crawler.Sender.Telegram
+﻿namespace PropertyBot.Sender.Telegram
 {
     public class TelegramUser
     {

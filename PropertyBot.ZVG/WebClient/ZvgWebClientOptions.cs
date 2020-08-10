@@ -1,4 +1,4 @@
-﻿namespace Crawler.Provider.ZVG.WebClient
+﻿namespace PropertyBot.Provider.ZVG.WebClient
 {
     public class ZvgWebClientOptions
     {

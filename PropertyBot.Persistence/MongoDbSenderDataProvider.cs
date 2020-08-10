@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Crawler.Interface;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
+using PropertyBot.Interface;
 
-namespace Crawler.Persistence.MongoDB
+namespace PropertyBot.Persistence.MongoDB
 {
     public class MongoDbSenderDataProvider : ISenderDataProvider
     {
