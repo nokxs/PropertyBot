@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PropertyBot.Common;
 using PropertyBot.Interface;
 
 namespace PropertyBot.Service
@@ -25,11 +26,7 @@ namespace PropertyBot.Service
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _propertyDataProvider.Init(); // TODO: Do not init here!
-            foreach (var sender in _messageSenders)
-            {
-                sender.Init();
-            }
+            var pollingIntervalInSeconds = EnvironmentConstants.PROPERTY_POLLING_INTERVAL_IN_SECONDS.GetAsOptionalEnvironmentVariable("600").ToInt(); // default is 10 Minutes
 
             while (!stoppingToken.IsCancellationRequested)
             {
@@ -45,7 +42,7 @@ namespace PropertyBot.Service
                     await sender.SendMessages(newProperties);
                 }
 
-                await Task.Delay(1000 * 60, stoppingToken);
+                await Task.Delay(pollingIntervalInSeconds * 60, stoppingToken);
             }
         }
                     

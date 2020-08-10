@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PropertyBot.Persistence\PropertyBot.Persistence.MongoDB.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.Interface\PropertyBot.Interface.csproj" />
+    <ProjectReference Include="..\PropertyBot.Provider.KSK\PropertyBot.Provider.KSK.csproj" />
     <ProjectReference Include="..\PropertyBot.Sender.Telegram\PropertyBot.Sender.Telegram.csproj" />
     <ProjectReference Include="..\PropertyBot.ZVG\PropertyBot.Provider.ZVG.csproj" />
   </ItemGroup>

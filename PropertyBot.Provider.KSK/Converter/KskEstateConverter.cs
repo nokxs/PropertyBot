@@ -7,7 +7,7 @@ using PropertyBot.Provider.KSK.Entity;
 
 namespace PropertyBot.Provider.KSK.Converter
 {
-    public class KskEstateConverter : IKskEstateConverter
+    internal class KskEstateConverter : IKskEstateConverter
     {
         public IEnumerable<Property> ToProperties(IEnumerable<Estate> estates)
         {
