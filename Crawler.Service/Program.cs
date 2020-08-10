@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Crawler.Interface;
 using Crawler.Persistence.MongoDB;
 using Crawler.Provider.ZVG;
@@ -21,15 +22,22 @@ namespace Crawler.Service
                 {
                     RegisterPropertyProviders(services);
                     RegisterMessageSenders(services);
-
-                    services.AddSingleton<IPropertyDataProvider, MongoDbPropertyDataProvider>();
+                    RegisterDataProviders(services);
 
                     services.AddHostedService<Worker>();
                 });
 
+        private static void RegisterDataProviders(IServiceCollection services)
+        {
+            var mongoDbPropertyDataProvider = new MongoDbPropertyDataProvider();
+            mongoDbPropertyDataProvider.Init();
+
+            services.AddSingleton<IPropertyDataProvider>(_ => mongoDbPropertyDataProvider);
+        }
+
         private static void RegisterPropertyProviders(IServiceCollection services)
         {
-            services.AddSingleton<IEnumerable<IPropertyProvider>>(serviceProvider =>
+            services.AddSingleton<IEnumerable<IPropertyProvider>>(_ =>
             {
                 return new[]
                 {
@@ -40,14 +48,17 @@ namespace Crawler.Service
 
         private static void RegisterMessageSenders(IServiceCollection services)
         {
-            services.AddSingleton<IEnumerable<IMessageSender>>(serviceProvider =>
+            services.AddSingleton<IEnumerable<IMessageSender>>(_ =>
             {
                 var senderDataProvider = new MongoDbSenderDataProvider();
                 senderDataProvider.Init();
 
+                var telegramSender = new TelegramSender(senderDataProvider);
+                telegramSender.Init();
+
                 return new[]
                 {
-                    new TelegramSender(senderDataProvider)
+                    telegramSender
                 };
             });
         }

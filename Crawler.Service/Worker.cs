@@ -48,7 +48,7 @@ namespace Crawler.Service
                 await Task.Delay(1000 * 60, stoppingToken);
             }
         }
-
+                    
         private async IAsyncEnumerable<Property> GetAllProperties()
         {
             foreach (var provider in _propertyProviders)
