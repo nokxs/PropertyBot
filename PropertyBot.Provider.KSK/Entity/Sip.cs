@@ -55,8 +55,9 @@ namespace PropertyBot.Provider.KSK.Entity
         [JsonPropertyName("files")]
         public List<object> Files { get; set; } 
 
+        [JsonIgnore]
         [JsonPropertyName("exclusive")]
-        public string Exclusive { get; set; } 
+        public bool Exclusive { get; set; } 
 
         [JsonPropertyName("qr_code_image_url")]
         public string QrCodeImageUrl { get; set; } 

@@ -4,6 +4,7 @@ namespace PropertyBot.Provider.KSK.Entity
 {
     public class Root    {
         [JsonPropertyName("_links")]
+        [JsonIgnore]
         public Links Links { get; set; } 
 
         [JsonPropertyName("_embedded")]

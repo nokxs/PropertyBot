@@ -10,7 +10,7 @@ namespace PropertyBot.Provider.KSK
         {
             var client = new KskClient();
             var webClient = new KskWebClient();
-            var objects = await webClient.GetZvgObjects(new KskWebClientOptions());
+            var objects = await webClient.GetObjects(new KskWebClientOptions(71254, 25, 10, 60350130, "buy_residential_house"));
         }
     }
 }

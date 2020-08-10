@@ -7,8 +7,9 @@ namespace PropertyBot.Provider.KSK.Entity
         public string ObjektadresseFreigeben { get; set; } 
 
         [JsonPropertyName("verfuegbar_ab")]
-        public string VerfuegbarAb { get; set; } 
-
+        public string VerfuegbarAb { get; set; }
+        
+        [JsonIgnore]
         [JsonPropertyName("user_defined_anyfield")]
         public UserDefinedAnyfield UserDefinedAnyfield { get; set; } 
 
