@@ -17,8 +17,8 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore Crawler.ZVG.sln
+      run: dotnet restore PropertyBot.sln
     - name: Build
-      run: dotnet build --configuration Release --no-restore Crawler.ZVG.sln
+      run: dotnet build --configuration Release --no-restore PropertyBot.sln
     - name: Test
-      run: dotnet test --no-restore --verbosity normal Crawler.ZVG.sln
+      run: dotnet test --no-restore --verbosity normal PropertyBotsln
