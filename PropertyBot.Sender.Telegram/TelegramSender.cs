@@ -32,7 +32,6 @@ namespace PropertyBot.Sender.Telegram
         {
             _botClient.OnMessage += (sender, args) =>
             {
-                
                 var chat = args.Message.Chat;
                 var name = chat.FirstName;
                 var id = chat.Id;
@@ -64,7 +63,15 @@ namespace PropertyBot.Sender.Telegram
                 {
                     var message = GetMessage(property);
 
-                    await _botClient.SendPhotoAsync(user.ChatId, new InputOnlineFile(property.Image), message, GetParseMode(property.MessageFormat));
+                    try
+                    {
+                        await _botClient.SendPhotoAsync(user.ChatId, new InputOnlineFile(property.Image), message, GetParseMode(property.MessageFormat));
+                    }
+                    catch (Exception e)
+                    {
+                        await _botClient.SendTextMessageAsync(user.ChatId, $"ERROR: Could not send the following message as {property.MessageFormat}: \n {message} \n\n Exception: {e.Message}\n\n{e.StackTrace}");
+                    }
+                    
                     await Task.Delay(1500);
                 }
             }
