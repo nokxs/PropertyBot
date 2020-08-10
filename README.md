@@ -25,7 +25,15 @@ Only one persistence provider is allowed at runtime. Currently only mongo db is 
 
 The following environment variables are mandatory:
 
-| Environment Variable | Description                |
-|----------------------|----------------------------|
-| MONGO_DB_USER        | User for the mongo db      |
-| MONGO_DB_PASSWORD    | Password of the given user |
+| Environment Variable | Description                | Mandatory |
+|----------------------|----------------------------|-----------|
+| MONGO_DB_PASSWORD    | Password of the given user | yes		|
+| MONGO_DB_USER        | User for the mongo db      | yes		| 
+
+## Common
+
+The following common environment variables can also be used:
+
+| Environment Variable                 | Description                                    | Mandatory | Default |
+|--------------------------------------|------------------------------------------------|-----------|---------|
+| PROPERTY_POLLING_INTERVAL_IN_SECONDS | The time in seconds between polling properties | no        | 600     |
