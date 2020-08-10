@@ -1,11 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Crawler.ZVG\PropertyBot.Provider.Interface\PropertyBot.Interface.csproj" />
+    <ProjectReference Include="..\PropertyBot.Provider.Interface\PropertyBot.Interface.csproj" />
   </ItemGroup>
 
 </Project>
