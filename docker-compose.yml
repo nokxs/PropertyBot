@@ -8,7 +8,10 @@ services:
       dockerfile: PropertyBot.Service/Dockerfile
     environment:
       MongoDB__Host: mongo
-      TELEGRAM_API_TOKEN: 12345
+      TELEGRAM_API_TOKEN: "12345"
+      PROVIDER_ZVG_STATE_ID: "4"
+      PROVIDER_ZVG_COURT_IDS: "35,4,5,49"
+      PROVIDER_ZVG_OBJECT_KIND_ID: "159,114,49,86,105"
     depends_on:
       - mongo
   
