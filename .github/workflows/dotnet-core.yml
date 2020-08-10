@@ -21,4 +21,4 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore PropertyBot.sln
     - name: Test
-      run: dotnet test --no-restore --verbosity normal PropertyBotsln
+      run: dotnet test --no-restore --verbosity normal PropertyBot.sln
