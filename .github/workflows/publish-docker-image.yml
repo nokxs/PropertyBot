@@ -33,4 +33,3 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: liofly/property-bot
           tag_with_ref: true
-          dockerfile: Crawler.Service/Dockerfile
