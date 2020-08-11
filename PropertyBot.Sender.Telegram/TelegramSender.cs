@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using PropertyBot.Common;
 using PropertyBot.Interface;
@@ -72,7 +73,7 @@ namespace PropertyBot.Sender.Telegram
                         await _botClient.SendTextMessageAsync(user.ChatId, $"ERROR: Could not send the following message as {property.MessageFormat}: \n {message} \n\n Exception: {e.Message}\n\n{e.StackTrace}");
                     }
 
-                    await Task.Delay(1500);
+                    await Task.Delay(50);
                 }
             }
         }
@@ -123,10 +124,17 @@ namespace PropertyBot.Sender.Telegram
 
         private string Normalize(string s)
         {
-            return s
+            if (s == null)
+            {
+                return string.Empty;
+            }
+
+            var s2 = s
                 .Replace("<br>", " \n ")
                 .Replace("<span>", string.Empty)
                 .Replace("</span>", string.Empty);
+
+            return Regex.Replace(s2, "(<span.*>)", string.Empty);
         }
     }
 }
