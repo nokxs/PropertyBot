@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -30,19 +31,26 @@ namespace PropertyBot.Service
 
             while (!stoppingToken.IsCancellationRequested)
             {
-                var properties = await GetAllProperties().ToListAsync(stoppingToken);
-                var newProperties = GetNewProperties(properties).ToList();
-
-                UpdateDatabase(newProperties);
-
-                _logger.LogInformation($"Found {properties.Count} properties, from which {newProperties.Count} are new.");
-
-                foreach (var sender in _messageSenders)
+                try
                 {
-                    await sender.SendMessages(newProperties);
+                    var properties = await GetAllProperties().ToListAsync(stoppingToken);
+                    var newProperties = GetNewProperties(properties).ToList();
+
+                    UpdateDatabase(newProperties);
+
+                    _logger.LogInformation($"Found {properties.Count} properties, from which {newProperties.Count} are new.");
+
+                    foreach (var sender in _messageSenders)
+                    {
+                        await sender.SendMessages(newProperties);
+                    }
+                }
+                catch (Exception e)
+                {
+                    _logger.LogCritical($"{e.Message} \n\n{e.StackTrace}");
                 }
 
-                await Task.Delay(pollingIntervalInSeconds * 60, stoppingToken);
+                await Task.Delay(pollingIntervalInSeconds * 1000, stoppingToken);
             }
         }
                     
