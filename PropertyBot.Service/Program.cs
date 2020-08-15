@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 using PropertyBot.Interface;
 using PropertyBot.Persistence.MongoDB;
 using PropertyBot.Provider.KSK;
+using PropertyBot.Provider.VolksbankStuttgart;
 using PropertyBot.Provider.ZVG;
 using PropertyBot.Sender.Telegram;
 
@@ -38,6 +39,7 @@ namespace PropertyBot.Service
         {
             services.AddSingleton(ZvgProviderFactory.CreateProvider());
             services.AddSingleton(KskProviderFactory.CreateProvider());
+            services.AddSingleton(VolksbankStuttgartProviderFactory.CreateProvider());
         }
 
         private static void RegisterMessageSenders(IServiceCollection services)
@@ -48,7 +50,7 @@ namespace PropertyBot.Service
             var telegramSender = new TelegramSender(senderDataProvider);
             telegramSender.Init();
 
-            services.AddSingleton(telegramSender);
+            services.AddSingleton<IMessageSender>(telegramSender);
         }
     }
 }
