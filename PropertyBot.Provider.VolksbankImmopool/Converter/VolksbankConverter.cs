@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using PropertyBot.Interface;
-using PropertyBot.Provider.VolksbankStuttgart.Entity;
+using PropertyBot.Provider.VolksbankImmopool.Entity;
 
-namespace PropertyBot.Provider.VolksbankStuttgart.Converter
+namespace PropertyBot.Provider.VolksbankImmopool.Converter
 {
     internal class VolksbankConverter : IVolksbankConverter
     {
@@ -30,7 +30,7 @@ namespace PropertyBot.Provider.VolksbankStuttgart.Converter
                 DateTime.Now, 
                 volksbankProperty.Price,
                 details,
-                new Uri($"https://cs.immopool.de/CS/getExpose?onlinenr={volksbankProperty.Id}"), 
+                new Uri($"https://www.immopool.de/ASP/immo/obj/immoexpose.asp?Lasid=53048086&inetlfdnr={volksbankProperty.Id}"), 
                 MessageFormat.Html);
         }
     }

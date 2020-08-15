@@ -1,25 +1,25 @@
 ﻿using System.Collections.Generic;
 
-namespace PropertyBot.Provider.VolksbankStuttgart.WebClient
+namespace PropertyBot.Provider.VolksbankImmopool.WebClient
 {
     internal class VolksbankWebClientOptions
     {
-        internal VolksbankWebClientOptions(IEnumerable<string> geoSlses, int geoSlRadiusSearch, int limit, long customerId, int objectCategory)
+        internal VolksbankWebClientOptions(IEnumerable<string> geoSlses, IEnumerable<int> geoSlRadiusSearch, int limit, IEnumerable<int> customerIds, int objectCategory)
         {
             GeoSls = geoSlses;
             GeoSlRadiusSearch = geoSlRadiusSearch;
             Limit = limit;
-            CustomerId = customerId;
+            CustomerIds = customerIds;
             ObjectCategory = objectCategory;
         }
 
         public IEnumerable<string> GeoSls { get; }
 
-        public int GeoSlRadiusSearch { get; }
+        public IEnumerable<int> GeoSlRadiusSearch { get; }
         
         public int Limit { get; }
 
-        public long CustomerId { get; }
+        public IEnumerable<int> CustomerIds { get; }
 
         public int ObjectCategory { get; }
     }

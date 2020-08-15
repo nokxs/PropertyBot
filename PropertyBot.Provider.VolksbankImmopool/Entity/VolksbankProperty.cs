@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PropertyBot.Provider.VolksbankStuttgart.Entity
+namespace PropertyBot.Provider.VolksbankImmopool.Entity
 {
     internal class VolksbankProperty
     {
