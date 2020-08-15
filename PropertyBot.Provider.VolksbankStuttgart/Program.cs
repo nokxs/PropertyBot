@@ -8,7 +8,7 @@ namespace PropertyBot.Provider.VolksbankStuttgart
         static async Task Main(string[] param)
         {
             var webClient = new VolksbankWebClient();
-            var webClientOptions = new VolksbankWebClientOptions("004008001011000000", 10, 100, 144298);
+            var webClientOptions = new VolksbankWebClientOptions("004008001011000000", 10, 100, 144298, 1);
 
             var result = await webClient.GetObjects(webClientOptions);
         }
