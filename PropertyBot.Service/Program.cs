@@ -2,6 +2,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PropertyBot.Interface;
 using PropertyBot.Persistence.MongoDB;
+using PropertyBot.Provider.KSK;
+using PropertyBot.Provider.VolksbankImmopool;
+using PropertyBot.Provider.ZVG;
 using PropertyBot.Sender.Telegram;
 
 namespace PropertyBot.Service
@@ -34,9 +37,9 @@ namespace PropertyBot.Service
 
         private static void RegisterPropertyProviders(IServiceCollection services)
         {
-            //services.AddSingleton(ZvgProviderFactory.CreateProvider());
-            //services.AddSingleton(KskProviderFactory.CreateProvider());
-            services.AddSingleton(VolksbankProviderFactory.CreateProvider());
+            services.AddSingleton(ZvgProviderFactory.CreateProvider());
+            services.AddSingleton(KskProviderFactory.CreateProvider());
+            services.AddSingleton(VolksbankImmopoolProviderFactory.CreateProvider());
         }
 
         private static void RegisterMessageSenders(IServiceCollection services)
