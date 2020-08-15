@@ -37,8 +37,8 @@ namespace PropertyBot.Service
 
         private static void RegisterPropertyProviders(IServiceCollection services)
         {
-            services.AddSingleton(ZvgProviderFactory.CreateProvider());
-            services.AddSingleton(KskProviderFactory.CreateProvider());
+            //services.AddSingleton(ZvgProviderFactory.CreateProvider());
+            //services.AddSingleton(KskProviderFactory.CreateProvider());
             services.AddSingleton(VolksbankStuttgartProviderFactory.CreateProvider());
         }
 

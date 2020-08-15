@@ -30,7 +30,7 @@ namespace PropertyBot.Provider.VolksbankStuttgart.Converter
                 DateTime.Now, 
                 volksbankProperty.Price,
                 details,
-                new Uri($"https://cs.immopool.de/CS/getExpose?onlinenr={volksbankProperty.Id}"), 
+                new Uri($"https://www.immopool.de/ASP/immo/obj/immoexpose.asp?Lasid=53048086&inetlfdnr={volksbankProperty.Id}"), 
                 MessageFormat.Html);
         }
     }

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text.Json;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using PropertyBot.Provider.VolksbankStuttgart.Entity;
@@ -23,27 +21,30 @@ namespace PropertyBot.Provider.VolksbankStuttgart.WebClient
         {
             var properties = new List<VolksbankProperty>();
 
-            foreach (var geoSl in options.GeoSls)
+            for (int i = 0; i < options.CustomerIds.Count(); i++)
             {
-                var resultString = await GetRawPage(options, geoSl);
+                var customerId = options.CustomerIds.Skip(i).First();
+                var searchRadius = options.GeoSlRadiusSearch.Skip(i).First();
+                var geoSl= options.GeoSls.Skip(i).First();
+
+                var resultString = await GetRawPage(options, customerId, searchRadius, geoSl);
                 properties.AddRange(ParseHtml(resultString));
             }
-
 
             return properties;
         }
 
-        private async Task<string> GetRawPage(VolksbankWebClientOptions options, string geoSL)
+        private async Task<string> GetRawPage(VolksbankWebClientOptions options, int customerId, int searchRadius, string geoSL)
         {
             var content = new Dictionary<string, string>
             {
-                {"kdnr", options.CustomerId.ToString()},
+                {"kdnr", customerId.ToString()},
                 {"version", "3"},
                 {"pageSize", options.Limit.ToString()},
                 {"pageIndex", "0"},
                 {"objkat", options.ObjectCategory.ToString()}, // house
                 {"geosl", geoSL},
-                {"umkreis", options.GeoSlRadiusSearch.ToString()},
+                {"umkreis", searchRadius.ToString()},
                 {"sortOrder", "0_1"}
             };
 
