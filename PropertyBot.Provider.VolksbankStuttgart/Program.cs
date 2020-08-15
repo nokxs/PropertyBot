@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using PropertyBot.Provider.VolksbankStuttgart.Converter;
 using PropertyBot.Provider.VolksbankStuttgart.WebClient;
 
 namespace PropertyBot.Provider.VolksbankStuttgart
@@ -11,6 +12,7 @@ namespace PropertyBot.Provider.VolksbankStuttgart
             var webClientOptions = new VolksbankWebClientOptions("004008001011000000", 10, 100, 144298, 1);
 
             var result = await webClient.GetObjects(webClientOptions);
+            var props = new VolksbankConverter().ToProperties(result);
         }
     }
 }

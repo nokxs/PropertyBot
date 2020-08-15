@@ -6,6 +6,6 @@ namespace PropertyBot.Provider.VolksbankStuttgart.Converter
 {
     internal interface IVolksbankConverter
     {
-        public IEnumerable<Property> ToProperties(IEnumerable<VolksbankProperty> estates);
+        public IEnumerable<Property> ToProperties(IEnumerable<VolksbankProperty> volksbankProperties);
     }
 }

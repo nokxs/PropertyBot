@@ -61,6 +61,7 @@ namespace PropertyBot.Provider.VolksbankStuttgart.WebClient
             htmlDoc.LoadHtml(node.InnerHtml);
 
             return new VolksbankProperty(
+                GetId(htmlDoc.DocumentNode),
                 GetDescription(htmlDoc.DocumentNode),
                 GetType(htmlDoc.DocumentNode),
                 GetLocation(htmlDoc.DocumentNode),
@@ -69,6 +70,12 @@ namespace PropertyBot.Provider.VolksbankStuttgart.WebClient
                 GetLivingArea(htmlDoc.DocumentNode),
                 GetPropertyArea(htmlDoc.DocumentNode),
                 GetImageUri(htmlDoc.DocumentNode));
+        }
+
+        private int GetId(HtmlNode node)
+        {
+            var descriptionNode = node.SelectSingleNode("//a[contains(@class, 'list-expose-link')]");
+            return parseAsIntSafe(descriptionNode?.Attributes.First(attribute => attribute.Name == "data-id").Value);
         }
 
         private string GetDescription(HtmlNode node)
