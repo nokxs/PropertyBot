@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using PropertyBot.Interface;
-using PropertyBot.Provider.VolksbankStuttgart.Entity;
+using PropertyBot.Provider.VolksbankImmopool.Entity;
 
-namespace PropertyBot.Provider.VolksbankStuttgart.Converter
+namespace PropertyBot.Provider.VolksbankImmopool.Converter
 {
     internal class VolksbankConverter : IVolksbankConverter
     {

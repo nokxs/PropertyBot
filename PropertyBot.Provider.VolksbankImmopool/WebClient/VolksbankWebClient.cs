@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
-using PropertyBot.Provider.VolksbankStuttgart.Entity;
+using PropertyBot.Provider.VolksbankImmopool.Entity;
 
-namespace PropertyBot.Provider.VolksbankStuttgart.WebClient
+namespace PropertyBot.Provider.VolksbankImmopool.WebClient
 {
     internal class VolksbankWebClient : IVolksbankWebClient
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using PropertyBot.Provider.VolksbankStuttgart.Entity;
+using PropertyBot.Provider.VolksbankImmopool.Entity;
 
-namespace PropertyBot.Provider.VolksbankStuttgart.WebClient
+namespace PropertyBot.Provider.VolksbankImmopool.WebClient
 {
     internal interface IVolksbankWebClient
     {
