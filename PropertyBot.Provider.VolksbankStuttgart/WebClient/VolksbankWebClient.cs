@@ -21,12 +21,19 @@ namespace PropertyBot.Provider.VolksbankStuttgart.WebClient
 
         public async Task<IEnumerable<VolksbankProperty>> GetObjects(VolksbankWebClientOptions options)
         {
-            var resultString = await GetRawPage(options);
-            var properties = ParseHtml(resultString);
+            var properties = new List<VolksbankProperty>();
+
+            foreach (var geoSl in options.GeoSls)
+            {
+                var resultString = await GetRawPage(options, geoSl);
+                properties.AddRange(ParseHtml(resultString));
+            }
+
+
             return properties;
         }
 
-        private async Task<string> GetRawPage(VolksbankWebClientOptions options)
+        private async Task<string> GetRawPage(VolksbankWebClientOptions options, string geoSL)
         {
             var content = new Dictionary<string, string>
             {
@@ -35,7 +42,7 @@ namespace PropertyBot.Provider.VolksbankStuttgart.WebClient
                 {"pageSize", options.Limit.ToString()},
                 {"pageIndex", "0"},
                 {"objkat", options.ObjectCategory.ToString()}, // house
-                {"geosl", options.GeoSl},
+                {"geosl", geoSL},
                 {"umkreis", options.GeoSlRadiusSearch.ToString()},
                 {"sortOrder", "0_1"}
             };
