@@ -26,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Common", "Prope
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.KSK", "PropertyBot.Provider.KSK\PropertyBot.Provider.KSK.csproj", "{E4BF9F0C-37F5-4B89-8F5A-98156898FCE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyBot.Provider.VolksbankStuttgart", "PropertyBot.Provider.VolksbankStuttgart\PropertyBot.Provider.VolksbankStuttgart.csproj", "{20BD9200-0DEE-49B0-BE6B-38CDD018F4DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.Volksbank", "PropertyBot.Provider.Volksbank\PropertyBot.Provider.Volksbank.csproj", "{20BD9200-0DEE-49B0-BE6B-38CDD018F4DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
