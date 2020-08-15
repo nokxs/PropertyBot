@@ -9,12 +9,12 @@ using PropertyBot.Provider.VolksbankStuttgart.WebClient;
 
 namespace PropertyBot.Provider.VolksbankStuttgart
 {
-    internal class VolksbankStuttgartClient : IPropertyProvider
+    internal class VolksbankClient : IPropertyProvider
     {
         private readonly IVolksbankWebClient _webClient;
         private readonly IVolksbankConverter _volksbankConverter;
 
-        internal VolksbankStuttgartClient(IVolksbankWebClient webClient, IVolksbankConverter volksbankConverter)
+        internal VolksbankClient(IVolksbankWebClient webClient, IVolksbankConverter volksbankConverter)
         {
             _webClient = webClient;
             _volksbankConverter = volksbankConverter;

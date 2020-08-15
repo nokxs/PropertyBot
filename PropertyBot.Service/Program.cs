@@ -39,7 +39,7 @@ namespace PropertyBot.Service
         {
             //services.AddSingleton(ZvgProviderFactory.CreateProvider());
             //services.AddSingleton(KskProviderFactory.CreateProvider());
-            services.AddSingleton(VolksbankStuttgartProviderFactory.CreateProvider());
+            services.AddSingleton(VolksbankProviderFactory.CreateProvider());
         }
 
         private static void RegisterMessageSenders(IServiceCollection services)
