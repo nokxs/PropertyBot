@@ -1,6 +1,6 @@
-﻿# Generic Volksbank Data Provider
+﻿# Immopool.de Volksbank Data Provider
 
-This provider crawles the properties of different Volksbank Branches. At least the following branches are supported
+This provider crawles the properties of different Volksbank branches, which use (immopool.de)[https://www.immopool.de] as backend. At least the following branches are supported
 
 * [Volksbank Stuttgart](https://www.volksbank-stuttgart.de/immobilien/immobilienangebote/regionale-immobilienangebote.html)
 * [Volksbank Ludwigsburg](https://www.volksbank-ludwigsburg.de/immobilien/immobilien-finden/immobilien-finden.html)
