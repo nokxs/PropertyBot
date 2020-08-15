@@ -1,9 +1,9 @@
-using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PropertyBot.Interface;
 using PropertyBot.Persistence.MongoDB;
 using PropertyBot.Provider.KSK;
+using PropertyBot.Provider.VolksbankStuttgart;
 using PropertyBot.Provider.ZVG;
 using PropertyBot.Sender.Telegram;
 
@@ -37,31 +37,20 @@ namespace PropertyBot.Service
 
         private static void RegisterPropertyProviders(IServiceCollection services)
         {
-            services.AddSingleton<IEnumerable<IPropertyProvider>>(_ =>
-            {
-                return new[]
-                {
-                    ZvgProviderFactory.CreateProvider(),
-                    KskProviderFactory.CreateProvider()
-                };
-            });
+            services.AddSingleton(ZvgProviderFactory.CreateProvider());
+            services.AddSingleton(KskProviderFactory.CreateProvider());
+            services.AddSingleton(VolksbankStuttgartProviderFactory.CreateProvider());
         }
 
         private static void RegisterMessageSenders(IServiceCollection services)
         {
-            services.AddSingleton<IEnumerable<IMessageSender>>(_ =>
-            {
-                var senderDataProvider = new MongoDbSenderDataProvider();
-                senderDataProvider.Init();
+            var senderDataProvider = new MongoDbSenderDataProvider();
+            senderDataProvider.Init();
 
-                var telegramSender = new TelegramSender(senderDataProvider);
-                telegramSender.Init();
+            var telegramSender = new TelegramSender(senderDataProvider);
+            telegramSender.Init();
 
-                return new[]
-                {
-                    telegramSender
-                };
-            });
+            services.AddSingleton<IMessageSender>(telegramSender);
         }
     }
 }
