@@ -14,3 +14,15 @@ The provider can be configured with the following environment variables. See the
 | PROVIDER_VBANK_STUTTGART_CUSTOMER_ID      | The customer id for immopool.de                | no        | 144298    |
 | PROVIDER_VBANK_STUTTGART_LIMIT            | The number of properties to load 			     | no        | 100       |
 
+## Available GeoSL
+
+All available GeoSLs can be found [here](https://cs.immopool.de/CS/getOrt).
+
+| GeoSL | City |
+|-------|------|
+| 004008001019000008 | Backnang |
+| 004008001019000093 | Kernen im Remstal |
+| 004008001016000058 | Reichenbach an der Fils |
+| 004008001011000000 | Stuttgart (70173) |
+| 004008001019000085 | Winnenden |
+| 004008001019000086 | Winterbach (73650) |

@@ -4,16 +4,16 @@ namespace PropertyBot.Provider.VolksbankStuttgart.WebClient
 {
     internal class VolksbankWebClientOptions
     {
-        internal VolksbankWebClientOptions(string geoSl, int geoSlRadiusSearch, int limit, long customerId, int objectCategory)
+        internal VolksbankWebClientOptions(IEnumerable<string> geoSls, int geoSlRadiusSearch, int limit, long customerId, int objectCategory)
         {
-            GeoSl = geoSl;
+            GeoSl = geoSls;
             GeoSlRadiusSearch = geoSlRadiusSearch;
             Limit = limit;
             CustomerId = customerId;
             ObjectCategory = objectCategory;
         }
 
-        public string GeoSl { get; }
+        public IEnumerable<string> GeoSl { get; }
 
         public int GeoSlRadiusSearch { get; }
         

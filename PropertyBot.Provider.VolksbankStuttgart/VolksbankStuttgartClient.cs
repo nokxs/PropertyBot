@@ -22,11 +22,11 @@ namespace PropertyBot.Provider.VolksbankStuttgart
         {
             var customerId = EnvironmentConstants.PROVIDER_VBANK_STUTTGART_CUSTOMER_ID.GetAsOptionalEnvironmentVariable("144298").ToInt();
             var objectCategory = EnvironmentConstants.PROVIDER_VBANK_STUTTGART_OBJECT_CATEGORY.GetAsOptionalEnvironmentVariable("1").ToInt();
-            var geosl = EnvironmentConstants.PROVIDER_VBANK_STUTTGART_GEOSL.GetAsOptionalEnvironmentVariable("004008001019000093");
+            var geoSls = EnvironmentConstants.PROVIDER_VBANK_STUTTGART_GEOSL.GetAsOptionalEnvironmentVariable("004008001019000093").Split(",");
             var limit = EnvironmentConstants.PROVIDER_VBANK_STUTTGART_LIMIT.GetAsOptionalEnvironmentVariable("100").ToInt();
             var perimeterInKm = EnvironmentConstants.PROVIDER_VBANK_STUTTGART_PERIMETERS_IN_KM.GetAsOptionalEnvironmentVariable("10").ToInt();
 
-            var webClientOptions = new VolksbankWebClientOptions(geosl, perimeterInKm, limit, customerId, objectCategory);
+            var webClientOptions = new VolksbankWebClientOptions(geoSls, perimeterInKm, limit, customerId, objectCategory);
 
             var volksbankProperties = await _webClient.GetObjects(webClientOptions);
             return _volksbankConverter.ToProperties(volksbankProperties);
