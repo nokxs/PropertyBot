@@ -12,7 +12,7 @@ The following property data providers are currently supported:
 
 - [zvg.com](https://zvg.com): [Readme](PropertyBot.ZVG/README.md)
 - [Kreissparkasse Böblingen](https://www.kskbb.de/de/home/privatkunden/immobilien/immobilienportal.html): [Readme](PropertyBot.Provider.KSK/README.md)
-- [Volksbank Stuttgart](https://www.volksbank-stuttgart.de/immobilien/immobilienangebote/regionale-immobilienangebote.html): [Readme](PropertyBot.Provider.VolksbankStuttgart/README.md)
+- [Volksbank Immopool](https://www.volksbank-stuttgart.de/immobilien/immobilienangebote/regionale-immobilienangebote.html): [Readme](PropertyBot.Provider.VolksbankStuttgart/README.md)
 
 ## Senders
 
