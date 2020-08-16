@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PropertyBot.Common;
@@ -31,20 +32,31 @@ namespace PropertyBot.Provider.KSK
             var limit = EnvironmentConstants.PROVIDER_KSK_LIMIT.GetAsOptionalEnvironmentVariable("9").ToInt();
             var objectTypesString = EnvironmentConstants.PROVIDER_KSK_MARKETING_USAGE_OBJECT_TYPES.GetAsOptionalEnvironmentVariable("buy_residential_property,buy_residential_house");
             var perimetersString = EnvironmentConstants.PROVIDER_KSK_PERIMETERS_IN_KM.GetAsOptionalEnvironmentVariable("15");
-            var regioClientId = EnvironmentConstants.PROVIDER_KSK_REGIO_CLIENT_ID.GetAsOptionalEnvironmentVariable("60350130").ToLong();
+            var clientIdsString = EnvironmentConstants.PROVIDER_KSK_REGIO_CLIENT_ID.GetAsOptionalEnvironmentVariable("60350130");
             var zipsString = EnvironmentConstants.PROVIDER_KSK_ZIPS.GetAsMandatoryEnvironmentVariable();
 
             var zips = zipsString.Trim().Split(",");
             var perimeters = perimetersString.Trim().Split(",");
-            var zipCounter = 0;
+            var clientIds = clientIdsString.Trim().Split(",");
+            var objectTypes = objectTypesString.Split(",");
 
-            foreach (var zip in zips)
+            AssertSameCount(zips, perimeters, clientIds);
+
+            for (int i = 0; i < zips.Length; i++)
             {
-                var perimeter = perimeters[zipCounter].ToInt();
-                var objectTypes = objectTypesString.Split(",");
-                yield return new KskWebClientOptions(zip.ToInt(), perimeter, limit, regioClientId, objectTypes);
+                var zip = zips[i].ToInt();
+                var perimeter = perimeters[i].ToInt();
+                var clientId = clientIds[i].ToLong();
 
-                zipCounter = perimeters.Length >= 2 ? zipCounter + 1 : zipCounter;
+                yield return new KskWebClientOptions(zip, perimeter, limit, clientId, objectTypes);
+            }
+        }
+
+        private void AssertSameCount(string[] zips, string[] perimeters, string[] clientIds)
+        {
+            if (zips.Length != perimeters.Length || zips.Length != clientIds.Length)
+            {
+                throw new ArgumentException("The count of zips, perimeters and clientIds has to be the same");
             }
         }
 
