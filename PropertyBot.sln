@@ -28,6 +28,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.KSK", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.VolksbankImmopool", "PropertyBot.Provider.VolksbankImmopool\PropertyBot.Provider.VolksbankImmopool.csproj", "{20BD9200-0DEE-49B0-BE6B-38CDD018F4DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyBot.Provider.LinkImmo", "PropertyBot.Provider.LinkImmo\PropertyBot.Provider.LinkImmo.csproj", "{50799CDE-4F36-4BEB-A1F7-B87ACEE016D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +72,10 @@ Global
 		{20BD9200-0DEE-49B0-BE6B-38CDD018F4DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20BD9200-0DEE-49B0-BE6B-38CDD018F4DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20BD9200-0DEE-49B0-BE6B-38CDD018F4DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50799CDE-4F36-4BEB-A1F7-B87ACEE016D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50799CDE-4F36-4BEB-A1F7-B87ACEE016D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50799CDE-4F36-4BEB-A1F7-B87ACEE016D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50799CDE-4F36-4BEB-A1F7-B87ACEE016D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
