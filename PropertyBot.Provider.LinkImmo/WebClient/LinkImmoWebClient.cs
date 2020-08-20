@@ -45,7 +45,6 @@ namespace PropertyBot.Provider.LinkImmo.WebClient
             var cursor = page * PageItemCount;
             return await _client.GetStringAsync(
                     $"{BaseUrl}/index.php4?cmd=searchResults&alias=suchmaske&kaufartids={options.BuyIds}&kategorieids={options.CategoryIds}&objq[cursor]={cursor}");
-            //                          index.php4?cmd=searchResults&alias=suchmaske&kaufartids=1                &kategorieids=200                 &objq[order_zusammen]=&objqorder_zusammen=&objq[cursor]=6
         }
 
         private IEnumerable<LinkProperty> ParseRawPage(string content)
@@ -114,14 +113,14 @@ namespace PropertyBot.Provider.LinkImmo.WebClient
 
         private int GetPrice(HtmlNode node)
         {
-            var priceNode = node.SelectSingleNode("//div[@class='preis']/span");
-            var price = priceNode?.InnerText ?? "0";
+            var priceNode = node.SelectSingleNode("//div[contains(@class, 'preis')]/span");
+            var price = priceNode?.InnerText.Replace(",- &euro;", string.Empty).Replace(".", string.Empty) ?? "0";
             return price.ToIntSafe();
         }
 
         private Uri GetImageUrl(HtmlNode node)
         {
-            var imageNode = node.SelectSingleNode("//div[@class='bg_image']");
+            var imageNode = node.SelectSingleNode("//div[contains(@class, 'bg_image')]");
             var style = imageNode?.Attributes.FirstOrDefault(attribute => attribute.Name == "style")?.Value;
 
             if (style != null)

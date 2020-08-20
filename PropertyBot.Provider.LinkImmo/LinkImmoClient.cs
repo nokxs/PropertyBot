@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using PropertyBot.Common;
 using PropertyBot.Interface;
 using PropertyBot.Provider.LinkImmo.Converter;
 using PropertyBot.Provider.LinkImmo.WebClient;
@@ -19,7 +21,15 @@ namespace PropertyBot.Provider.LinkImmo
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            return null;
+            var linkProperties = await _webClient.GetObjects(GetWebClientOptions());
+            return _linkPropertyConverter.ToProperties(linkProperties).ToList();
+        }
+        private LinkImmoWebClientOptions GetWebClientOptions()
+        {
+            var buyIds = EnvironmentConstants.PROVIDER_LINK_IMMO_BUY_IDS.GetAsOptionalEnvironmentVariable("1");
+            var categoryIds = EnvironmentConstants.PROVIDER_LINK_IMMO_CATEGORY_IDS.GetAsOptionalEnvironmentVariable("200");
+
+            return new LinkImmoWebClientOptions(buyIds, categoryIds);
         }
     }
 }
