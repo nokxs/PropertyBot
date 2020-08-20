@@ -19,6 +19,11 @@ namespace PropertyBot.Common
             return int.Parse(s);
         }
 
+        public static int ToIntSafe(this string s)
+        {
+            return int.TryParse(s, out var parsedResult) ? parsedResult : 0;
+        }
+
         public static long ToLong(this string s)
         {
             return long.Parse(s);

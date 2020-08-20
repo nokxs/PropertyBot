@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using PropertyBot.Common;
 using PropertyBot.Provider.LinkImmo.Entity;
 
 namespace PropertyBot.Provider.LinkImmo.WebClient
@@ -13,6 +14,7 @@ namespace PropertyBot.Provider.LinkImmo.WebClient
     internal class LinkImmoWebClient : ILinkImmoWebClient
     {
         private const string BaseUrl = "https://www.link-immobilien.info";
+        private const int PageItemCount = 6;
 
         private readonly HttpClient _client;
 
@@ -24,25 +26,34 @@ namespace PropertyBot.Provider.LinkImmo.WebClient
 
         public async Task<IEnumerable<LinkProperty>> GetObjects(LinkImmoWebClientOptions options)
         {
-            var page = await GetRawPage(options, 0);
-            ParseRawPage(page);
-
-            return null;
+            List<LinkProperty> pageProperties;
+            List<LinkProperty> allProperties = new List<LinkProperty>();
+            var currentPage = 0;
+            
+            do
+            {
+                var page = await GetRawPage(options, currentPage++);
+                pageProperties = ParseRawPage(page).ToList();
+                allProperties.AddRange(pageProperties);
+            } while (pageProperties.Count != 0);
+            
+            return allProperties;
         }
 
         private async Task<string> GetRawPage(LinkImmoWebClientOptions options, int page)
         {
-            var cursor = page * 6;
+            var cursor = page * PageItemCount;
             return await _client.GetStringAsync(
-                    $"{BaseUrl}/index.php4?cmd=searchResults&goto=1&alias=suchmaske&kaufartids={options.BuyIds}&kategorieids={options.CategoryIds}&objq[order_zusammen]=&objqorder_zusammen=#sprung_modul_suchmakse_0&objq[cursor]={cursor}");
+                    $"{BaseUrl}/index.php4?cmd=searchResults&alias=suchmaske&kaufartids={options.BuyIds}&kategorieids={options.CategoryIds}&objq[cursor]={cursor}");
+            //                          index.php4?cmd=searchResults&alias=suchmaske&kaufartids=1                &kategorieids=200                 &objq[order_zusammen]=&objqorder_zusammen=&objq[cursor]=6
         }
 
-        private void ParseRawPage(string content)
+        private IEnumerable<LinkProperty> ParseRawPage(string content)
         {
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(content);
-            var objects = htmlDoc.DocumentNode.SelectNodes("//div[contains(@class, 'objekt')]");
-            var properties = objects.Select(ParseObject).ToList();
+            var objects = htmlDoc.DocumentNode.SelectNodes("//div[@class='objekt']") ?? new HtmlNodeCollection(htmlDoc.DocumentNode);
+            return objects.Select(ParseObject);
         }
 
         private LinkProperty ParseObject(HtmlNode objectNode)
@@ -58,8 +69,9 @@ namespace PropertyBot.Provider.LinkImmo.WebClient
             var location = GetLocation(objectDoc.DocumentNode);
             var price = GetPrice(objectDoc.DocumentNode);
             var imageUrl = GetImageUrl(objectDoc.DocumentNode);
+            var detailUrl = GetDetailUrl(objectDoc.DocumentNode);
 
-            return null;
+            return new LinkProperty(id, roomCount, livingArea, propertyType, description, location, price, imageUrl, detailUrl);
         }
 
         private string GetId(HtmlNode node)
@@ -68,65 +80,78 @@ namespace PropertyBot.Provider.LinkImmo.WebClient
             return idNode?.InnerText ?? "ID_NOT_FOUND";
         }
 
-        private string GetRoomCount(HtmlNode node)
+        private int GetRoomCount(HtmlNode node)
         {
             var objectInfos = GetObjectInfos(node);
-            var roomNode = objectInfos.FirstOrDefault(info => info.InnerHtml.Contains("ZIMMER"));
-            return GetInfoNodeValue(roomNode, "0");
+            var roomNode = objectInfos?.FirstOrDefault(info => info.InnerHtml.Contains("ZIMMER"));
+            return GetInfoNodeValue(roomNode, "0").ToIntSafe();
         }
 
-        private string GetLivingArea(HtmlNode node)
+        private int GetLivingArea(HtmlNode node)
         {
             var objectInfos = GetObjectInfos(node);
-            var roomNode = objectInfos.FirstOrDefault(info => info.InnerHtml.Contains("WOHNFLÄCHE"));
-            return GetInfoNodeValue(roomNode, "0 m²");
+            var roomNode = objectInfos?.FirstOrDefault(info => info.InnerHtml.Contains("WOHNFLÄCHE"));
+            return GetInfoNodeValue(roomNode, "0").Replace("m²", string.Empty).Trim().ToIntSafe();
         }
 
         private string GetPropertyType(HtmlNode node)
         {
-            var idNode = node.SelectSingleNode("//div[contains(@class, 'objektart')]");
-            return idNode?.InnerText ?? "?";
+            var typeNode = node.SelectSingleNode("//div[@class='objektart']");
+            return typeNode?.InnerText ?? "?";
         }
 
         private string GetLocation(HtmlNode node)
         {
-            var idNode = node.SelectSingleNode("//div[contains(@class, 'ort')]");
-            return idNode?.InnerText ?? "No Location available";
+            var locationNode = node.SelectSingleNode("//div[@class='ort']");
+            return locationNode?.InnerText ?? "No Location available";
         }
 
         private string GetDescription(HtmlNode node)
         {
-            var idNode = node.SelectSingleNode("//div[contains(@class, 'hauptinfos')]/h3/a");
-            return idNode?.InnerText ?? "No Description available";
+            var descriptionNode = node.SelectSingleNode("//div[@class='hauptinfos']/h3/a");
+            return descriptionNode?.InnerText ?? "No Description available";
         }
 
-        private string GetPrice(HtmlNode node)
+        private int GetPrice(HtmlNode node)
         {
-            var idNode = node.SelectSingleNode("//div[contains(@class, 'preis')]/span");
-            return idNode?.InnerText ?? "0";
+            var priceNode = node.SelectSingleNode("//div[@class='preis']/span");
+            var price = priceNode?.InnerText ?? "0";
+            return price.ToIntSafe();
         }
 
-        private string GetImageUrl(HtmlNode node)
+        private Uri GetImageUrl(HtmlNode node)
         {
-            var idNode = node.SelectSingleNode("//div[contains(@class, 'bg_image')]");
-            var style = idNode.Attributes.FirstOrDefault(attribute => attribute.Name == "style")?.Value;
-            var urlMatch = Regex.Match(style, @"url\((.*)\)");
+            var imageNode = node.SelectSingleNode("//div[@class='bg_image']");
+            var style = imageNode?.Attributes.FirstOrDefault(attribute => attribute.Name == "style")?.Value;
 
-            if (urlMatch.Success)
+            if (style != null)
             {
-                if (urlMatch.Groups.Count > 1)
+                var urlMatch = Regex.Match(style, @"url\((.*)\)");
+
+                if (urlMatch.Success)
                 {
-                    var url = urlMatch.Groups[1];
-                    return $"{BaseUrl}/{url}";
+                    if (urlMatch.Groups.Count > 1)
+                    {
+                        var url = urlMatch.Groups[1];
+                        return new Uri($"{BaseUrl}/{url}");
+                    }
                 }
             }
 
-            return "https://upload.wikimedia.org/wikipedia/commons/2/26/512pxIcon-sunset_photo_not_found.png";
+            return new Uri("https://upload.wikimedia.org/wikipedia/commons/2/26/512pxIcon-sunset_photo_not_found.png");
+        }
+
+        private Uri GetDetailUrl(HtmlNode node)
+        {
+            var detailNode = node.SelectSingleNode("//div[@class='hauptinfos']/h3/a");
+            var href = detailNode?.Attributes.FirstOrDefault(attribute => attribute.Name == "href")?.Value.Replace("&amp;", "&");
+            return new Uri(href != null ? $"{BaseUrl}/{href}" : "https://www.link-immobilien.info");
         }
 
         private string GetInfoNodeValue(HtmlNode node, string defaultValue)
         {
-            return node?.ChildNodes.FirstOrDefault(child => child.Name == "b")?.InnerText ?? defaultValue;
+            var value = node?.ChildNodes.FirstOrDefault(child => child.Name == "b")?.InnerText;
+            return string.IsNullOrWhiteSpace(value) ? defaultValue : value;
         }
 
         private HtmlNodeCollection GetObjectInfos(HtmlNode node)
