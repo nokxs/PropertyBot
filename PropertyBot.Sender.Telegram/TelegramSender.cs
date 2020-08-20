@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using PropertyBot.Common;
@@ -66,7 +68,12 @@ namespace PropertyBot.Sender.Telegram
 
                     try
                     {
-                        await _botClient.SendPhotoAsync(user.ChatId, new InputOnlineFile(property.ImageUrl), message, GetParseMode(property.MessageFormat));
+                        await _botClient.SendPhotoAsync(user.ChatId, new InputOnlineFile(property.ImageUrl), message,
+                            GetParseMode(property.MessageFormat));
+                    }
+                    catch (HttpRequestException)
+                    {
+                        await Task.Delay(30000);
                     }
                     catch (Exception e)
                     {
@@ -94,7 +101,9 @@ namespace PropertyBot.Sender.Telegram
         private string GetHtmlMessage(Property property)
         {
             var normalizedDescription = Normalize(property.Description);
-            return $"{normalizedDescription} \n\n<i>Preis: {property.Price} €</i> \n\n{GetDetails(property)} \n\n<a href=\"{property.DetailsUrl}\">Mehr...</a>";
+            var separatedPrice = string.Format(new CultureInfo("de-DE"), "{0:n0}", property.Price);
+
+            return $"{normalizedDescription} \n\n<i>Preis: {separatedPrice} €</i> \n\n{GetDetails(property)} \n\n<a href=\"{property.DetailsUrl}\">Mehr...</a>";
         }
 
         private string GetDetails(Property property)
