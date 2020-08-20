@@ -24,7 +24,7 @@ namespace PropertyBot.Provider.LinkImmo.Converter
             {
                 {"Ort", linkProperty.Location},
                 {"Typ", linkProperty.PropertyType},
-                {"Zimmer", linkProperty.RoomCount.ToString()},
+                {"Zimmer", linkProperty.RoomCount},
                 {"Wohnfläche", $"{linkProperty.LivingArea} m²"}
             };
         }

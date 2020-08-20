@@ -79,11 +79,11 @@ namespace PropertyBot.Provider.LinkImmo.WebClient
             return idNode?.InnerText ?? "ID_NOT_FOUND";
         }
 
-        private int GetRoomCount(HtmlNode node)
+        private string GetRoomCount(HtmlNode node)
         {
             var objectInfos = GetObjectInfos(node);
             var roomNode = objectInfos?.FirstOrDefault(info => info.InnerHtml.Contains("ZIMMER"));
-            return GetInfoNodeValue(roomNode, "0").ToIntSafe();
+            return GetInfoNodeValue(roomNode, "0");
         }
 
         private int GetLivingArea(HtmlNode node)

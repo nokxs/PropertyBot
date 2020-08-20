@@ -4,7 +4,7 @@ namespace PropertyBot.Provider.LinkImmo.Entity
 {
     internal class LinkProperty
     {
-        public LinkProperty(string id, int roomCount, int livingArea, string propertyType, string description, string location, int price, Uri imageUrl, Uri detailUrl)
+        public LinkProperty(string id, string roomCount, int livingArea, string propertyType, string description, string location, int price, Uri imageUrl, Uri detailUrl)
         {
             Id = id;
             RoomCount = roomCount;
@@ -19,7 +19,7 @@ namespace PropertyBot.Provider.LinkImmo.Entity
 
         public string Id { get; }
 
-        public int RoomCount { get; }
+        public string RoomCount { get; }
 
         public int LivingArea { get; }
 
