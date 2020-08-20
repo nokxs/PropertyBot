@@ -4,25 +4,15 @@ namespace PropertyBot.Provider.LinkImmo.WebClient
 {
     internal class LinkImmoWebClientOptions
     {
-        internal LinkImmoWebClientOptions(int zipRadiusSearch, int perimeterInKm, int limit, long regioClientId, IEnumerable<string> marketingUsageObjectType)
+        public LinkImmoWebClientOptions(string buyIds, string categoryIds)
         {
-            ZipRadiusSearch = zipRadiusSearch;
-            PerimeterInKm = perimeterInKm;
-            Limit = limit;
-            RegioClientId = regioClientId;
-            MarketingUsageObjectType = marketingUsageObjectType;
+            BuyIds = buyIds;
+            CategoryIds = categoryIds;
         }
 
-        public int ZipRadiusSearch { get; }
+        public string BuyIds { get; }
 
-        public int PerimeterInKm { get; }
-
-        public int Limit { get; }
-
-        public long RegioClientId { get; }
-
-        public IEnumerable<string> MarketingUsageObjectType { get; }
-
+        public string CategoryIds { get; }
 
     }
 }
