@@ -4,7 +4,7 @@ This provider crawles [Link Immobilien](https://www.link-immobilien.info/Kaufobj
 
 ## Configuration
 
-The provider can be configured with the following environment variables. See the provided docker-compose.yml for examples.
+The provider can be configured with the following environment variables.
 
 | Environment Variable                      | Description                                    | Mandatory | Default   |
 |-------------------------------------------|------------------------------------------------|-----------|-----------| 
