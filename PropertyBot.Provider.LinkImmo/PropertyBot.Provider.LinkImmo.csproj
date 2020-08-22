@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PropertyBot.Common\PropertyBot.Common.csproj" />
+    <ProjectReference Include="..\PropertyBot.Provider.Base.ImmoXXL\PropertyBot.Provider.Base.ImmoXXL.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.Interface\PropertyBot.Interface.csproj" />
   </ItemGroup>
 

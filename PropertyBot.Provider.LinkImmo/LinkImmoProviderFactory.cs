@@ -1,6 +1,5 @@
 ﻿using PropertyBot.Interface;
-using PropertyBot.Provider.LinkImmo.Converter;
-using PropertyBot.Provider.LinkImmo.WebClient;
+using PropertyBot.Provider.Base.ImmoXXL;
 
 namespace PropertyBot.Provider.LinkImmo
 {
@@ -8,10 +7,9 @@ namespace PropertyBot.Provider.LinkImmo
     {
         public static IPropertyProvider CreateProvider()
         {
-            var webClient = new LinkImmoWebClient();
-            var converter = new LinkPropertyConverter();
+            var immoXxlClient = ImmoXXLProviderFactory.CreateClient();
 
-            return new LinkImmoClient(webClient, converter);
+            return new LinkImmoClient(immoXxlClient);
         }
     }
 }

@@ -1,35 +1,32 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using PropertyBot.Common;
 using PropertyBot.Interface;
-using PropertyBot.Provider.LinkImmo.Converter;
-using PropertyBot.Provider.LinkImmo.WebClient;
+using PropertyBot.Provider.Base.ImmoXXL;
+using PropertyBot.Provider.Base.ImmoXXL.WebClient;
 
 namespace PropertyBot.Provider.LinkImmo
 {
     public class LinkImmoClient : IPropertyProvider
     {
-        private readonly ILinkImmoWebClient _webClient;
-        private readonly ILinkPropertyConverter _linkPropertyConverter;
+        private readonly IImmoXXLClient _immoXxlClient;
 
-        internal LinkImmoClient(ILinkImmoWebClient webClient, ILinkPropertyConverter linkPropertyConverter)
+        public LinkImmoClient(IImmoXXLClient immoXxlClient)
         {
-            _webClient = webClient;
-            _linkPropertyConverter = linkPropertyConverter;
+            _immoXxlClient = immoXxlClient;
         }
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            var linkProperties = await _webClient.GetObjects(GetWebClientOptions());
-            return _linkPropertyConverter.ToProperties(linkProperties).ToList();
+            return await _immoXxlClient.GetProperties(GetWebClientOptions());
         }
-        private LinkImmoWebClientOptions GetWebClientOptions()
+        
+        private ImmoXXLWebClientOptions GetWebClientOptions()
         {
             var buyIds = EnvironmentConstants.PROVIDER_LINK_IMMO_BUY_IDS.GetAsOptionalEnvironmentVariable("1");
             var categoryIds = EnvironmentConstants.PROVIDER_LINK_IMMO_CATEGORY_IDS.GetAsOptionalEnvironmentVariable("200");
 
-            return new LinkImmoWebClientOptions(buyIds, categoryIds);
+            return new ImmoXXLWebClientOptions("https://www.link-immobilien.info", buyIds, categoryIds);
         }
     }
 }
