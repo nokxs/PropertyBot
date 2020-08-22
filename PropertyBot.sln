@@ -30,7 +30,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.Volksb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.LinkImmo", "PropertyBot.Provider.LinkImmo\PropertyBot.Provider.LinkImmo.csproj", "{50799CDE-4F36-4BEB-A1F7-B87ACEE016D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyBot.Provider.GutImmo", "PropertyBot.Provider.GutImmo\PropertyBot.Provider.GutImmo.csproj", "{090A7A28-0806-4126-9AD8-0424065A92F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.GutImmo", "PropertyBot.Provider.GutImmo\PropertyBot.Provider.GutImmo.csproj", "{090A7A28-0806-4126-9AD8-0424065A92F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyBot.Provider.Base.ImmoXXL", "PropertyBot.Provider.Base.ImmoXXL\PropertyBot.Provider.Base.ImmoXXL.csproj", "{D864459A-1DB5-4CD4-9740-6CF5FE2F7712}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,6 +84,10 @@ Global
 		{090A7A28-0806-4126-9AD8-0424065A92F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{090A7A28-0806-4126-9AD8-0424065A92F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{090A7A28-0806-4126-9AD8-0424065A92F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D864459A-1DB5-4CD4-9740-6CF5FE2F7712}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D864459A-1DB5-4CD4-9740-6CF5FE2F7712}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D864459A-1DB5-4CD4-9740-6CF5FE2F7712}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D864459A-1DB5-4CD4-9740-6CF5FE2F7712}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
