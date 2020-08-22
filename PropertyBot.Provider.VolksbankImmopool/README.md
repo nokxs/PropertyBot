@@ -29,6 +29,8 @@ The provider can be configured with the following environment variables. See the
 | 144298 | 004008001019000086 | Winterbach (73650) | Volksbank Stuttgart |
 | 33371  | 004008001018000079 | Bietigheim-Bissingen | Volksbank Ludwigsburg |
 | 33371  | 004008001018000070 | Steinheim an der Murr | Volksbank Ludwigsburg |
+| 18092  | 004008001015000042 | Rutesheim | VR Bank Enz Plus |
+
 
 Use curl to fetch the current list for Volksbank Stuttgart:
 

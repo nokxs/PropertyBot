@@ -5,13 +5,13 @@ using PropertyBot.Interface;
 using PropertyBot.Provider.Base.ImmoXXL;
 using PropertyBot.Provider.Base.ImmoXXL.WebClient;
 
-namespace PropertyBot.Provider.LinkImmo
+namespace PropertyBot.Provider.RjImmobau
 {
-    public class LinkImmoClient : IPropertyProvider
+    public class RjImmoClient : IPropertyProvider
     {
         private readonly IImmoXXLClient _immoXxlClient;
 
-        public LinkImmoClient(IImmoXXLClient immoXxlClient)
+        public RjImmoClient(IImmoXXLClient immoXxlClient)
         {
             _immoXxlClient = immoXxlClient;
         }
@@ -23,10 +23,10 @@ namespace PropertyBot.Provider.LinkImmo
         
         private ImmoXXLWebClientOptions GetWebClientOptions()
         {
-            var buyIds = EnvironmentConstants.PROVIDER_LINK_IMMO_BUY_IDS.GetAsOptionalEnvironmentVariable("1");
-            var categoryIds = EnvironmentConstants.PROVIDER_LINK_IMMO_CATEGORY_IDS.GetAsOptionalEnvironmentVariable("200");
+            var buyIds = EnvironmentConstants.PROVIDER_RJIMMO_IMMO_BUY_IDS.GetAsOptionalEnvironmentVariable("1");
+            var categoryIds = EnvironmentConstants.PROVIDER_RJIMMO_IMMO_CATEGORY_IDS.GetAsOptionalEnvironmentVariable("200");
 
-            return new ImmoXXLWebClientOptions("https://www.link-immobilien.info", buyIds, categoryIds);
+            return new ImmoXXLWebClientOptions("http://www.rjimmobau.de", buyIds, categoryIds);
         }
     }
 }

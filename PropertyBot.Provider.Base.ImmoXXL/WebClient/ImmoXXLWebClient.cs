@@ -7,55 +7,54 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using PropertyBot.Common;
-using PropertyBot.Provider.GutImmo.Entity;
+using PropertyBot.Provider.Base.ImmoXXL.Entity;
 
-namespace PropertyBot.Provider.GutImmo.WebClient
+namespace PropertyBot.Provider.Base.ImmoXXL.WebClient
 {
-    internal class GutImmoWebClient : IGutImmoWebClient
+    internal class ImmoXXLWebClient : IImmoXXLWebClient
     {
-        private const string BaseUrl = "https://www.gutimmo.de";
         private const int PageItemCount = 6;
 
         private readonly HttpClient _client;
 
-        public GutImmoWebClient()
+        public ImmoXXLWebClient()
         {
             _client = new HttpClient();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<IEnumerable<GutImmoProperty>> GetObjects(GutImmoWebClientOptions options)
+        public async Task<IEnumerable<ImmoXXLmmoProperty>> GetObjects(ImmoXXLWebClientOptions options)
         {
-            List<GutImmoProperty> pageProperties;
-            List<GutImmoProperty> allProperties = new List<GutImmoProperty>();
+            List<ImmoXXLmmoProperty> pageProperties;
+            List<ImmoXXLmmoProperty> allProperties = new List<ImmoXXLmmoProperty>();
             var currentPage = 0;
             
             do
             {
                 var page = await GetRawPage(options, currentPage++);
-                pageProperties = ParseRawPage(page).ToList();
+                pageProperties = ParseRawPage(page, options.BaseUri).ToList();
                 allProperties.AddRange(pageProperties);
             } while (pageProperties.Count != 0);
             
             return allProperties;
         }
 
-        private async Task<string> GetRawPage(GutImmoWebClientOptions options, int page)
+        private async Task<string> GetRawPage(ImmoXXLWebClientOptions options, int page)
         {
             var cursor = page * PageItemCount;
             return await _client.GetStringAsync(
-                    $"{BaseUrl}/index.php4?cmd=searchResults&alias=suchmaske&kaufartids={options.BuyIds}&kategorieids={options.CategoryIds}&objq[cursor]={cursor}");
+                    $"{options.BaseUri}/index.php4?cmd=searchResults&alias=suchmaske&kaufartids={options.BuyIds}&kategorieids={options.CategoryIds}&objq[cursor]={cursor}");
         }
 
-        private IEnumerable<GutImmoProperty> ParseRawPage(string content)
+        private IEnumerable<ImmoXXLmmoProperty> ParseRawPage(string content, string baseUrl)
         {
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(content);
             var objects = htmlDoc.DocumentNode.SelectNodes("//div[@class='objekt']") ?? new HtmlNodeCollection(htmlDoc.DocumentNode);
-            return objects.Select(ParseObject);
+            return objects.Select(node => ParseObject(node, baseUrl));
         }
 
-        private GutImmoProperty ParseObject(HtmlNode objectNode)
+        private ImmoXXLmmoProperty ParseObject(HtmlNode objectNode, string baseUrl)
         {
             var objectDoc = new HtmlDocument();
             objectDoc.LoadHtml(objectNode.InnerHtml);
@@ -67,10 +66,10 @@ namespace PropertyBot.Provider.GutImmo.WebClient
             var description = GetDescription(objectDoc.DocumentNode);
             var location = GetLocation(objectDoc.DocumentNode);
             var price = GetPrice(objectDoc.DocumentNode);
-            var imageUrl = GetImageUrl(objectDoc.DocumentNode);
-            var detailUrl = GetDetailUrl(objectDoc.DocumentNode);
+            var imageUrl = GetImageUrl(objectDoc.DocumentNode, baseUrl);
+            var detailUrl = GetDetailUrl(objectDoc.DocumentNode, baseUrl);
 
-            return new GutImmoProperty(id, roomCount, livingArea, propertyType, description, location, price, imageUrl, detailUrl);
+            return new ImmoXXLmmoProperty(id, roomCount, livingArea, propertyType, description, location, price, imageUrl, detailUrl);
         }
 
         private string GetId(HtmlNode node)
@@ -118,7 +117,7 @@ namespace PropertyBot.Provider.GutImmo.WebClient
             return price.ToIntSafe();
         }
 
-        private Uri GetImageUrl(HtmlNode node)
+        private Uri GetImageUrl(HtmlNode node, string baseUrl)
         {
             var imageNode = node.SelectSingleNode("//div[contains(@class, 'bg_image')]");
             var style = imageNode?.Attributes.FirstOrDefault(attribute => attribute.Name == "style")?.Value;
@@ -132,7 +131,7 @@ namespace PropertyBot.Provider.GutImmo.WebClient
                     if (urlMatch.Groups.Count > 1)
                     {
                         var url = urlMatch.Groups[1];
-                        return new Uri($"{BaseUrl}/{url}");
+                        return new Uri($"{baseUrl}/{url}");
                     }
                 }
             }
@@ -140,11 +139,11 @@ namespace PropertyBot.Provider.GutImmo.WebClient
             return new Uri("https://upload.wikimedia.org/wikipedia/commons/2/26/512pxIcon-sunset_photo_not_found.png");
         }
 
-        private Uri GetDetailUrl(HtmlNode node)
+        private Uri GetDetailUrl(HtmlNode node, string baseUrl)
         {
             var detailNode = node.SelectSingleNode("//div[@class='hauptinfos']/h3/a");
             var href = detailNode?.Attributes.FirstOrDefault(attribute => attribute.Name == "href")?.Value.Replace("&amp;", "&");
-            return new Uri(href != null ? $"{BaseUrl}/{href}" : "https://www.link-immobilien.info");
+            return new Uri(href != null ? $"{baseUrl}/{href}" : "https://www.link-immobilien.info");
         }
 
         private string GetInfoNodeValue(HtmlNode node, string defaultValue)

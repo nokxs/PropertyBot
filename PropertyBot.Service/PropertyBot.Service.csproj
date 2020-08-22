@@ -18,6 +18,7 @@
     <ProjectReference Include="..\PropertyBot.Provider.Interface\PropertyBot.Interface.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.KSK\PropertyBot.Provider.KSK.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.LinkImmo\PropertyBot.Provider.LinkImmo.csproj" />
+    <ProjectReference Include="..\PropertyBot.Provider.RjImmobau\PropertyBot.Provider.RjImmobau.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.VolksbankImmopool\PropertyBot.Provider.VolksbankImmopool.csproj" />
     <ProjectReference Include="..\PropertyBot.Sender.Telegram\PropertyBot.Sender.Telegram.csproj" />
     <ProjectReference Include="..\PropertyBot.ZVG\PropertyBot.Provider.ZVG.csproj" />

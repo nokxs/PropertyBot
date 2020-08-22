@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace PropertyBot.Provider.GutImmo.Entity
+namespace PropertyBot.Provider.Base.ImmoXXL.Entity
 {
-    internal class GutImmoProperty
+    internal class ImmoXXLmmoProperty
     {
-        public GutImmoProperty(string id, string roomCount, int livingArea, string propertyType, string description, string location, int price, Uri imageUrl, Uri detailUrl)
+        public ImmoXXLmmoProperty(string id, string roomCount, int livingArea, string propertyType, string description, string location, int price, Uri imageUrl, Uri detailUrl)
         {
             Id = id;
             RoomCount = roomCount;
