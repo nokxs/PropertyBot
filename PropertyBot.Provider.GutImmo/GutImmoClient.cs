@@ -26,7 +26,7 @@ namespace PropertyBot.Provider.GutImmo
             var buyIds = EnvironmentConstants.PROVIDER_GUT_IMMO_BUY_IDS.GetAsOptionalEnvironmentVariable("1");
             var categoryIds = EnvironmentConstants.PROVIDER_GUT_IMMO_CATEGORY_IDS.GetAsOptionalEnvironmentVariable("200");
 
-            return new ImmoXXLWebClientOptions("https://www.gutimmo.de'", buyIds, categoryIds);
+            return new ImmoXXLWebClientOptions("https://www.gutimmo.de", buyIds, categoryIds);
         }
     }
 }
