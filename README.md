@@ -15,6 +15,7 @@ The following property data providers are currently supported:
 - [Volksbank Immopool](https://www.volksbank-stuttgart.de/immobilien/immobilienangebote/regionale-immobilienangebote.html): [Readme](PropertyBot.Provider.VolksbankStuttgart/README.md)
 - [Link Immobilien](https://www.link-immobilien.info/Angebote.htm): [Readme](PropertyBot.Provider.LinkImmo/README.md)
 - [Gut Immobilien](https://www.gutimmo.de/Angebote.htm): [Readme](PropertyBot.Provider.GutImmo/README.md)
+- [RJ Immobau Immobilien](http://www.rjimmobau.de/Angebote.htm): [Readme](PropertyBot.Provider.RjImmobau/README.md)
 
 ## Senders
 
