@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,7 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PropertyBot.Provider.Base.ImmoXXL\PropertyBot.Provider.Base.ImmoXXL.csproj" />
+    <ProjectReference Include="..\PropertyBot.Common\PropertyBot.Common.csproj" />
+    <ProjectReference Include="..\PropertyBot.Provider.Interface\PropertyBot.Interface.csproj" />
   </ItemGroup>
 
 </Project>

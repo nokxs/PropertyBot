@@ -1,15 +1,15 @@
 ﻿using PropertyBot.Interface;
 using PropertyBot.Provider.Base.ImmoXXL;
 
-namespace PropertyBot.Provider.LinkImmo
+namespace PropertyBot.Provider.RjImmobau
 {
-    public class LinkImmoProviderFactory
+    public class RjImmoProviderFactory
     {
         public static IPropertyProvider CreateProvider()
         {
             var immoXxlClient = ImmoXXLProviderFactory.CreateClient();
 
-            return new LinkImmoClient(immoXxlClient);
+            return new RjImmoClient(immoXxlClient);
         }
     }
 }

@@ -5,6 +5,7 @@ using PropertyBot.Persistence.MongoDB;
 using PropertyBot.Provider.GutImmo;
 using PropertyBot.Provider.KSK;
 using PropertyBot.Provider.LinkImmo;
+using PropertyBot.Provider.RjImmobau;
 using PropertyBot.Provider.VolksbankImmopool;
 using PropertyBot.Provider.ZVG;
 using PropertyBot.Sender.Telegram;
@@ -44,6 +45,7 @@ namespace PropertyBot.Service
             services.AddSingleton(VolksbankImmopoolProviderFactory.CreateProvider());
             services.AddSingleton(LinkImmoProviderFactory.CreateProvider());
             services.AddSingleton(GutImmoProviderFactory.CreateProvider());
+            services.AddSingleton(RjImmoProviderFactory.CreateProvider());
         }
 
         private static void RegisterMessageSenders(IServiceCollection services)
