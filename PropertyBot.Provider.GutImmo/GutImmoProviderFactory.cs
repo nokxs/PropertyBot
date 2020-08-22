@@ -1,6 +1,5 @@
 ﻿using PropertyBot.Interface;
-using PropertyBot.Provider.GutImmo.Converter;
-using PropertyBot.Provider.GutImmo.WebClient;
+using PropertyBot.Provider.Base.ImmoXXL;
 
 namespace PropertyBot.Provider.GutImmo
 {
@@ -8,10 +7,9 @@ namespace PropertyBot.Provider.GutImmo
     {
         public static IPropertyProvider CreateProvider()
         {
-            var webClient = new GutImmoWebClient();
-            var converter = new GutImmoPropertyConverter();
+            var immoXxlClient = ImmoXXLProviderFactory.CreateClient();
 
-            return new GutImmoClient(webClient, converter);
+            return new GutImmoClient(immoXxlClient);
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace PropertyBot.Provider.LinkImmo.WebClient
+﻿namespace PropertyBot.Provider.LinkImmo.WebClient
 {
     internal class LinkImmoWebClientOptions
     {
