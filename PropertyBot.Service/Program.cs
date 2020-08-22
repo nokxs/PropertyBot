@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PropertyBot.Interface;
 using PropertyBot.Persistence.MongoDB;
+using PropertyBot.Provider.GutImmo;
 using PropertyBot.Provider.KSK;
 using PropertyBot.Provider.LinkImmo;
 using PropertyBot.Provider.VolksbankImmopool;
@@ -38,10 +39,11 @@ namespace PropertyBot.Service
 
         private static void RegisterPropertyProviders(IServiceCollection services)
         {
-            services.AddSingleton(ZvgProviderFactory.CreateProvider());
-            services.AddSingleton(KskProviderFactory.CreateProvider());
-            services.AddSingleton(VolksbankImmopoolProviderFactory.CreateProvider());
-            services.AddSingleton(LinkImmoProviderFactory.CreateProvider());
+            //services.AddSingleton(ZvgProviderFactory.CreateProvider());
+            //services.AddSingleton(KskProviderFactory.CreateProvider());
+            //services.AddSingleton(VolksbankImmopoolProviderFactory.CreateProvider());
+            //services.AddSingleton(LinkImmoProviderFactory.CreateProvider());
+            services.AddSingleton(GutImmoProviderFactory.CreateProvider());
         }
 
         private static void RegisterMessageSenders(IServiceCollection services)

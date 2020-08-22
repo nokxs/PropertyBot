@@ -5,13 +5,15 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
+using PropertyBot.Common;
 using PropertyBot.Provider.GutImmo.Entity;
 
 namespace PropertyBot.Provider.GutImmo.WebClient
 {
     internal class GutImmoWebClient : IGutImmoWebClient
     {
-        private const string BaseUrl = "https://www.link-immobilien.info";
+        private const string BaseUrl = "https://www.gutimmo.de";
         private const int PageItemCount = 6;
 
         private readonly HttpClient _client;
