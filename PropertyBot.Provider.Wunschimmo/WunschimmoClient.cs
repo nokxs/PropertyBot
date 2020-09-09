@@ -22,7 +22,7 @@ namespace PropertyBot.Provider.Wunschimmo
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            var regions = EnvironmentConstants.PROVIDER_WUNSCHIMMO_REGIONS.GetAsOptionalEnvironmentVariable("baden-wuerttemberg,stuttgart,stuttgart").Split(",").ToList();
+            var regions = EnvironmentConstants.PROVIDER_WUNSCHIMMO_REGIONS.GetAsOptionalEnvironmentVariable("baden-wuerttemberg,stuttgart,stuttgart").Split(";").ToList();
             var objectTypes = EnvironmentConstants.PROVIDER_WUNSCHIMMO_OBJECT_TYPES.GetAsOptionalEnvironmentVariable("haus-kaufen").Split(",");
             var perimetersInKm = EnvironmentConstants.PROVIDER_WUNSCHIMMO_PERIMETERS_IN_KM.GetAsOptionalEnvironmentVariable("10").Split(",").Select(perimeter => perimeter.ToInt()).ToList();
 

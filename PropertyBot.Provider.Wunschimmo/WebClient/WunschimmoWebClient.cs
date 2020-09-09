@@ -90,7 +90,7 @@ namespace PropertyBot.Provider.Wunschimmo.WebClient
         {
             var descriptionNode = node.SelectSingleNode("//p[contains(@class, 'm-b-0')]");
             var locationEndIndex = descriptionNode?.InnerText?.IndexOf(" &nbsp;&nbsp;", StringComparison.Ordinal) ?? 0;
-            return descriptionNode?.InnerText?.Substring(0, locationEndIndex).Trim() ?? string.Empty;
+            return descriptionNode?.InnerText?.Substring(0, locationEndIndex >= 0 ? locationEndIndex : descriptionNode.InnerText.Length).Trim() ?? string.Empty;
         }
 
         private int GetPrice(HtmlNode node)
