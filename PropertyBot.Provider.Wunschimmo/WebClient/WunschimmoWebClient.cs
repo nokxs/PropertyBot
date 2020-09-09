@@ -96,7 +96,7 @@ namespace PropertyBot.Provider.Wunschimmo.WebClient
         private int GetPrice(HtmlNode node)
         {
             var priceText= GetData(node, "Kaufpreis", "Verkehrswert");
-            return (priceText?.Replace("€", string.Empty)).ToIntSafe();
+            return (priceText?.Replace("€", string.Empty).Replace(".", string.Empty).Replace(",", string.Empty)).ToIntSafe();
         }
 
         private int GetLivingArea(HtmlNode node)
