@@ -8,9 +8,9 @@ namespace PropertyBot.Provider.Wunschimmo.Converter
 {
     internal class WunschimmoConverter : IWunschimmoConverter
     {
-        public IEnumerable<Property> ToProperties(IEnumerable<WunschimmoProperty> volksbankProperties)
+        public IEnumerable<Property> ToProperties(IEnumerable<WunschimmoProperty> wunschimmoProperties)
         {
-            return volksbankProperties.Select(ToProperty);
+            return wunschimmoProperties.Select(ToProperty);
         }
 
         private Property ToProperty(WunschimmoProperty wunschimmoProperty)
@@ -30,7 +30,7 @@ namespace PropertyBot.Provider.Wunschimmo.Converter
                 DateTime.Now, 
                 wunschimmoProperty.Price,
                 details,
-                new Uri($"https://www.immopool.de/ASP/immo/obj/immoexpose.asp?Lasid=53048086&inetlfdnr={wunschimmoProperty.Id}"), 
+                wunschimmoProperty.DetailsUri, 
                 MessageFormat.Html);
         }
     }

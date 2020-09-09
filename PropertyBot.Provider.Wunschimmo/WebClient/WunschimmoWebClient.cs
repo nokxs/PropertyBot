@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace PropertyBot.Provider.Wunschimmo.WebClient
 {
     internal class WunschimmoWebClient : IWunschimmoWebClient
     {
+        private const string BaseUrl = "https://www.wunschimmo.de";
+
         private readonly HttpClient _client;
 
         public WunschimmoWebClient()
@@ -29,21 +32,19 @@ namespace PropertyBot.Provider.Wunschimmo.WebClient
             var firstPage = await GetRawPage(options, 1);
             var pageCount = GetPageCount(firstPage);
             properties.AddRange(ParseHtml(firstPage));
-            
+
             for (int pageNr = 2; pageNr <= pageCount; pageNr++)
             {
                 var page = await GetRawPage(options, pageNr);
                 properties.AddRange(ParseHtml(page));
             }
 
-            var distinctProperties = properties.GroupBy(property => property.Id).Select(grouping => grouping.First()).ToList();
-
-            return distinctProperties;
+            return properties;
         }
 
         private async Task<string> GetRawPage(WunschimmoWebClientOptions options, int pageNr)
         {
-            var requestUri = $"https://www.wunschimmo.de/suche/{options.Region}/{options.ObjectType}?pageNr={pageNr}&umkreis={options.PerimeterInKm}";
+            var requestUri = $"{BaseUrl}/suche/{options.Region}/{options.ObjectType}?page={pageNr}&umkreis={options.PerimeterInKm}";
             return await _client.GetStringAsync(requestUri);
         }
 
@@ -71,7 +72,8 @@ namespace PropertyBot.Provider.Wunschimmo.WebClient
                 GetRoomCount(htmlDoc.DocumentNode),
                 GetLivingArea(htmlDoc.DocumentNode),
                 GetPropertyArea(htmlDoc.DocumentNode),
-                GetImageUri(htmlDoc.DocumentNode));
+                GetImageUri(htmlDoc.DocumentNode),
+                GetDetailsUri(htmlDoc.DocumentNode));
         }
 
         private int GetId(HtmlNode node)
@@ -119,8 +121,15 @@ namespace PropertyBot.Provider.Wunschimmo.WebClient
         private Uri GetImageUri(HtmlNode node)
         {
             var imageNode = node.SelectSingleNode("//img[contains(@class, 'img-responsive')]");
-            var imageUriString = imageNode?.Attributes.First(attribute => attribute.Name == "data-original")?.Value ?? "https://upload.wikimedia.org/wikipedia/commons/2/26/512pxIcon-sunset_photo_not_found.png"; 
+            var imageUriString = imageNode?.Attributes.First(attribute => attribute.Name == "data-original")?.Value ?? "https://upload.wikimedia.org/wikipedia/commons/2/26/512pxIcon-sunset_photo_not_found.png";
             return new Uri($"https:{imageUriString}");
+        }
+
+        private Uri GetDetailsUri(HtmlNode node)
+        {
+            var imageNode = node.SelectSingleNode("//div[contains(@class, 'imageBox')]/a");
+            var imageUriString = imageNode?.Attributes.First(attribute => attribute.Name == "href")?.Value ?? BaseUrl;
+            return new Uri($"{BaseUrl}{imageUriString}");
         }
 
         private int GetPageCount(string htmlString)
