@@ -22,20 +22,34 @@ namespace PropertyBot.Provider.Wunschimmo
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            //var customerIds = EnvironmentConstants.PROVIDER_VOLKSBANK_IMMOPOOL_CUSTOMER_ID.GetAsOptionalEnvironmentVariable("144298").Split(",").Select(id => id.ToInt()).ToList();
-            //var geoSls = EnvironmentConstants.PROVIDER_VOLKSBANK_IMMOPOOL_GEOSL.GetAsOptionalEnvironmentVariable("004008001019000093").Split(",");
-            //var perimetersInKm = EnvironmentConstants.PROVIDER_VOLKSBANK_IMMOPOOL_PERIMETERS_IN_KM.GetAsOptionalEnvironmentVariable("10").Split(",").Select(perimeter => perimeter.ToInt()).ToList();
-            //var objectCategory = EnvironmentConstants.PROVIDER_VOLKSBANK_IMMOPOOL_OBJECT_CATEGORY.GetAsOptionalEnvironmentVariable("1").ToInt();
-            //var limit = EnvironmentConstants.PROVIDER_VOLKSBANK_IMMOPOOL_LIMIT.GetAsOptionalEnvironmentVariable("100").ToInt();
+            var regions = EnvironmentConstants.PROVIDER_WUNSCHIMMO_REGIONS.GetAsOptionalEnvironmentVariable("baden-wuerttemberg,stuttgart,stuttgart").Split(",").ToList();
+            var objectTypes = EnvironmentConstants.PROVIDER_WUNSCHIMMO_OBJECT_TYPES.GetAsOptionalEnvironmentVariable("haus-kaufen").Split(",");
+            var perimetersInKm = EnvironmentConstants.PROVIDER_WUNSCHIMMO_PERIMETERS_IN_KM.GetAsOptionalEnvironmentVariable("10").Split(",").Select(perimeter => perimeter.ToInt()).ToList();
 
-            //AssertValuesValid(customerIds, geoSls, perimetersInKm);
+            AssertValuesValid(regions, objectTypes, perimetersInKm);
+            List<Property> allProperties = new List<Property>();
 
-            //var webClientOptions = new WunschimmoWebClientOptions(geoSls, perimetersInKm, limit, customerIds, objectCategory);
+            for (int i = 0; i < regions.Count; i++)
+            {
+                var region = regions[i];
+                var objectType = objectTypes[i];
+                var perimeter = perimetersInKm[i];
 
-            //var volksbankProperties = await _webClient.GetObjects(webClientOptions);
-            //return _wunschimmoConverter.ToProperties(volksbankProperties);
+                var webClientOptions = new WunschimmoWebClientOptions(region, perimeter, objectType);
+                var wunschimmoProperties = await _webClient.GetObjects(webClientOptions);
+                var properties = _wunschimmoConverter.ToProperties(wunschimmoProperties);
+                allProperties.AddRange(properties);
+            }
 
-            return Enumerable.Empty<Property>();
+            return allProperties;
+        }
+
+        private void AssertValuesValid(IEnumerable<string> regions, IEnumerable<string> objectTypes, IEnumerable<int> perimetersInKm)
+        {
+            if (!(regions.Count() == objectTypes.Count() && regions.Count() == perimetersInKm.Count()))
+            {
+                throw new ArgumentException("The number of regions, objectTypes and perimeters in km have to match");
+            }
         }
     }
 }

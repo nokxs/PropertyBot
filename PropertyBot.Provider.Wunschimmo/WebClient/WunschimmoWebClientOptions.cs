@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace PropertyBot.Provider.Wunschimmo.WebClient
+﻿namespace PropertyBot.Provider.Wunschimmo.WebClient
 {
     internal class WunschimmoWebClientOptions
     {
