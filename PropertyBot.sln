@@ -36,7 +36,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.Base.I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.RjImmobau", "PropertyBot.Provider.RjImmobau\PropertyBot.Provider.RjImmobau.csproj", "{06AC8D27-14B0-46DD-A116-70AA761F5AB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyBot.Provider.Wunschimmo", "PropertyBot.Provider.Wunschimmo\PropertyBot.Provider.Wunschimmo.csproj", "{A842F09F-B344-4788-BC8E-90B89CAB969D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.Wunschimmo", "PropertyBot.Provider.Wunschimmo\PropertyBot.Provider.Wunschimmo.csproj", "{A842F09F-B344-4788-BC8E-90B89CAB969D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyBot.Common.Test", "PropertyBot.Common.Test\PropertyBot.Common.Test.csproj", "{D0A14BF9-B3D9-47FF-9F5B-4B5423EA8C85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,6 +102,10 @@ Global
 		{A842F09F-B344-4788-BC8E-90B89CAB969D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A842F09F-B344-4788-BC8E-90B89CAB969D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A842F09F-B344-4788-BC8E-90B89CAB969D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A14BF9-B3D9-47FF-9F5B-4B5423EA8C85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A14BF9-B3D9-47FF-9F5B-4B5423EA8C85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A14BF9-B3D9-47FF-9F5B-4B5423EA8C85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A14BF9-B3D9-47FF-9F5B-4B5423EA8C85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace PropertyBot.Common
 {
@@ -21,7 +22,18 @@ namespace PropertyBot.Common
 
         public static int ToIntSafe(this string s)
         {
-            return int.TryParse(s?.Trim(), out var parsedResult) ? parsedResult : 0;
+            var germanCulture = new CultureInfo("de-DE");
+            return int.TryParse(s?.Trim(), GetNumberStyles(), germanCulture , out var parsedResult) ? parsedResult : 0;
+        }
+
+        private static NumberStyles GetNumberStyles()
+        {
+            return NumberStyles.AllowCurrencySymbol | NumberStyles.Number;
+        }
+
+        public static double ToDoubleSafe(this string s)
+        {
+
         }
 
         public static long ToLong(this string s)
