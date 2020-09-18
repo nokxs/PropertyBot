@@ -5,6 +5,8 @@ namespace PropertyBot.Common
 {
     public static class StringExtensions
     {
+        private static readonly CultureInfo GermanCulture = new CultureInfo("de-DE");
+
         public static string GetAsMandatoryEnvironmentVariable(this string variable)
         {
             return Environment.GetEnvironmentVariable(variable) ?? throw new ArgumentException($"The mandatory environment variable {variable} is not set.");
@@ -17,28 +19,22 @@ namespace PropertyBot.Common
 
         public static int ToInt(this string s)
         {
-            return int.Parse(s);
+            return int.Parse(s.Trim(), GetNumberStyles(), GermanCulture);
         }
 
         public static int ToIntSafe(this string s)
         {
-            var germanCulture = new CultureInfo("de-DE");
-            return int.TryParse(s?.Trim(), GetNumberStyles(), germanCulture , out var parsedResult) ? parsedResult : 0;
+            return int.TryParse(s?.Trim(), GetNumberStyles(), GermanCulture , out var parsedResult) ? parsedResult : 0;
+        }
+
+        public static long ToLong(this string s)
+        {
+            return long.Parse(s.Trim(), GetNumberStyles(), GermanCulture);
         }
 
         private static NumberStyles GetNumberStyles()
         {
             return NumberStyles.AllowCurrencySymbol | NumberStyles.Number;
-        }
-
-        public static double ToDoubleSafe(this string s)
-        {
-
-        }
-
-        public static long ToLong(this string s)
-        {
-            return long.Parse(s);
         }
     }
 }
