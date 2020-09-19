@@ -32,7 +32,8 @@ namespace PropertyBot.Provider.Wunschimmo.Converter
                 wunschimmoProperty.Price,
                 details,
                 wunschimmoProperty.DetailsUri, 
-                MessageFormat.Html);
+                MessageFormat.Html,
+                "Wunschimmo");
         }
     }
 }

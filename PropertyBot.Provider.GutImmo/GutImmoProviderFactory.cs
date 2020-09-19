@@ -7,7 +7,7 @@ namespace PropertyBot.Provider.GutImmo
     {
         public static IPropertyProvider CreateProvider()
         {
-            var immoXxlClient = ImmoXXLProviderFactory.CreateClient();
+            var immoXxlClient = ImmoXXLProviderFactory.CreateClient("Gut Immo");
 
             return new GutImmoClient(immoXxlClient);
         }

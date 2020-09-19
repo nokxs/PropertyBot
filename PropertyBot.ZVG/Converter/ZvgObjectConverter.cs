@@ -34,7 +34,7 @@ namespace PropertyBot.Provider.ZVG.Converter
                 {"Versteigerungszeit/ort", zvgObject.Data.Skip(2).First()} 
             };
 
-            return new Property($"zvg-{id}", description, imageUri, addDate, price, additionalDetails, details, MessageFormat.Html);
+            return new Property($"zvg-{id}", description, imageUri, addDate, price, additionalDetails, details, MessageFormat.Html, "ZVG");
         }
 
         private int GetPrice(string descriptionText)

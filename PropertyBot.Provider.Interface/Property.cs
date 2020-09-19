@@ -5,7 +5,7 @@ namespace PropertyBot.Interface
 {
     public class Property
     {
-        public Property(string id, string description, Uri imageUrl, DateTime addDate, int price, IDictionary<string, string> additionalDetails, Uri detailsUrl, MessageFormat messageFormat)
+        public Property(string id, string description, Uri imageUrl, DateTime addDate, int price, IDictionary<string, string> additionalDetails, Uri detailsUrl, MessageFormat messageFormat, string providerName)
         {
             Id = id;
             Description = description;
@@ -15,6 +15,7 @@ namespace PropertyBot.Interface
             AdditionalDetails = additionalDetails;
             DetailsUrl = detailsUrl;
             MessageFormat = messageFormat;
+            ProviderName = providerName;
         }
 
         public string Id { get; }
@@ -32,5 +33,7 @@ namespace PropertyBot.Interface
         public IDictionary<string, string> AdditionalDetails { get; }
 
         public MessageFormat MessageFormat { get; }
+
+        public string ProviderName { get; }
     }
 }

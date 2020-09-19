@@ -5,10 +5,10 @@ namespace PropertyBot.Provider.Base.ImmoXXL
 {
     public class ImmoXXLProviderFactory
     {
-        public static IImmoXXLClient CreateClient()
+        public static IImmoXXLClient CreateClient(string providerName)
         {
             var webClient = new ImmoXXLWebClient();
-            var converter = new ImmoXXLPropertyConverter();
+            var converter = new ImmoXXLPropertyConverter(providerName);
 
             return new ImmoXXLClient(webClient, converter);
         }

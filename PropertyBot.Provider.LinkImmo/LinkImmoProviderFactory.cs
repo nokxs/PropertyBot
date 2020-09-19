@@ -7,7 +7,7 @@ namespace PropertyBot.Provider.LinkImmo
     {
         public static IPropertyProvider CreateProvider()
         {
-            var immoXxlClient = ImmoXXLProviderFactory.CreateClient();
+            var immoXxlClient = ImmoXXLProviderFactory.CreateClient("Link Immo");
 
             return new LinkImmoClient(immoXxlClient);
         }

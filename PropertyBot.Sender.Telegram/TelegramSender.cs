@@ -103,7 +103,7 @@ namespace PropertyBot.Sender.Telegram
             var normalizedDescription = Normalize(property.Description);
             var separatedPrice = string.Format(new CultureInfo("de-DE"), "{0:n0}", property.Price);
 
-            return $"{normalizedDescription} \n\n<i>Preis: {separatedPrice} €</i> \n\n{GetDetails(property)} \n\n<a href=\"{property.DetailsUrl}\">Mehr...</a>";
+            return $"{normalizedDescription} \n\n<i>Preis: {separatedPrice} €</i> \n\n{GetDetails(property)} \n\n<i>Provider: {property.ProviderName}</i>\n\n<a href=\"{property.DetailsUrl}\">Mehr...</a>";
         }
 
         private string GetDetails(Property property)

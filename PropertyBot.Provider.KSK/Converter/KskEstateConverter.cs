@@ -21,7 +21,7 @@ namespace PropertyBot.Provider.KSK.Converter
                 var detailsUrl = new Uri($"https://www.kskbb.de/de/home/privatkunden/immobilien/detailansicht.html?eid={estate.Id}");
                 var additionalDetails = GetAdditionalDetails(estate);
                 
-                yield return new Property(id, description, imageUrl, addDate, price.ToInt(), additionalDetails, detailsUrl, MessageFormat.Html);
+                yield return new Property(id, description, imageUrl, addDate, price.ToInt(), additionalDetails, detailsUrl, MessageFormat.Html, "Kreissparkasse");
             }
         }
 

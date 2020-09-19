@@ -32,7 +32,8 @@ namespace PropertyBot.Provider.VolksbankImmopool.Converter
                 volksbankProperty.Price,
                 details,
                 new Uri($"https://www.immopool.de/ASP/immo/obj/immoexpose.asp?Lasid=53048086&inetlfdnr={volksbankProperty.Id}"), 
-                MessageFormat.Html);
+                MessageFormat.Html,
+                "Volksbank Immopool");
         }
     }
 }

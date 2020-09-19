@@ -7,7 +7,7 @@ namespace PropertyBot.Provider.RjImmobau
     {
         public static IPropertyProvider CreateProvider()
         {
-            var immoXxlClient = ImmoXXLProviderFactory.CreateClient();
+            var immoXxlClient = ImmoXXLProviderFactory.CreateClient("RJ Immobau");
 
             return new RjImmoClient(immoXxlClient);
         }
