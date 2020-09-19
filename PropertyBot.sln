@@ -5,15 +5,15 @@ VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D5277D21-A01D-4621-9AD9-069156A7CEE0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.ZVG", "PropertyBot.ZVG\PropertyBot.Provider.ZVG.csproj", "{87A9A6B1-1E0B-4AF6-AF53-9966F5D342C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.ZVG", "src\PropertyBot.ZVG\PropertyBot.Provider.ZVG.csproj", "{87A9A6B1-1E0B-4AF6-AF53-9966F5D342C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Service", "PropertyBot.Service\PropertyBot.Service.csproj", "{B4D57E8D-B7D9-4BF4-9222-BBB0F97740CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Service", "src\PropertyBot.Service\PropertyBot.Service.csproj", "{B4D57E8D-B7D9-4BF4-9222-BBB0F97740CB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Interface", "PropertyBot.Provider.Interface\PropertyBot.Interface.csproj", "{B0D7A2FB-A542-405A-8839-73A4D7F4B4A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Interface", "src\PropertyBot.Provider.Interface\PropertyBot.Interface.csproj", "{B0D7A2FB-A542-405A-8839-73A4D7F4B4A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Sender.Telegram", "PropertyBot.Sender.Telegram\PropertyBot.Sender.Telegram.csproj", "{8DB4BD72-01FE-415A-AF8E-F85419DE40EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Sender.Telegram", "src\PropertyBot.Sender.Telegram\PropertyBot.Sender.Telegram.csproj", "{8DB4BD72-01FE-415A-AF8E-F85419DE40EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Persistence.MongoDB", "PropertyBot.Persistence\PropertyBot.Persistence.MongoDB.csproj", "{0CE958F5-D766-4C8C-9307-0F53C8F0F54B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Persistence.MongoDB", "src\PropertyBot.Persistence\PropertyBot.Persistence.MongoDB.csproj", "{0CE958F5-D766-4C8C-9307-0F53C8F0F54B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DA98F149-FFF0-4DB2-896A-14F1029DA104}"
 	ProjectSection(SolutionItems) = preProject
@@ -22,21 +22,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Common", "PropertyBot.Common\PropertyBot.Common.csproj", "{3DCA079B-C58B-43A1-8D05-9852E3B0B5D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Common", "src\PropertyBot.Common\PropertyBot.Common.csproj", "{3DCA079B-C58B-43A1-8D05-9852E3B0B5D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.KSK", "PropertyBot.Provider.KSK\PropertyBot.Provider.KSK.csproj", "{E4BF9F0C-37F5-4B89-8F5A-98156898FCE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.KSK", "src\PropertyBot.Provider.KSK\PropertyBot.Provider.KSK.csproj", "{E4BF9F0C-37F5-4B89-8F5A-98156898FCE0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.VolksbankImmopool", "PropertyBot.Provider.VolksbankImmopool\PropertyBot.Provider.VolksbankImmopool.csproj", "{20BD9200-0DEE-49B0-BE6B-38CDD018F4DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.VolksbankImmopool", "src\PropertyBot.Provider.VolksbankImmopool\PropertyBot.Provider.VolksbankImmopool.csproj", "{20BD9200-0DEE-49B0-BE6B-38CDD018F4DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.LinkImmo", "PropertyBot.Provider.LinkImmo\PropertyBot.Provider.LinkImmo.csproj", "{50799CDE-4F36-4BEB-A1F7-B87ACEE016D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.LinkImmo", "src\PropertyBot.Provider.LinkImmo\PropertyBot.Provider.LinkImmo.csproj", "{50799CDE-4F36-4BEB-A1F7-B87ACEE016D4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.GutImmo", "PropertyBot.Provider.GutImmo\PropertyBot.Provider.GutImmo.csproj", "{090A7A28-0806-4126-9AD8-0424065A92F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.GutImmo", "src\PropertyBot.Provider.GutImmo\PropertyBot.Provider.GutImmo.csproj", "{090A7A28-0806-4126-9AD8-0424065A92F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.Base.ImmoXXL", "PropertyBot.Provider.Base.ImmoXXL\PropertyBot.Provider.Base.ImmoXXL.csproj", "{D864459A-1DB5-4CD4-9740-6CF5FE2F7712}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.Base.ImmoXXL", "src\PropertyBot.Provider.Base.ImmoXXL\PropertyBot.Provider.Base.ImmoXXL.csproj", "{D864459A-1DB5-4CD4-9740-6CF5FE2F7712}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.RjImmobau", "PropertyBot.Provider.RjImmobau\PropertyBot.Provider.RjImmobau.csproj", "{06AC8D27-14B0-46DD-A116-70AA761F5AB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.RjImmobau", "src\PropertyBot.Provider.RjImmobau\PropertyBot.Provider.RjImmobau.csproj", "{06AC8D27-14B0-46DD-A116-70AA761F5AB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyBot.Provider.Wunschimmo", "PropertyBot.Provider.Wunschimmo\PropertyBot.Provider.Wunschimmo.csproj", "{A842F09F-B344-4788-BC8E-90B89CAB969D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.Wunschimmo", "src\PropertyBot.Provider.Wunschimmo\PropertyBot.Provider.Wunschimmo.csproj", "{A842F09F-B344-4788-BC8E-90B89CAB969D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyBot.Common.Test", "src\PropertyBot.Common.Test\PropertyBot.Common.Test.csproj", "{D0A14BF9-B3D9-47FF-9F5B-4B5423EA8C85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,6 +102,10 @@ Global
 		{A842F09F-B344-4788-BC8E-90B89CAB969D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A842F09F-B344-4788-BC8E-90B89CAB969D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A842F09F-B344-4788-BC8E-90B89CAB969D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A14BF9-B3D9-47FF-9F5B-4B5423EA8C85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A14BF9-B3D9-47FF-9F5B-4B5423EA8C85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A14BF9-B3D9-47FF-9F5B-4B5423EA8C85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A14BF9-B3D9-47FF-9F5B-4B5423EA8C85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
