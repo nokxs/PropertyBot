@@ -41,12 +41,12 @@ namespace PropertyBot.Service
 
         private static void RegisterPropertyProviders(IServiceCollection services)
         {
-            //services.AddSingleton(ZvgProviderFactory.CreateProvider());
-            //services.AddSingleton(KskProviderFactory.CreateProvider());
-            //services.AddSingleton(VolksbankImmopoolProviderFactory.CreateProvider());
-            //services.AddSingleton(LinkImmoProviderFactory.CreateProvider());
-            //services.AddSingleton(GutImmoProviderFactory.CreateProvider());
-            //services.AddSingleton(RjImmoProviderFactory.CreateProvider());
+            services.AddSingleton(ZvgProviderFactory.CreateProvider());
+            services.AddSingleton(KskProviderFactory.CreateProvider());
+            services.AddSingleton(VolksbankImmopoolProviderFactory.CreateProvider());
+            services.AddSingleton(LinkImmoProviderFactory.CreateProvider());
+            services.AddSingleton(GutImmoProviderFactory.CreateProvider());
+            services.AddSingleton(RjImmoProviderFactory.CreateProvider());
             services.AddSingleton(WunschimmoProviderFactory.CreateProvider());
         }
 

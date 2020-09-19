@@ -4,7 +4,7 @@ namespace PropertyBot.Provider.Wunschimmo.Entity
 {
     internal class WunschimmoProperty
     {
-        public WunschimmoProperty(long id, string description, string location, int price, int roomCount, int livingArea, int propertyArea, Uri imageUri, Uri detailsUri) {
+        public WunschimmoProperty(long id, string description, string location, int price, double roomCount, double livingArea, double propertyArea, Uri imageUri, Uri detailsUri) {
             Id = id;
             Description = description;
             Location = location;
@@ -24,11 +24,11 @@ namespace PropertyBot.Provider.Wunschimmo.Entity
 
         public int Price { get; }
 
-        public int RoomCount { get; }
+        public double RoomCount { get; }
 
-        public int LivingArea { get; }
+        public double LivingArea { get; }
 
-        public int PropertyArea { get; }
+        public double PropertyArea { get; }
 
         public Uri ImageUri { get; }
 

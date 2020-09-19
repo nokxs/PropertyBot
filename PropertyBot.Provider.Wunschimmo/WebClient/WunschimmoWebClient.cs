@@ -96,25 +96,25 @@ namespace PropertyBot.Provider.Wunschimmo.WebClient
         private int GetPrice(HtmlNode node)
         {
             var priceText= GetData(node, "Kaufpreis", "Verkehrswert");
-            return (priceText?.Replace("€", string.Empty).Replace(".", string.Empty).Replace(",", string.Empty)).ToIntSafe();
+            return priceText.ToIntSafe();
         }
 
-        private int GetLivingArea(HtmlNode node)
+        private double GetLivingArea(HtmlNode node)
         {
             var livingAreaText = GetData(node, "Wohnfläche");
-            return (livingAreaText?.Replace("m²", string.Empty)).ToIntSafe();
+            return (livingAreaText?.Replace("m²", string.Empty)).ToDoubleSafe();
         }
 
-        private int GetRoomCount(HtmlNode node)
+        private double GetRoomCount(HtmlNode node)
         {
             var livingAreaText = GetData(node, "Zimmer");
-            return livingAreaText.ToIntSafe();
+            return livingAreaText.ToDoubleSafe();
         }
 
-        private int GetPropertyArea(HtmlNode node)
+        private double GetPropertyArea(HtmlNode node)
         {
             var livingAreaText = GetData(node, "Grundstück");
-            return (livingAreaText?.Replace("m²", string.Empty)).ToIntSafe();
+            return (livingAreaText?.Replace("m²", string.Empty)).ToDoubleSafe();
         }
 
         private Uri GetImageUri(HtmlNode node)

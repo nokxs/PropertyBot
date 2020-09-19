@@ -1,7 +1,6 @@
-using System;
 using Xunit;
 
-namespace PropertyBot.Common.Test
+namespace PropertyBot.Common.Test.StringExtensionsTest
 {
     public class ToIntSafeShould
     {

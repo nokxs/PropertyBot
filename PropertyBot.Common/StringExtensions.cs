@@ -32,6 +32,11 @@ namespace PropertyBot.Common
             return long.Parse(s.Trim(), GetNumberStyles(), GermanCulture);
         }
 
+        public static double ToDoubleSafe(this string s)
+        {
+            return double.TryParse(s?.Trim(), GetNumberStyles(), GermanCulture, out var parsedResult) ? parsedResult : 0;
+        }
+
         private static NumberStyles GetNumberStyles()
         {
             return NumberStyles.AllowCurrencySymbol | NumberStyles.Number;
