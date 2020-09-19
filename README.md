@@ -10,18 +10,18 @@ You can use the pre-build docker image [`liofly/property-bot`](https://hub.docke
 
 The following property data providers are currently supported:
 
-- [zvg.com](https://zvg.com): [Readme](PropertyBot.ZVG/README.md)
-- [Kreissparkasse Böblingen](https://www.kskbb.de/de/home/privatkunden/immobilien/immobilienportal.html): [Readme](PropertyBot.Provider.KSK/README.md)
-- [Volksbank Immopool](https://www.volksbank-stuttgart.de/immobilien/immobilienangebote/regionale-immobilienangebote.html): [Readme](PropertyBot.Provider.VolksbankStuttgart/README.md)
-- [Link Immobilien](https://www.link-immobilien.info/Angebote.htm): [Readme](PropertyBot.Provider.LinkImmo/README.md)
-- [Gut Immobilien](https://www.gutimmo.de/Angebote.htm): [Readme](PropertyBot.Provider.GutImmo/README.md)
-- [RJ Immobau Immobilien](http://www.rjimmobau.de/Angebote.htm): [Readme](PropertyBot.Provider.RjImmobau/README.md)
+- [zvg.com](https://zvg.com): [Readme](src/PropertyBot.ZVG/README.md)
+- [Kreissparkasse BÃ¶blingen](https://www.kskbb.de/de/home/privatkunden/immobilien/immobilienportal.html): [Readme](src/PropertyBot.Provider.KSK/README.md)
+- [Volksbank Immopool](https://www.volksbank-stuttgart.de/immobilien/immobilienangebote/regionale-immobilienangebote.html): [Readme](src/PropertyBot.Provider.VolksbankStuttgart/README.md)
+- [Link Immobilien](https://www.link-immobilien.info/Angebote.htm): [Readme](src/PropertyBot.Provider.LinkImmo/README.md)
+- [Gut Immobilien](https://www.gutimmo.de/Angebote.htm): [Readme](src/PropertyBot.Provider.GutImmo/README.md)
+- [RJ Immobau Immobilien](http://www.rjimmobau.de/Angebote.htm): [Readme](src/PropertyBot.Provider.RjImmobau/README.md)
 
 ## Senders
 
 The following senders are currently supported:
 
-- [Telegram](https://telegram.org): [Readme](PropertyBot.Sender.Telegram/README.md)
+- [Telegram](https://telegram.org): [Readme](src/PropertyBot.Sender.Telegram/README.md)
 
 ## Persistence
 
