@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using PropertyBot.Common;
 using PropertyBot.Provider.VolksbankImmopool.Entity;
 
 namespace PropertyBot.Provider.VolksbankImmopool.WebClient
@@ -83,7 +84,7 @@ namespace PropertyBot.Provider.VolksbankImmopool.WebClient
         private int GetId(HtmlNode node)
         {
             var descriptionNode = node.SelectSingleNode("//a[contains(@class, 'list-expose-link')]");
-            return parseAsIntSafe(descriptionNode?.Attributes.First(attribute => attribute.Name == "data-id").Value);
+            return descriptionNode?.Attributes.First(attribute => attribute.Name == "data-id").Value.ToIntSafe() ?? 0;
         }
 
         private string GetDescription(HtmlNode node)
@@ -108,25 +109,25 @@ namespace PropertyBot.Provider.VolksbankImmopool.WebClient
         {
             var descriptionNode = node.SelectSingleNode("//div[contains(@class, 'price')]/div[contains(@class, 'val')]/strong");
             var priceString = (descriptionNode?.InnerText ?? string.Empty).Replace(".", string.Empty);
-            return parseAsIntSafe(priceString);
+            return priceString.ToIntSafe();
         }
 
-        private int GetLivingArea(HtmlNode node)
+        private double GetLivingArea(HtmlNode node)
         {
             var descriptionNode = node.SelectSingleNode("//div[contains(@class, 'rooms')]/div[contains(@class, 'val')]");
-            return parseAsIntSafe(descriptionNode?.InnerText ?? string.Empty);
+            return (descriptionNode?.InnerText ?? string.Empty).ToDoubleSafe();
         }
 
-        private int GetRoomCount(HtmlNode node)
+        private double GetRoomCount(HtmlNode node)
         {
             var descriptionNode = node.SelectSingleNode("//div[contains(@class, 'rooms')]/div[contains(@class, 'val')]");
-            return parseAsIntSafe(descriptionNode?.InnerText ?? string.Empty);
+            return (descriptionNode?.InnerText ?? string.Empty).ToDoubleSafe();
         }
 
-        private int GetPropertyArea(HtmlNode node)
+        private double GetPropertyArea(HtmlNode node)
         {
             var descriptionNode = node.SelectSingleNode("//div[contains(@class, 'alt')]/div[contains(@class, 'val')]");
-            return parseAsIntSafe(descriptionNode?.InnerText ?? string.Empty);
+            return (descriptionNode?.InnerText ?? string.Empty).ToDoubleSafe();
         }
 
         private Uri GetImageUri(HtmlNode node)
@@ -134,11 +135,6 @@ namespace PropertyBot.Provider.VolksbankImmopool.WebClient
             var imageNode = node.SelectSingleNode("//img[contains(@class, 'list3-image')]");
             var imageUriString = imageNode?.Attributes.First(attribute => attribute.Name == "src")?.Value ?? "https://upload.wikimedia.org/wikipedia/commons/2/26/512pxIcon-sunset_photo_not_found.png"; 
             return new Uri(imageUriString);
-        }
-
-        private int parseAsIntSafe(string intAsString)
-        {
-            return int.TryParse(intAsString, out var parsedResult) ? parsedResult : 0;
         }
     }
 }

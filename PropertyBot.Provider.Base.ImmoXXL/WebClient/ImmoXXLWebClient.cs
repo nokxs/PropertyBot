@@ -89,7 +89,7 @@ namespace PropertyBot.Provider.Base.ImmoXXL.WebClient
         {
             var objectInfos = GetObjectInfos(node);
             var roomNode = objectInfos?.FirstOrDefault(info => info.InnerHtml.Contains("WOHNFLÄCHE"));
-            return GetInfoNodeValue(roomNode, "0").Replace("m²", string.Empty).Trim().ToIntSafe();
+            return GetInfoNodeValue(roomNode, "0").Replace("m²", string.Empty).ToIntSafe();
         }
 
         private string GetPropertyType(HtmlNode node)

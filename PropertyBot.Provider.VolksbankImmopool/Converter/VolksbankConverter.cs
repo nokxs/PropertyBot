@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using PropertyBot.Common;
 using PropertyBot.Interface;
 using PropertyBot.Provider.VolksbankImmopool.Entity;
 
@@ -18,9 +19,9 @@ namespace PropertyBot.Provider.VolksbankImmopool.Converter
             var details = new Dictionary<string, string>
             {
                 {"Ort", volksbankProperty.Location},
-                {"Zimmer", volksbankProperty.RoomCount.ToString()},
-                {"Wohnfläche", $"{volksbankProperty.LivingArea} m²"},
-                {"Grundstücksfläche", $"{volksbankProperty.PropertyArea} m²"}
+                {"Zimmer", volksbankProperty.RoomCount.Format()},
+                {"Wohnfläche", $"{volksbankProperty.LivingArea.Format()} m²"},
+                {"Grundstücksfläche", $"{volksbankProperty.PropertyArea.Format()} m²"}
             };
 
             return new Property(
