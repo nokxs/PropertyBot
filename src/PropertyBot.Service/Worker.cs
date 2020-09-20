@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MoreLinq;
 using PropertyBot.Common;
 using PropertyBot.Interface;
 
@@ -34,9 +35,10 @@ namespace PropertyBot.Service
                 try
                 {
                     var properties = await GetAllProperties().ToListAsync(stoppingToken);
-                    var newProperties = GetNewProperties(properties).ToList();
+                    var distinctProperties = properties.DistinctBy(property => property.Id);
+                    var newProperties = GetNewProperties(distinctProperties).ToList();
 
-                    UpdateDatabase(newProperties);
+                    await UpdateDatabase(newProperties);
 
                     _logger.LogInformation($"Found {properties.Count} properties, from which {newProperties.Count} are new.");
 
@@ -72,9 +74,9 @@ namespace PropertyBot.Service
             return properties.Where(property => !_propertyDataProvider.Contains(property));
         }
 
-        private void UpdateDatabase(IEnumerable<Property> properties)
+        private async Task UpdateDatabase(IEnumerable<Property> properties)
         {
-            _propertyDataProvider.AddMany(properties);
+            await _propertyDataProvider.AddMany(properties);
         }
     }
 }
