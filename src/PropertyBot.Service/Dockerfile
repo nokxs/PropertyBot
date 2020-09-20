@@ -5,9 +5,9 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["PropertyBot.Service/PropertyBot.Service.csproj", "PropertyBot.Service/"]
+COPY ["src/PropertyBot.Service/PropertyBot.Service.csproj", "PropertyBot.Service/"]
 RUN dotnet restore "PropertyBot.Service/PropertyBot.Service.csproj"
-COPY . .
+COPY /src .
 WORKDIR "/src/PropertyBot.Service"
 RUN dotnet build "PropertyBot.Service.csproj" -c Release -o /app/build
 

@@ -19,3 +19,8 @@ jobs:
       run: dotnet build --configuration Release --no-restore PropertyBot.sln
     - name: Test
       run: dotnet test --no-restore --verbosity normal PropertyBot.sln
+    - name: Build docker image
+      uses: docker/build-push-action@v1.1.0
+      with:
+        dockerfile: src/PropertyBot.Service/Dockerfile
+        push: false
