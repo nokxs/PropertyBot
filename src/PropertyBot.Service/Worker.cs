@@ -75,7 +75,7 @@ namespace PropertyBot.Service
                     if (!_alreadySendExceptions.Contains(e.StackTrace))
                     {
                         _alreadySendExceptions.Add(e.StackTrace);
-                        _messageSenders.ForEach(sender => sender.SendMessage($"Couldn't retrieve properties from provider '{provider.Name}\n\n{e.Message}\n\n{e.StackTrace}'"));
+                        _messageSenders.ForEach(sender => sender.SendMessage($"Couldn't retrieve properties from provider '{provider.Name}.\n\n{e.Message}\n\n{e.StackTrace}'"));
                     }
                 }                
                 

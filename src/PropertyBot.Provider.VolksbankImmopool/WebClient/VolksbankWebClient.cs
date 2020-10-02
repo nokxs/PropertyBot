@@ -59,9 +59,8 @@ namespace PropertyBot.Provider.VolksbankImmopool.WebClient
             htmlDoc.LoadHtml(htmlString);
 
             var propertyNodes = htmlDoc.DocumentNode.SelectNodes("//div[contains(@class, 'list-row-wrap')]");
-            var properties = propertyNodes.Select(ConvertToProperty).ToList();
 
-            return properties;
+            return propertyNodes?.Select(ConvertToProperty).ToList() ?? Enumerable.Empty<VolksbankProperty>();
         }
 
         private VolksbankProperty ConvertToProperty(HtmlNode node)
