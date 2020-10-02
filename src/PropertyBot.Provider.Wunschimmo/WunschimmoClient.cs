@@ -20,6 +20,8 @@ namespace PropertyBot.Provider.Wunschimmo
             _wunschimmoConverter = wunschimmoConverter;
         }
 
+        public string Name { get; } = "Wunschimmo";
+
         public async Task<IEnumerable<Property>> GetProperties()
         {
             var regions = EnvironmentConstants.PROVIDER_WUNSCHIMMO_REGIONS.GetAsOptionalEnvironmentVariable("baden-wuerttemberg,stuttgart,stuttgart").Split(";").ToList();

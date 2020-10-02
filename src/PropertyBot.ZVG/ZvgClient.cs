@@ -20,6 +20,8 @@ namespace PropertyBot.Provider.ZVG
             _converter = converter;
         }
 
+        public string Name { get; } = "ZVG.com";
+
         public async Task<IEnumerable<Property>> GetProperties()
         {
             var options = _optionsReader.GetWebClientOptions();

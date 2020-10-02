@@ -21,6 +21,8 @@ namespace PropertyBot.Provider.KSK
             _kskEstateConverter = kskEstateConverter;
         }
 
+        public string Name { get; } = "Kreissparkasse";
+
         public async Task<IEnumerable<Property>> GetProperties()
         {
             var estates = await GetEstates();

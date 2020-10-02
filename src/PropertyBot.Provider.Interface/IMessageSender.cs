@@ -5,7 +5,9 @@ namespace PropertyBot.Interface
 {
     public interface IMessageSender
     {
-        Task SendMessages(IEnumerable<Property> properties);
+        Task SendMessage(string message);
+
+        Task SendProperties(IEnumerable<Property> properties);
 
         void Init();
     }

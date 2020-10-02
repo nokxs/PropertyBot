@@ -44,12 +44,12 @@ namespace PropertyBot.Service
 
                     foreach (var sender in _messageSenders)
                     {
-                        await sender.SendMessages(newProperties);
+                        await sender.SendProperties(newProperties);
                     }
                 }
                 catch (Exception e)
                 {
-                    _logger.LogCritical($"{e.Message} \n\n{e.StackTrace}");
+                    _logger.LogCritical($"Unexpected exception", e);
                 }
 
                 await Task.Delay(pollingIntervalInSeconds * 1000, stoppingToken);
@@ -60,7 +60,17 @@ namespace PropertyBot.Service
         {
             foreach (var provider in _propertyProviders)
             {
-                var properties = await provider.GetProperties();
+                IEnumerable<Property> properties = Enumerable.Empty<Property>();
+
+                try
+                {
+                    properties = await provider.GetProperties();
+                }
+                catch (Exception e)
+                {
+                    _logger.LogCritical($"Couldn't retrieve properties from provider '{provider.Name}'", e);
+                    _messageSenders.ForEach(sender => sender.SendMessage($"Couldn't retrieve properties from provider '{provider.Name}\n\n{e.Message}\n\n{e.StackTrace}'"));
+                }                
                 
                 foreach (var property in properties)
                 {
