@@ -18,6 +18,8 @@ namespace PropertyBot.Service
         private readonly IEnumerable<IMessageSender> _messageSenders;
         private readonly IPropertyDataProvider _propertyDataProvider;
 
+        private readonly List<string> _alreadySendExceptions = new List<string>();
+
         public Worker(ILogger<Worker> logger, IEnumerable<IPropertyProvider> propertyProviders, IEnumerable<IMessageSender> messageSenders, IPropertyDataProvider propertyDataProvider)
         {
             _logger = logger;
@@ -69,7 +71,12 @@ namespace PropertyBot.Service
                 catch (Exception e)
                 {
                     _logger.LogCritical($"Couldn't retrieve properties from provider '{provider.Name}'", e);
-                    _messageSenders.ForEach(sender => sender.SendMessage($"Couldn't retrieve properties from provider '{provider.Name}\n\n{e.Message}\n\n{e.StackTrace}'"));
+
+                    if (!_alreadySendExceptions.Contains(e.StackTrace))
+                    {
+                        _alreadySendExceptions.Add(e.StackTrace);
+                        _messageSenders.ForEach(sender => sender.SendMessage($"Couldn't retrieve properties from provider '{provider.Name}\n\n{e.Message}\n\n{e.StackTrace}'"));
+                    }
                 }                
                 
                 foreach (var property in properties)
