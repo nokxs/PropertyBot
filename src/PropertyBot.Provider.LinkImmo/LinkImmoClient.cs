@@ -16,6 +16,8 @@ namespace PropertyBot.Provider.LinkImmo
             _immoXxlClient = immoXxlClient;
         }
 
+        public string Name { get; } = "Link Immo";
+
         public async Task<IEnumerable<Property>> GetProperties()
         {
             return await _immoXxlClient.GetProperties(GetWebClientOptions());

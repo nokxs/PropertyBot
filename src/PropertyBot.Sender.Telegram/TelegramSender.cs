@@ -55,7 +55,16 @@ namespace PropertyBot.Sender.Telegram
             _botClient.StartReceiving();
         }
 
-        public async Task SendMessages(IEnumerable<Property> properties)
+        public async Task SendMessage(string message)
+        {
+            var users = _senderDataProvider.GetAll<TelegramUser>();
+            foreach (var user in users)
+            {
+                await _botClient.SendTextMessageAsync(user.ChatId, message);
+            }
+        }
+
+        public async Task SendProperties(IEnumerable<Property> properties)
         {
             var users = _senderDataProvider.GetAll<TelegramUser>();
             var propertyList = properties.ToList();

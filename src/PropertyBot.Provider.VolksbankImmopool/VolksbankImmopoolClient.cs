@@ -20,6 +20,8 @@ namespace PropertyBot.Provider.VolksbankImmopool
             _volksbankConverter = volksbankConverter;
         }
 
+        public string Name { get; } = "Volksbank (Immopool)";
+
         public async Task<IEnumerable<Property>> GetProperties()
         {
             var customerIds = EnvironmentConstants.PROVIDER_VOLKSBANK_IMMOPOOL_CUSTOMER_ID.GetAsOptionalEnvironmentVariable("144298").Split(",").Select(id => id.ToInt()).ToList();

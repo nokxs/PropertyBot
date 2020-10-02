@@ -16,6 +16,8 @@ namespace PropertyBot.Provider.GutImmo
             _immoXxlClient = immoXxlClient;
         }
 
+        public string Name { get; } = "Gut Immo";
+
         public async Task<IEnumerable<Property>> GetProperties()
         {
             return await _immoXxlClient.GetProperties(GetWebClientOptions());

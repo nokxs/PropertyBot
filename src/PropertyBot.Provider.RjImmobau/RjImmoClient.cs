@@ -16,6 +16,8 @@ namespace PropertyBot.Provider.RjImmobau
             _immoXxlClient = immoXxlClient;
         }
 
+        public string Name { get; } = "RJ Immobau";
+
         public async Task<IEnumerable<Property>> GetProperties()
         {
             return await _immoXxlClient.GetProperties(GetWebClientOptions());

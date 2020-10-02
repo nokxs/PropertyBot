@@ -18,6 +18,8 @@ namespace PropertyBot.Service
         private readonly IEnumerable<IMessageSender> _messageSenders;
         private readonly IPropertyDataProvider _propertyDataProvider;
 
+        private readonly List<string> _alreadySendExceptions = new List<string>();
+
         public Worker(ILogger<Worker> logger, IEnumerable<IPropertyProvider> propertyProviders, IEnumerable<IMessageSender> messageSenders, IPropertyDataProvider propertyDataProvider)
         {
             _logger = logger;
@@ -44,12 +46,12 @@ namespace PropertyBot.Service
 
                     foreach (var sender in _messageSenders)
                     {
-                        await sender.SendMessages(newProperties);
+                        await sender.SendProperties(newProperties);
                     }
                 }
                 catch (Exception e)
                 {
-                    _logger.LogCritical($"{e.Message} \n\n{e.StackTrace}");
+                    _logger.LogCritical($"Unexpected exception", e);
                 }
 
                 await Task.Delay(pollingIntervalInSeconds * 1000, stoppingToken);
@@ -60,7 +62,22 @@ namespace PropertyBot.Service
         {
             foreach (var provider in _propertyProviders)
             {
-                var properties = await provider.GetProperties();
+                IEnumerable<Property> properties = Enumerable.Empty<Property>();
+
+                try
+                {
+                    properties = await provider.GetProperties();
+                }
+                catch (Exception e)
+                {
+                    _logger.LogCritical($"Couldn't retrieve properties from provider '{provider.Name}'", e);
+
+                    if (!_alreadySendExceptions.Contains(e.StackTrace))
+                    {
+                        _alreadySendExceptions.Add(e.StackTrace);
+                        _messageSenders.ForEach(sender => sender.SendMessage($"Couldn't retrieve properties from provider '{provider.Name}.\n\n{e.Message}\n\n{e.StackTrace}'"));
+                    }
+                }                
                 
                 foreach (var property in properties)
                 {
@@ -76,7 +93,10 @@ namespace PropertyBot.Service
 
         private async Task UpdateDatabase(IEnumerable<Property> properties)
         {
-            await _propertyDataProvider.AddMany(properties);
+            if (properties.Any())
+            {
+                await _propertyDataProvider.AddMany(properties);
+            }
         }
     }
 }
