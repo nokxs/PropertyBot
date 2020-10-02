@@ -76,7 +76,10 @@ namespace PropertyBot.Service
 
         private async Task UpdateDatabase(IEnumerable<Property> properties)
         {
-            await _propertyDataProvider.AddMany(properties);
+            if (properties.Any())
+            {
+                await _propertyDataProvider.AddMany(properties);
+            }
         }
     }
 }
