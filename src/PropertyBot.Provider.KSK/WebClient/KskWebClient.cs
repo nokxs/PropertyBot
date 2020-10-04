@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
@@ -40,7 +41,20 @@ namespace PropertyBot.Provider.KSK.WebClient
         public async Task<Root> GetPage(KskWebClientOptions options, int page, string marketingUsageObjectType)
         {
             var resultString = await GetRawPage(options, page, marketingUsageObjectType);
-            return JsonSerializer.Deserialize<Root>(resultString);
+            try
+            {
+                return JsonSerializer.Deserialize<Root>(resultString);
+            }
+            catch (JsonException e)
+            {
+                if (e.Message.Contains("'<' is an invalid start of a value"))
+                {
+                    // sometimes the KSK doesn't send valid json. This is just ignored as it works mostly the next time
+                    return new Root { Embedded = new Embedded { Estate = new List<Estate>() } };
+                }
+
+                throw;
+            }
         }
 
         private async Task<string> GetRawPage(KskWebClientOptions options, int page, string marketingUsageObjectType)
