@@ -20,4 +20,4 @@ The provider can be configured with the following environment variables. See the
 | 2F70B9A2-0A32-45E9-8089-7122F89EF678 | Renditeobjekt |
 | 909D6406-C71C-4305-A94B-083B8BC07724 | Sonstige Gew.Immobilie mieten |
 
-**These values are taken directly from the dropdown of the website.**
+*These values are taken directly from the dropdown of the website.*
