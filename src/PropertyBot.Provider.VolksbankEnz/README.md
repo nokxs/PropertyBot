@@ -8,7 +8,7 @@ The provider can be configured with the following environment variables. See the
 
 | Environment Variable                      | Description                                    | Mandatory | Default   |
 |-------------------------------------------|------------------------------------------------|-----------|-----------| 
-| PROVIDER_VOLKSBANK_ENZ_INPUT_MASK         | The input mask define which type of properties are crawled | yes | - |
+| PROVIDER_VOLKSBANK_ENZ_INPUT_MASK         | The input mask define which type of properties are crawled. Support multiple values comma separated. | yes | - |
 
 ## Available Input Masks (as of 18.10.2020)
 
