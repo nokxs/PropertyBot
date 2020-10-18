@@ -25,16 +25,23 @@ namespace PropertyBot.Provider.VolksbankEnz.WebClient
 
             foreach (var inputMask in options.InputMasks)
             {
-                var resultString = await GetRawPage(inputMask);
-                properties.AddRange(ParseHtml(resultString));
+                var rawPage = await GetRawPage(inputMask, 1);
+                var pageCount = GetPageCount(rawPage);
+                properties.AddRange(ParseHtml(rawPage));
+
+                for (int pageNr = 2; pageNr <= pageCount; pageNr++)
+                {
+                    rawPage = await GetRawPage(inputMask, pageNr);
+                    properties.AddRange(ParseHtml(rawPage));
+                }
             }
 
             return properties;
         }
 
-        private async Task<string> GetRawPage(string inputMask)
+        private async Task<string> GetRawPage(string inputMask, int pageNr)
         {
-            return await _client.GetStringAsync($"https://60491430.flowfact-webparts.net/index.php/estates?inputMask={inputMask}");
+            return await _client.GetStringAsync($"https://60491430.flowfact-webparts.net/index.php/estates?inputMask={inputMask}&page={pageNr}");
         }
 
         private IEnumerable<VolksbankProperty> ParseHtml(string htmlString)
@@ -114,6 +121,15 @@ namespace PropertyBot.Provider.VolksbankEnz.WebClient
             var imageNode = node.SelectSingleNode("//div[contains(@class, 'estate-image')]/a/img");
             var imageUriString = imageNode?.Attributes.First(attribute => attribute.Name == "src")?.Value ?? "https://upload.wikimedia.org/wikipedia/commons/2/26/512pxIcon-sunset_photo_not_found.png"; 
             return new Uri(imageUriString);
+        }
+
+        private int GetPageCount(string htmlString)
+        {
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(htmlString);
+
+            var pageNode = htmlDoc.DocumentNode.SelectSingleNode("//span[contains(@class, 'sum')]");
+            return pageNode?.InnerText.ToIntSafe() ?? 1;
         }
     }
 }
