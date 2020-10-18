@@ -8,8 +8,16 @@ The provider can be configured with the following environment variables. See the
 
 | Environment Variable                      | Description                                    | Mandatory | Default   |
 |-------------------------------------------|------------------------------------------------|-----------|-----------| 
-| PROVIDER_VBANK_STUTTGART_GEOSL            | The GeoSL of the city to use. Separate multiple GeoSLs with a "," | no | 004008001019000093 |
-| PROVIDER_VBANK_STUTTGART_PERIMETERS_IN_KM | The radius in km arround the provided GeoSL    | no        | 10        |
-| PROVIDER_VBANK_STUTTGART_OBJECT_CATEGORY  | The object category. Must be an int            | no        | 1 (House) |
-| PROVIDER_VBANK_STUTTGART_CUSTOMER_ID      | The customer id for immopool.de                | no        | 144298    |
-| PROVIDER_VBANK_STUTTGART_LIMIT            | The number of properties to load 			     | no        | 100       |
+| PROVIDER_VOLKSBANK_ENZ_INPUT_MASK         | The input mask define which type of properties are crawled | yes | - |
+
+## Available Input Masks (as of 18.10.2020)
+
+| Input Mask | Type |
+|------------|------|
+| 9AB30EBD-096C-492E-88E3-D4F779518E91 | Wohnung kaufen |
+| DA42D4E4-D160-44A1-A69E-246A39095EFE | Haus kaufen |
+| 37FCE1F4-E2FD-4ADF-9A7C-A7F10DC8AB54 | Garage/Stellplatz kaufen |
+| 2F70B9A2-0A32-45E9-8089-7122F89EF678 | Renditeobjekt |
+| 909D6406-C71C-4305-A94B-083B8BC07724 | Sonstige Gew.Immobilie mieten |
+
+**These values are taken directly from the dropdown of the website.**

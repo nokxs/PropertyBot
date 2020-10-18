@@ -24,7 +24,7 @@ namespace PropertyBot.Provider.VolksbankEnz
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            var inputMasks = EnvironmentConstants.PROVIDER_VOLKSBANK_ENZ_INPUT_MASK.GetAsOptionalEnvironmentVariable("DA42D4E4-D160-44A1-A69E-246A39095EFE").Split(",");
+            var inputMasks = EnvironmentConstants.PROVIDER_VOLKSBANK_ENZ_INPUT_MASK.GetAsMandatoryEnvironmentVariable().Replace(" ", string.Empty).Split(",");
 
             var webClientOptions = new VolksbankWebClientOptions(inputMasks);
 
