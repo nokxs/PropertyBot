@@ -4,7 +4,7 @@ namespace PropertyBot.Provider.VolksbankEnz.Entity
 {
     internal class VolksbankProperty
     {
-        public VolksbankProperty(long id, string description, string type, string location, int price, double roomCount, double livingArea, double propertyArea, Uri imageUri) {
+        public VolksbankProperty(string id, string description, string type, string location, int price, double roomCount, double livingArea, Uri imageUri) {
             Id = id;
             Description = description;
             Type = type;
@@ -12,11 +12,10 @@ namespace PropertyBot.Provider.VolksbankEnz.Entity
             Price = price;
             RoomCount = roomCount;
             LivingArea = livingArea;
-            PropertyArea = propertyArea;
             ImageUri = imageUri;
         }
 
-        public long Id { get;  }
+        public string Id { get;  }
 
         public string Description { get; }
 
@@ -29,9 +28,7 @@ namespace PropertyBot.Provider.VolksbankEnz.Entity
         public double RoomCount { get; }
 
         public double LivingArea { get; }
-
-        public double PropertyArea { get; }
-
+        
         public Uri ImageUri { get; }
     }
 }

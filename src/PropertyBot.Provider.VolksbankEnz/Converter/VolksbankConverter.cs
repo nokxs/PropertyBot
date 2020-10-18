@@ -20,8 +20,7 @@ namespace PropertyBot.Provider.VolksbankEnz.Converter
             {
                 {"Ort", volksbankProperty.Location},
                 {"Zimmer", volksbankProperty.RoomCount.Format()},
-                {"Wohnfläche", $"{volksbankProperty.LivingArea.Format()} m²"},
-                {"Grundstücksfläche", $"{volksbankProperty.PropertyArea.Format()} m²"}
+                {"Wohnfläche", $"{volksbankProperty.LivingArea.Format()} m²"}
             };
 
             return new Property(
