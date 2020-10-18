@@ -22,16 +22,19 @@ namespace PropertyBot.Provider.VolksbankEnz.WebClient
         public async Task<IEnumerable<VolksbankProperty>> GetObjects(VolksbankWebClientOptions options)
         {
             var properties = new List<VolksbankProperty>();
-            
-            var resultString = await GetRawPage(options);
-            properties.AddRange(ParseHtml(resultString));
+
+            foreach (var inputMask in options.InputMasks)
+            {
+                var resultString = await GetRawPage(inputMask);
+                properties.AddRange(ParseHtml(resultString));
+            }
 
             return properties;
         }
 
-        private async Task<string> GetRawPage(VolksbankWebClientOptions options)
+        private async Task<string> GetRawPage(string inputMask)
         {
-            return await _client.GetStringAsync($"https://60491430.flowfact-webparts.net/index.php/estates?inputMask={options.InputMask}");
+            return await _client.GetStringAsync($"https://60491430.flowfact-webparts.net/index.php/estates?inputMask={inputMask}");
         }
 
         private IEnumerable<VolksbankProperty> ParseHtml(string htmlString)

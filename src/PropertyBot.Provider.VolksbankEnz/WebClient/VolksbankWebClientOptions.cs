@@ -4,11 +4,11 @@ namespace PropertyBot.Provider.VolksbankEnz.WebClient
 {
     internal class VolksbankWebClientOptions
     {
-        public VolksbankWebClientOptions(string inputMask)
+        public VolksbankWebClientOptions(string[] inputMasks)
         {
-            InputMask = inputMask;
+            InputMasks = inputMasks;
         }
 
-        public string InputMask { get; }
+        public string[] InputMasks { get; }
     }
 }

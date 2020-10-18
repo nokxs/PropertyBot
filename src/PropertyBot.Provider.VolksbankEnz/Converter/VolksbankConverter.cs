@@ -24,15 +24,15 @@ namespace PropertyBot.Provider.VolksbankEnz.Converter
             };
 
             return new Property(
-                volksbankProperty.Id.ToString(),
+                volksbankProperty.Id,
                 volksbankProperty.Description,
                 volksbankProperty.ImageUri,
                 DateTime.Now, 
                 volksbankProperty.Price,
                 details,
-                new Uri($"https://www.immopool.de/ASP/immo/obj/immoexpose.asp?Lasid=53048086&inetlfdnr={volksbankProperty.Id}"), 
+                new Uri($"https://60491430.flowfact-webparts.net/index.php/estates/{volksbankProperty.Id}"), 
                 MessageFormat.Html,
-                "Volksbank Immopool");
+                "Volksbank Neckar-Enz");
         }
     }
 }

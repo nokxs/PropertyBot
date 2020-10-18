@@ -20,13 +20,13 @@ namespace PropertyBot.Provider.VolksbankEnz
             _volksbankConverter = volksbankConverter;
         }
 
-        public string Name { get; } = "Volksbank (Immopool)";
+        public string Name { get; } = "Volksbank Neckar-Enz";
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            var customerIds = EnvironmentConstants.PROVIDER_VOLKSBANK_IMMOPOOL_CUSTOMER_ID.GetAsOptionalEnvironmentVariable("144298").Split(",").Select(id => id.ToInt()).ToList();
-            
-            var webClientOptions = new VolksbankWebClientOptions("");
+            var inputMasks = EnvironmentConstants.PROVIDER_VOLKSBANK_ENZ_INPUT_MASK.GetAsOptionalEnvironmentVariable("DA42D4E4-D160-44A1-A69E-246A39095EFE").Split(",");
+
+            var webClientOptions = new VolksbankWebClientOptions(inputMasks);
 
             var volksbankProperties = await _webClient.GetObjects(webClientOptions);
             return _volksbankConverter.ToProperties(volksbankProperties);
