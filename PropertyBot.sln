@@ -40,7 +40,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.Wunsch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Common.Test", "src\PropertyBot.Common.Test\PropertyBot.Common.Test.csproj", "{D0A14BF9-B3D9-47FF-9F5B-4B5423EA8C85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyBot.Provider.VolksbankEnz", "src\PropertyBot.Provider.VolksbankEnz\PropertyBot.Provider.VolksbankEnz.csproj", "{62F90D4A-4FFA-4BA8-9659-AD84ABED491B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.VolksbankFlowfact", "src\PropertyBot.Provider.VolksbankFlowfact\PropertyBot.Provider.VolksbankFlowfact.csproj", "{62F90D4A-4FFA-4BA8-9659-AD84ABED491B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

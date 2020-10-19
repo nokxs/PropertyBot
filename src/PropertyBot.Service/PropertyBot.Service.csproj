@@ -20,7 +20,7 @@
     <ProjectReference Include="..\PropertyBot.Provider.KSK\PropertyBot.Provider.KSK.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.LinkImmo\PropertyBot.Provider.LinkImmo.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.RjImmobau\PropertyBot.Provider.RjImmobau.csproj" />
-    <ProjectReference Include="..\PropertyBot.Provider.VolksbankEnz\PropertyBot.Provider.VolksbankEnz.csproj" />
+    <ProjectReference Include="..\PropertyBot.Provider.VolksbankEnz\PropertyBot.Provider.VolksbankFlowfact.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.VolksbankImmopool\PropertyBot.Provider.VolksbankImmopool.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.Wunschimmo\PropertyBot.Provider.Wunschimmo.csproj" />
     <ProjectReference Include="..\PropertyBot.Sender.Telegram\PropertyBot.Sender.Telegram.csproj" />
