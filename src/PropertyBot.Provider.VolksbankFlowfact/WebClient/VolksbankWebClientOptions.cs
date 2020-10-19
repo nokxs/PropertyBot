@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace PropertyBot.Provider.VolksbankEnz.WebClient
+﻿namespace PropertyBot.Provider.VolksbankFlowfact.WebClient
 {
     internal class VolksbankWebClientOptions
     {

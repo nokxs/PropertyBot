@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using PropertyBot.Common;
 using PropertyBot.Interface;
-using PropertyBot.Provider.VolksbankEnz.Converter;
-using PropertyBot.Provider.VolksbankEnz.WebClient;
+using PropertyBot.Provider.VolksbankFlowfact.Converter;
+using PropertyBot.Provider.VolksbankFlowfact.WebClient;
 
-namespace PropertyBot.Provider.VolksbankEnz
+namespace PropertyBot.Provider.VolksbankFlowfact
 {
-    internal class VolksbankEnzClient : IPropertyProvider
+    internal class VolksbankFlowfactClient : IPropertyProvider
     {
         private readonly IVolksbankWebClient _webClient;
         private readonly IVolksbankConverter _volksbankConverter;
 
-        internal VolksbankEnzClient(IVolksbankWebClient webClient, IVolksbankConverter volksbankConverter)
+        internal VolksbankFlowfactClient(IVolksbankWebClient webClient, IVolksbankConverter volksbankConverter)
         {
             _webClient = webClient;
             _volksbankConverter = volksbankConverter;

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using PropertyBot.Common;
 using PropertyBot.Interface;
-using PropertyBot.Provider.VolksbankEnz.Entity;
+using PropertyBot.Provider.VolksbankFlowfact.Entity;
 
-namespace PropertyBot.Provider.VolksbankEnz.Converter
+namespace PropertyBot.Provider.VolksbankFlowfact.Converter
 {
     internal class VolksbankConverter : IVolksbankConverter
     {

@@ -6,9 +6,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using PropertyBot.Common;
-using PropertyBot.Provider.VolksbankEnz.Entity;
+using PropertyBot.Provider.VolksbankFlowfact.Entity;
 
-namespace PropertyBot.Provider.VolksbankEnz.WebClient
+namespace PropertyBot.Provider.VolksbankFlowfact.WebClient
 {
     internal class VolksbankWebClient : IVolksbankWebClient
     {

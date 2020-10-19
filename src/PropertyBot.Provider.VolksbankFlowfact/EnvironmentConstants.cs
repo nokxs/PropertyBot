@@ -1,4 +1,4 @@
-﻿namespace PropertyBot.Provider.VolksbankEnz
+﻿namespace PropertyBot.Provider.VolksbankFlowfact
 {
     internal static class EnvironmentConstants
     {
