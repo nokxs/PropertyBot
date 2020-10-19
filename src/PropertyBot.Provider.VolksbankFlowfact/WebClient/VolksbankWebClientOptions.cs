@@ -1,12 +1,17 @@
-﻿namespace PropertyBot.Provider.VolksbankFlowfact.WebClient
+﻿using System.Collections.Generic;
+
+namespace PropertyBot.Provider.VolksbankFlowfact.WebClient
 {
     internal class VolksbankWebClientOptions
     {
-        public VolksbankWebClientOptions(string[] inputMasks)
+        public VolksbankWebClientOptions(IEnumerable<string> inputMasks, long clientId)
         {
             InputMasks = inputMasks;
+            ClientId = clientId;
         }
 
-        public string[] InputMasks { get; }
+        public IEnumerable<string> InputMasks { get; }
+
+        public long ClientId { get; }
     }
 }

@@ -6,6 +6,6 @@ namespace PropertyBot.Provider.VolksbankFlowfact.Converter
 {
     internal interface IVolksbankConverter
     {
-        public IEnumerable<Property> ToProperties(IEnumerable<VolksbankProperty> volksbankProperties);
+        public IEnumerable<Property> ToProperties(long clientId, IEnumerable<VolksbankProperty> volksbankProperties);
     }
 }

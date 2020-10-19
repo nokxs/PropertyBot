@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using PropertyBot.Common;
 using PropertyBot.Interface;
@@ -18,16 +19,23 @@ namespace PropertyBot.Provider.VolksbankFlowfact
             _volksbankConverter = volksbankConverter;
         }
 
-        public string Name { get; } = "Volksbank Neckar-Enz";
+        public string Name { get; } = "Volksbank Flowfact";
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            var inputMasks = EnvironmentConstants.PROVIDER_VOLKSBANK_ENZ_INPUT_MASK.GetAsMandatoryEnvironmentVariable().Replace(" ", string.Empty).Split(",");
+            var inputMasks = EnvironmentConstants.PROVIDER_VOLKSBANK_FLOWFACT_INPUT_MASK.GetAsMandatoryEnvironmentVariableList().ToList();
+            var clientIds = EnvironmentConstants.PROVIDER_VOLKSBANK_FLOWFACT_CLIENT_ID.GetAsMandatoryEnvironmentVariableList().Select(s => s.ToLong());
+            var properties = new List<Property>();
 
-            var webClientOptions = new VolksbankWebClientOptions(inputMasks);
+            foreach (var clientId in clientIds)
+            {
+                var webClientOptions = new VolksbankWebClientOptions(inputMasks, clientId);
+                var volksbankProperties = await _webClient.GetObjects(webClientOptions);
 
-            var volksbankProperties = await _webClient.GetObjects(webClientOptions);
-            return _volksbankConverter.ToProperties(volksbankProperties);
+                properties.AddRange(_volksbankConverter.ToProperties(clientId, volksbankProperties));
+            }
+
+            return properties;
         }
     }
 }

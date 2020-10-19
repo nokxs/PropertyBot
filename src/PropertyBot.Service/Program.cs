@@ -6,7 +6,7 @@ using PropertyBot.Provider.GutImmo;
 using PropertyBot.Provider.KSK;
 using PropertyBot.Provider.LinkImmo;
 using PropertyBot.Provider.RjImmobau;
-using PropertyBot.Provider.VolksbankEnz;
+using PropertyBot.Provider.VolksbankFlowfact;
 using PropertyBot.Provider.VolksbankImmopool;
 using PropertyBot.Provider.Wunschimmo;
 using PropertyBot.Provider.ZVG;
@@ -49,7 +49,7 @@ namespace PropertyBot.Service
             services.AddSingleton(GutImmoProviderFactory.CreateProvider());
             services.AddSingleton(RjImmoProviderFactory.CreateProvider());
             services.AddSingleton(WunschimmoProviderFactory.CreateProvider());
-            services.AddSingleton(VolksbankEnzProviderFactory.CreateProvider());
+            services.AddSingleton(VolksbankFlowfactProviderFactory.CreateProvider());
         }
 
         private static void RegisterMessageSenders(IServiceCollection services)

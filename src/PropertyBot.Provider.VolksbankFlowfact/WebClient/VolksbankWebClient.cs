@@ -25,13 +25,13 @@ namespace PropertyBot.Provider.VolksbankFlowfact.WebClient
 
             foreach (var inputMask in options.InputMasks)
             {
-                var rawPage = await GetRawPage(inputMask, 1);
+                var rawPage = await GetRawPage(options.ClientId, inputMask, 1);
                 var pageCount = GetPageCount(rawPage);
                 properties.AddRange(ParseHtml(rawPage));
 
                 for (int pageNr = 2; pageNr <= pageCount; pageNr++)
                 {
-                    rawPage = await GetRawPage(inputMask, pageNr);
+                    rawPage = await GetRawPage(options.ClientId, inputMask, pageNr);
                     properties.AddRange(ParseHtml(rawPage));
                 }
             }
@@ -39,9 +39,9 @@ namespace PropertyBot.Provider.VolksbankFlowfact.WebClient
             return properties;
         }
 
-        private async Task<string> GetRawPage(string inputMask, int pageNr)
+        private async Task<string> GetRawPage(long clientId, string inputMask, int pageNr)
         {
-            return await _client.GetStringAsync($"https://60491430.flowfact-webparts.net/index.php/estates?inputMask={inputMask}&page={pageNr}");
+            return await _client.GetStringAsync($"https://{clientId}.flowfact-webparts.net/index.php/estates?inputMask={inputMask}&page={pageNr}");
         }
 
         private IEnumerable<VolksbankProperty> ParseHtml(string htmlString)

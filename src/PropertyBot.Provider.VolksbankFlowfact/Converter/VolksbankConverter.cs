@@ -9,12 +9,12 @@ namespace PropertyBot.Provider.VolksbankFlowfact.Converter
 {
     internal class VolksbankConverter : IVolksbankConverter
     {
-        public IEnumerable<Property> ToProperties(IEnumerable<VolksbankProperty> volksbankProperties)
+        public IEnumerable<Property> ToProperties(long clientId, IEnumerable<VolksbankProperty> volksbankProperties)
         {
-            return volksbankProperties.Select(ToProperty);
+            return volksbankProperties.Select(property => ToProperty(clientId, property));
         }
 
-        private Property ToProperty(VolksbankProperty volksbankProperty)
+        private Property ToProperty(long clientId, VolksbankProperty volksbankProperty)
         {
             var details = new Dictionary<string, string>
             {
@@ -30,7 +30,7 @@ namespace PropertyBot.Provider.VolksbankFlowfact.Converter
                 DateTime.Now, 
                 volksbankProperty.Price,
                 details,
-                new Uri($"https://60491430.flowfact-webparts.net/index.php/estates/{volksbankProperty.Id}"), 
+                new Uri($"https://{clientId}.flowfact-webparts.net/index.php/estates/{volksbankProperty.Id}"), 
                 MessageFormat.Html,
                 "Volksbank Neckar-Enz");
         }
