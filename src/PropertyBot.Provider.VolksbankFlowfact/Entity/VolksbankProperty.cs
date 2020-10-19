@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PropertyBot.Provider.VolksbankEnz.Entity
+namespace PropertyBot.Provider.VolksbankFlowfact.Entity
 {
     internal class VolksbankProperty
     {
