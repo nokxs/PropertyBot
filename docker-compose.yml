@@ -36,6 +36,8 @@ services:
       PROVIDER_WUNSCHIMMO_OBJECT_TYPES: "haus-kaufen,grundstueck-kaufen"
       PROVIDER_WUNSCHIMMO_PERIMETERS_IN_KM: "20,20"
       PROVIDER_WUNSCHIMMO_REGIONS: "baden-wuerttemberg,stuttgart,stuttgart;baden-wuerttemberg,stuttgart,stuttgart"
+
+      PROVIDER_IMMOSCOUT_LIST_IDS: "14652716, 84965072"
     depends_on:
       - mongo
   

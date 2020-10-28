@@ -59,7 +59,9 @@ namespace PropertyBot.Provider.ImmoscoutLists.WebClient
         private string GetId(HtmlNode node)
         {
             var linkNode = node.SelectSingleNode("//figure[contains(@class, 'result__list__element--image')]/a");
-            return linkNode?.Attributes.First(attribute => attribute.Name == "href").Value;
+            var link = linkNode?.Attributes.First(attribute => attribute.Name == "href").Value;
+            var splitted = link.Split("/");
+            return $"immoscout_{splitted[3]}";
         }
 
         private string GetDescription(HtmlNode node)
@@ -102,7 +104,7 @@ namespace PropertyBot.Provider.ImmoscoutLists.WebClient
         {
             var imageNode = node.SelectSingleNode("//figure[contains(@class, 'result__list__element--image')]/a/img");
             var imageUriString = imageNode?.Attributes.First(attribute => attribute.Name == "src")?.Value ?? "https://upload.wikimedia.org/wikipedia/commons/2/26/512pxIcon-sunset_photo_not_found.png";
-            return new Uri(imageUriString);
+            return new Uri($"https:{imageUriString}");
         }
 
         private Uri GetDetailsUri(HtmlNode node)
