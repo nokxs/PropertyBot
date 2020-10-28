@@ -13,7 +13,7 @@ The following property data providers are currently supported:
 - [zvg.com](https://zvg.com): [Readme](src/PropertyBot.ZVG/README.md)
 - [Kreissparkasse Böblingen](https://www.kskbb.de/de/home/privatkunden/immobilien/immobilienportal.html): [Readme](src/PropertyBot.Provider.KSK/README.md)
 - [Volksbank Immopool](https://www.volksbank-stuttgart.de/immobilien/immobilienangebote/regionale-immobilienangebote.html): [Readme](src/PropertyBot.Provider.VolksbankImmopool/README.md)
-- [Volksbank Neckar-Enz](https://www.vorne.de/immobilien/immobilien-finden.html): [Readme](src/PropertyBot.Provider.VolksbankEnz/README.md)
+- [Volksbank Flowfact](https://www.vorne.de/immobilien/immobilien-finden.html): [Readme](src/PropertyBot.Provider.VolksbankFlowfact/README.md)
 - [Link Immobilien](https://www.link-immobilien.info/Angebote.htm): [Readme](src/PropertyBot.Provider.LinkImmo/README.md)
 - [Gut Immobilien](https://www.gutimmo.de/Angebote.htm): [Readme](src/PropertyBot.Provider.GutImmo/README.md)
 - [RJ Immobau Immobilien](http://www.rjimmobau.de/Angebote.htm): [Readme](src/PropertyBot.Provider.RjImmobau/README.md)
