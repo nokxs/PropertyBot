@@ -17,6 +17,7 @@ The following property data providers are currently supported:
 - [Link Immobilien](https://www.link-immobilien.info/Angebote.htm): [Readme](src/PropertyBot.Provider.LinkImmo/README.md)
 - [Gut Immobilien](https://www.gutimmo.de/Angebote.htm): [Readme](src/PropertyBot.Provider.GutImmo/README.md)
 - [RJ Immobau Immobilien](http://www.rjimmobau.de/Angebote.htm): [Readme](src/PropertyBot.Provider.RjImmobau/README.md)
+- [Immobilienscout24 Lists](https://portal.immobilienscout24.de/ergebnisliste/14652716): [Readme](src/PropertyBot.Provider.ImmoscoutLists/README.md)
 
 ## Senders
 
