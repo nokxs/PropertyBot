@@ -23,16 +23,15 @@ namespace PropertyBot.Provider.ImmoscoutLists
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            var inputMasks = EnvironmentConstants.PROVIDER_VOLKSBANK_FLOWFACT_INPUT_MASK.GetAsMandatoryEnvironmentVariableList().ToList();
-            var clientIds = EnvironmentConstants.PROVIDER_VOLKSBANK_FLOWFACT_CLIENT_ID.GetAsMandatoryEnvironmentVariableList().Select(s => s.ToLong());
+            var ids = EnvironmentConstants.PROVIDER_IMMOSCOUT_LIST_IDS.GetAsMandatoryEnvironmentVariableList().ToList();
             var properties = new List<Property>();
 
-            foreach (var clientId in clientIds)
+            foreach (var id in ids)
             {
-                var webClientOptions = new ImmoscoutListWebClientOptions("");
-                var volksbankProperties = await _webClient.GetObjects(webClientOptions);
+                var webClientOptions = new ImmoscoutListWebClientOptions(id);
+                var immoscoutListProperties = await _webClient.GetObjects(webClientOptions);
 
-                properties.AddRange(_immoscoutListConverter.ToProperties(clientId, volksbankProperties));
+                properties.AddRange(_immoscoutListConverter.ToProperties(immoscoutListProperties));
             }
 
             return properties;

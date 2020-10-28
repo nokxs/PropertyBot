@@ -6,6 +6,6 @@ namespace PropertyBot.Provider.ImmoscoutLists.Converter
 {
     internal interface IImmoscoutListConverter
     {
-        public IEnumerable<Property> ToProperties(long clientId, IEnumerable<ImmoscoutListProperty> immoscoutListProperties);
+        public IEnumerable<Property> ToProperties(IEnumerable<ImmoscoutListProperty> immoscoutListProperties);
     }
 }

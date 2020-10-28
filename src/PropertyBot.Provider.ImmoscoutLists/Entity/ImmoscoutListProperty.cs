@@ -16,20 +16,20 @@ namespace PropertyBot.Provider.ImmoscoutLists.Entity
             DetailsUri = detailsUri;
         }
 
-        private string Id { get; }
+        public string Id { get; }
 
-        private string Description { get; }
+        public string Description { get; }
 
-        private string Location { get; }
+        public string Location { get; }
 
-        private int Price { get; }
+        public int Price { get; }
 
-        private double RoomCount { get; }
+        public double RoomCount { get; }
 
-        private double LivingArea { get; }
+        public double LivingArea { get; }
 
-        private Uri ImageUri { get; }
+        public Uri ImageUri { get; }
 
-        private Uri DetailsUri { get; }
+        public Uri DetailsUri { get; }
     }
 }
