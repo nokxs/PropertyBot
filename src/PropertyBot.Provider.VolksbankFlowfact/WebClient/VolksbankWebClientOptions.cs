@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
-
-namespace PropertyBot.Provider.VolksbankFlowfact.WebClient
+﻿namespace PropertyBot.Provider.VolksbankFlowfact.WebClient
 {
     internal class VolksbankWebClientOptions
     {
-        public VolksbankWebClientOptions(IEnumerable<string> inputMasks, long clientId)
-        {
-            InputMasks = inputMasks;
-            ClientId = clientId;
-        }
+        public string InputMask { get; set; }
 
-        public IEnumerable<string> InputMasks { get; }
+        public long ClientId { get; set; }
 
-        public long ClientId { get; }
+        public string ZipTown { get; set; }
+
+        public string Latitude { get; set; }
+
+        public string Longitude { get; set; }
+
+        public int Radius { get; set; }
     }
 }

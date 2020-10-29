@@ -5,9 +5,9 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace PropertyBot.Common
 {
-    public class SettingsReader
+    public class SettingsReader<TSetting>
     {
-        public async Task<SettingsContainer<TSetting>> ReadSettings<TSetting>(string path)
+        public async Task<SettingsContainer<TSetting>> ReadSettings(string path)
         {
             var fileContent = await File.ReadAllTextAsync($"settings/{path}");
             
