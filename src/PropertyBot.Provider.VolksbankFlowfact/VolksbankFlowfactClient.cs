@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using PropertyBot.Common;
 using PropertyBot.Interface;
@@ -12,27 +11,28 @@ namespace PropertyBot.Provider.VolksbankFlowfact
     {
         private readonly IVolksbankWebClient _webClient;
         private readonly IVolksbankConverter _volksbankConverter;
+        private readonly SettingsReader<VolksbankWebClientOptions> _settingsReader;
 
-        internal VolksbankFlowfactClient(IVolksbankWebClient webClient, IVolksbankConverter volksbankConverter)
+        internal VolksbankFlowfactClient(IVolksbankWebClient webClient,
+            IVolksbankConverter volksbankConverter,
+            SettingsReader<VolksbankWebClientOptions> settingsReader)
         {
             _webClient = webClient;
             _volksbankConverter = volksbankConverter;
+            _settingsReader = settingsReader;
         }
 
         public string Name { get; } = "Volksbank Flowfact";
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            var inputMasks = EnvironmentConstants.PROVIDER_VOLKSBANK_FLOWFACT_INPUT_MASK.GetAsMandatoryEnvironmentVariableList().ToList();
-            var clientIds = EnvironmentConstants.PROVIDER_VOLKSBANK_FLOWFACT_CLIENT_ID.GetAsMandatoryEnvironmentVariableList().Select(s => s.ToLong());
+            var settingsContainer = await _settingsReader.ReadSettings("providers/VolksbankFlowfact.yml");
             var properties = new List<Property>();
 
-            foreach (var clientId in clientIds)
+            foreach (var setting in settingsContainer.Settings)
             {
-                var webClientOptions = new VolksbankWebClientOptions(inputMasks, clientId);
-                var volksbankProperties = await _webClient.GetObjects(webClientOptions);
-
-                properties.AddRange(_volksbankConverter.ToProperties(clientId, volksbankProperties));
+                var volksbankProperties = await _webClient.GetObjects(setting);
+                properties.AddRange(_volksbankConverter.ToProperties(setting.ClientId, volksbankProperties));
             }
 
             return properties;

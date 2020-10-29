@@ -23,25 +23,22 @@ namespace PropertyBot.Provider.VolksbankFlowfact.WebClient
         {
             var properties = new List<VolksbankProperty>();
 
-            foreach (var inputMask in options.InputMasks)
-            {
-                var rawPage = await GetRawPage(options.ClientId, inputMask, 1);
-                var pageCount = GetPageCount(rawPage);
-                properties.AddRange(ParseHtml(rawPage));
+            var rawPage = await GetRawPage(options, 1);
+            var pageCount = GetPageCount(rawPage);
+            properties.AddRange(ParseHtml(rawPage));
 
-                for (int pageNr = 2; pageNr <= pageCount; pageNr++)
-                {
-                    rawPage = await GetRawPage(options.ClientId, inputMask, pageNr);
-                    properties.AddRange(ParseHtml(rawPage));
-                }
+            for (int pageNr = 2; pageNr <= pageCount; pageNr++)
+            {
+                rawPage = await GetRawPage(options, pageNr);
+                properties.AddRange(ParseHtml(rawPage));
             }
 
             return properties;
         }
 
-        private async Task<string> GetRawPage(long clientId, string inputMask, int pageNr)
+        private async Task<string> GetRawPage(VolksbankWebClientOptions options, int pageNr)
         {
-            return await _client.GetStringAsync($"https://{clientId}.flowfact-webparts.net/index.php/estates?inputMask={inputMask}&page={pageNr}");
+            return await _client.GetStringAsync($"https://{options.ClientId}.flowfact-webparts.net/index.php/estates?inputMask={options.InputMask}&page={pageNr}&zipTown={options.ZipTown}&lat={options.Latitude}&lng={options.Longitude}&radius={options.Radius}");
         }
 
         private IEnumerable<VolksbankProperty> ParseHtml(string htmlString)

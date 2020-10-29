@@ -1,0 +1,7 @@
+﻿settings:
+  - inputMask: "DA42D4E4-D160-44A1-A69E-246A39095EFE"
+    clientId: "62090100"
+    zipTown: "71254%2C+Ditzingen%2C+Deutschland"
+    latitude: "48.8387496"
+    longitude: "9.035668099999999"
+    radius: 50

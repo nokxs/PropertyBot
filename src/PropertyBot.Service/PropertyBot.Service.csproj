@@ -27,4 +27,10 @@
     <ProjectReference Include="..\PropertyBot.Sender.Telegram\PropertyBot.Sender.Telegram.csproj" />
     <ProjectReference Include="..\PropertyBot.ZVG\PropertyBot.Provider.ZVG.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="settings\providers\VolksbankFlowfact.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
