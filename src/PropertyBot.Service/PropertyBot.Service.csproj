@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PropertyBot.Persistence\PropertyBot.Persistence.MongoDB.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.GutImmo\PropertyBot.Provider.GutImmo.csproj" />
+    <ProjectReference Include="..\PropertyBot.Provider.ImmoscoutLists\PropertyBot.Provider.ImmoscoutLists.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.Interface\PropertyBot.Interface.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.KSK\PropertyBot.Provider.KSK.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.LinkImmo\PropertyBot.Provider.LinkImmo.csproj" />

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 using PropertyBot.Interface;
 using PropertyBot.Persistence.MongoDB;
 using PropertyBot.Provider.GutImmo;
+using PropertyBot.Provider.ImmoscoutLists;
 using PropertyBot.Provider.KSK;
 using PropertyBot.Provider.LinkImmo;
 using PropertyBot.Provider.RjImmobau;
@@ -50,6 +51,7 @@ namespace PropertyBot.Service
             services.AddSingleton(RjImmoProviderFactory.CreateProvider());
             services.AddSingleton(WunschimmoProviderFactory.CreateProvider());
             services.AddSingleton(VolksbankFlowfactProviderFactory.CreateProvider());
+            services.AddSingleton(ImmoscoutListProviderFactory.CreateProvider());
         }
 
         private static void RegisterMessageSenders(IServiceCollection services)

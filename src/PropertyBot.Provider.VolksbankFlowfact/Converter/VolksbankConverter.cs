@@ -32,7 +32,7 @@ namespace PropertyBot.Provider.VolksbankFlowfact.Converter
                 details,
                 new Uri($"https://{clientId}.flowfact-webparts.net/index.php/estates/{volksbankProperty.Id}"), 
                 MessageFormat.Html,
-                "Volksbank Neckar-Enz");
+                "Volksbank Flowfact");
         }
     }
 }

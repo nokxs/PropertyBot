@@ -1,6 +1,6 @@
-﻿# Volksbank Enz Provider
+﻿# Volksbank Flowfact Provider
 
-This provider crawles the properties of from [Volksbank Neckar-Enz](https://www.vorne.de/immobilien/immobilien-finden.html).
+This provider crawles the properties of from any Volksbank supporting the flowfact API. One example is the [Volksbank Neckar-Enz](https://www.vorne.de/immobilien/immobilien-finden.html).
 
 ## Configuration
 
@@ -8,7 +8,8 @@ The provider can be configured with the following environment variables. See the
 
 | Environment Variable                      | Description                                    | Mandatory | Default   |
 |-------------------------------------------|------------------------------------------------|-----------|-----------| 
-| PROVIDER_VOLKSBANK_ENZ_INPUT_MASK         | The input mask define which type of properties are crawled. Support multiple values comma separated. | yes | - |
+| PROVIDER_VOLKSBANK_FLOWFACT_INPUT_MASK    | The input mask define which type of properties are crawled. Support multiple values comma separated. | yes | - |
+| PROVIDER_VOLKSBANK_FLOWFACT_CLIENT_ID     | The client id of the volksbank to crawl from.  | yes | - |
 
 ## Available Input Masks (as of 18.10.2020)
 
