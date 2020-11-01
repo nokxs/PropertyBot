@@ -23,10 +23,10 @@ namespace PropertyBot.Provider.Base.ImmoXXL.WebClient
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<IEnumerable<ImmoXXLmmoProperty>> GetObjects(ImmoXXLWebClientOptions options)
+        public async Task<IEnumerable<ImmoXXLImmoProperty>> GetObjects(ImmoXXLWebClientOptions options)
         {
-            List<ImmoXXLmmoProperty> pageProperties;
-            List<ImmoXXLmmoProperty> allProperties = new List<ImmoXXLmmoProperty>();
+            List<ImmoXXLImmoProperty> pageProperties;
+            List<ImmoXXLImmoProperty> allProperties = new List<ImmoXXLImmoProperty>();
             var currentPage = 0;
             
             do
@@ -46,7 +46,7 @@ namespace PropertyBot.Provider.Base.ImmoXXL.WebClient
                     $"{options.BaseUri}/index.php4?cmd=searchResults&alias=suchmaske&kaufartids={options.BuyIds}&kategorieids={options.CategoryIds}&objq[cursor]={cursor}");
         }
 
-        private IEnumerable<ImmoXXLmmoProperty> ParseRawPage(string content, string baseUrl)
+        private IEnumerable<ImmoXXLImmoProperty> ParseRawPage(string content, string baseUrl)
         {
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(content);
@@ -54,7 +54,7 @@ namespace PropertyBot.Provider.Base.ImmoXXL.WebClient
             return objects.Select(node => ParseObject(node, baseUrl));
         }
 
-        private ImmoXXLmmoProperty ParseObject(HtmlNode objectNode, string baseUrl)
+        private ImmoXXLImmoProperty ParseObject(HtmlNode objectNode, string baseUrl)
         {
             var objectDoc = new HtmlDocument();
             objectDoc.LoadHtml(objectNode.InnerHtml);
@@ -69,7 +69,7 @@ namespace PropertyBot.Provider.Base.ImmoXXL.WebClient
             var imageUrl = GetImageUrl(objectDoc.DocumentNode, baseUrl);
             var detailUrl = GetDetailUrl(objectDoc.DocumentNode, baseUrl);
 
-            return new ImmoXXLmmoProperty(id, roomCount, livingArea, propertyType, description, location, price, imageUrl, detailUrl);
+            return new ImmoXXLImmoProperty(id, roomCount, livingArea, propertyType, description, location, price, imageUrl, detailUrl, baseUrl.Replace("https://www.", string.Empty));
         }
 
         private string GetId(HtmlNode node)

@@ -2,9 +2,9 @@
 
 namespace PropertyBot.Provider.Base.ImmoXXL.Entity
 {
-    internal class ImmoXXLmmoProperty
+    internal class ImmoXXLImmoProperty
     {
-        public ImmoXXLmmoProperty(string id, string roomCount, int livingArea, string propertyType, string description, string location, int price, Uri imageUrl, Uri detailUrl)
+        public ImmoXXLImmoProperty(string id, string roomCount, int livingArea, string propertyType, string description, string location, int price, Uri imageUrl, Uri detailUrl, string providerName)
         {
             Id = id;
             RoomCount = roomCount;
@@ -15,6 +15,7 @@ namespace PropertyBot.Provider.Base.ImmoXXL.Entity
             Price = price;
             ImageUrl = imageUrl;
             DetailUrl = detailUrl;
+            ProviderName = providerName;
         }
 
         public string Id { get; }
@@ -34,5 +35,7 @@ namespace PropertyBot.Provider.Base.ImmoXXL.Entity
         public Uri ImageUrl { get; }
 
         public Uri DetailUrl { get; }
+
+        public string ProviderName { get; }
     }
 }

@@ -1,0 +1,10 @@
+﻿settings:
+  - baseUrl: "https://www.gutimmo.de"
+    buyIds: 1
+    categoryIds: 200
+  - baseUrl: "https://www.rjimmobau.de"
+    buyIds: 1
+    categoryIds: 200
+  - baseUrl: "https://www.link-immobilien.info"
+    buyIds: 1
+    categoryIds: 200

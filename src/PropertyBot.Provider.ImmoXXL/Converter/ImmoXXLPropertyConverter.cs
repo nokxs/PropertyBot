@@ -8,19 +8,12 @@ namespace PropertyBot.Provider.Base.ImmoXXL.Converter
 {
     internal class ImmoXXLPropertyConverter : IImmoXXLPropertyConverter
     {
-        private readonly string _providerName;
-
-        public ImmoXXLPropertyConverter(string providerName)
-        {
-            _providerName = providerName;
-        }
-
-        public IEnumerable<Property> ToProperties(IEnumerable<ImmoXXLmmoProperty> properties)
+        public IEnumerable<Property> ToProperties(IEnumerable<ImmoXXLImmoProperty> properties)
         {
             return properties.Select(ToProperty);
         }
 
-        private Property ToProperty(ImmoXXLmmoProperty immoXxlProperty)
+        private Property ToProperty(ImmoXXLImmoProperty immoXxlProperty)
         {
             return new Property(immoXxlProperty.Id,
                 immoXxlProperty.Description,
@@ -30,10 +23,10 @@ namespace PropertyBot.Provider.Base.ImmoXXL.Converter
                 GetAdditionalDetails(immoXxlProperty),
                 immoXxlProperty.DetailUrl,
                 MessageFormat.Html,
-                _providerName);
+                immoXxlProperty.ProviderName);
         }
 
-        private IDictionary<string, string> GetAdditionalDetails(ImmoXXLmmoProperty immoXxlProperty)
+        private IDictionary<string, string> GetAdditionalDetails(ImmoXXLImmoProperty immoXxlProperty)
         {
             return new Dictionary<string, string>
             {

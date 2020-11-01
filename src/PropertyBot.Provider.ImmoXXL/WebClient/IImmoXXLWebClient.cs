@@ -6,6 +6,6 @@ namespace PropertyBot.Provider.Base.ImmoXXL.WebClient
 {
     internal interface IImmoXXLWebClient
     {
-        public Task<IEnumerable<ImmoXXLmmoProperty>> GetObjects(ImmoXXLWebClientOptions options);
+        public Task<IEnumerable<ImmoXXLImmoProperty>> GetObjects(ImmoXXLWebClientOptions options);
     }
 }

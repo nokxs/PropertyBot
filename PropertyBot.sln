@@ -28,13 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.KSK", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.VolksbankImmopool", "src\PropertyBot.Provider.VolksbankImmopool\PropertyBot.Provider.VolksbankImmopool.csproj", "{20BD9200-0DEE-49B0-BE6B-38CDD018F4DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.LinkImmo", "src\PropertyBot.Provider.LinkImmo\PropertyBot.Provider.LinkImmo.csproj", "{50799CDE-4F36-4BEB-A1F7-B87ACEE016D4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.GutImmo", "src\PropertyBot.Provider.GutImmo\PropertyBot.Provider.GutImmo.csproj", "{090A7A28-0806-4126-9AD8-0424065A92F5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.Base.ImmoXXL", "src\PropertyBot.Provider.Base.ImmoXXL\PropertyBot.Provider.Base.ImmoXXL.csproj", "{D864459A-1DB5-4CD4-9740-6CF5FE2F7712}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.RjImmobau", "src\PropertyBot.Provider.RjImmobau\PropertyBot.Provider.RjImmobau.csproj", "{06AC8D27-14B0-46DD-A116-70AA761F5AB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.ImmoXXL", "src\PropertyBot.Provider.ImmoXXL\PropertyBot.Provider.ImmoXXL.csproj", "{D864459A-1DB5-4CD4-9740-6CF5FE2F7712}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.Wunschimmo", "src\PropertyBot.Provider.Wunschimmo\PropertyBot.Provider.Wunschimmo.csproj", "{A842F09F-B344-4788-BC8E-90B89CAB969D}"
 EndProject
@@ -86,22 +80,10 @@ Global
 		{20BD9200-0DEE-49B0-BE6B-38CDD018F4DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20BD9200-0DEE-49B0-BE6B-38CDD018F4DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20BD9200-0DEE-49B0-BE6B-38CDD018F4DE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50799CDE-4F36-4BEB-A1F7-B87ACEE016D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50799CDE-4F36-4BEB-A1F7-B87ACEE016D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50799CDE-4F36-4BEB-A1F7-B87ACEE016D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50799CDE-4F36-4BEB-A1F7-B87ACEE016D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{090A7A28-0806-4126-9AD8-0424065A92F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{090A7A28-0806-4126-9AD8-0424065A92F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{090A7A28-0806-4126-9AD8-0424065A92F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{090A7A28-0806-4126-9AD8-0424065A92F5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D864459A-1DB5-4CD4-9740-6CF5FE2F7712}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D864459A-1DB5-4CD4-9740-6CF5FE2F7712}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D864459A-1DB5-4CD4-9740-6CF5FE2F7712}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D864459A-1DB5-4CD4-9740-6CF5FE2F7712}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06AC8D27-14B0-46DD-A116-70AA761F5AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06AC8D27-14B0-46DD-A116-70AA761F5AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06AC8D27-14B0-46DD-A116-70AA761F5AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06AC8D27-14B0-46DD-A116-70AA761F5AB6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A842F09F-B344-4788-BC8E-90B89CAB969D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A842F09F-B344-4788-BC8E-90B89CAB969D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A842F09F-B344-4788-BC8E-90B89CAB969D}.Release|Any CPU.ActiveCfg = Release|Any CPU

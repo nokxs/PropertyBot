@@ -10,10 +10,12 @@ namespace PropertyBot.Provider.RjImmobau
     public class RjImmoClient : IPropertyProvider
     {
         private readonly IImmoXXLClient _immoXxlClient;
+        private readonly SettingsReader<ImmoXXLWebClientOptions> _settingsReader;
 
-        public RjImmoClient(IImmoXXLClient immoXxlClient)
+        public RjImmoClient(IImmoXXLClient immoXxlClient, SettingsReader<ImmoXXLWebClientOptions> settingsReader)
         {
             _immoXxlClient = immoXxlClient;
+            _settingsReader = settingsReader;
         }
 
         public string Name { get; } = "RJ Immobau";
@@ -29,6 +31,15 @@ namespace PropertyBot.Provider.RjImmobau
             var categoryIds = EnvironmentConstants.PROVIDER_RJIMMO_IMMO_CATEGORY_IDS.GetAsOptionalEnvironmentVariable("200");
 
             return new ImmoXXLWebClientOptions("http://www.rjimmobau.de", buyIds, categoryIds);
+
+            var settingsContainer = await _settingsReader.ReadSettings("providers/GutImmo.yml");
+
+            foreach (var setting in settingsContainer.Settings)
+            {
+                setting.BaseUri = "https://www.rjimmobau.de";
+            }
+
+            return settingsContainer.Settings;
         }
     }
 }

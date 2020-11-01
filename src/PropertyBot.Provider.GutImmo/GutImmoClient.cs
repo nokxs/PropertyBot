@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using PropertyBot.Common;
 using PropertyBot.Interface;
@@ -10,25 +11,39 @@ namespace PropertyBot.Provider.GutImmo
     public class GutImmoClient : IPropertyProvider
     {
         private readonly IImmoXXLClient _immoXxlClient;
+        private readonly SettingsReader<ImmoXXLWebClientOptions> _settingsReader;
 
-        internal GutImmoClient(IImmoXXLClient immoXxlClient)
+        internal GutImmoClient(IImmoXXLClient immoXxlClient, SettingsReader<ImmoXXLWebClientOptions> settingsReader)
         {
             _immoXxlClient = immoXxlClient;
+            _settingsReader = settingsReader;
         }
 
         public string Name { get; } = "Gut Immo";
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            return await _immoXxlClient.GetProperties(GetWebClientOptions());
+            var options = await GetWebClientOptions();
+
+            var properties = new List<Property>();
+            foreach (var option in options)
+            {
+                properties.AddRange(await _immoXxlClient.GetProperties(option));
+            }
+
+            return properties;
         }
 
-        private ImmoXXLWebClientOptions GetWebClientOptions()
+        private async Task<IEnumerable<ImmoXXLWebClientOptions>> GetWebClientOptions()
         {
-            var buyIds = EnvironmentConstants.PROVIDER_GUT_IMMO_BUY_IDS.GetAsOptionalEnvironmentVariable("1");
-            var categoryIds = EnvironmentConstants.PROVIDER_GUT_IMMO_CATEGORY_IDS.GetAsOptionalEnvironmentVariable("200");
+            var settingsContainer = await _settingsReader.ReadSettings("providers/GutImmo.yml");
+            
+            foreach (var setting in settingsContainer.Settings)
+            {
+                setting.BaseUri = "https://www.gutimmo.de";
+            }
 
-            return new ImmoXXLWebClientOptions("https://www.gutimmo.de", buyIds, categoryIds);
+            return settingsContainer.Settings;
         }
     }
 }

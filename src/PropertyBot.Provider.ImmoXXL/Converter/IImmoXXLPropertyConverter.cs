@@ -6,6 +6,6 @@ namespace PropertyBot.Provider.Base.ImmoXXL.Converter
 {
     internal interface IImmoXXLPropertyConverter
     {
-        public IEnumerable<Property> ToProperties(IEnumerable<ImmoXXLmmoProperty> estates);
+        public IEnumerable<Property> ToProperties(IEnumerable<ImmoXXLImmoProperty> estates);
     }
 }
