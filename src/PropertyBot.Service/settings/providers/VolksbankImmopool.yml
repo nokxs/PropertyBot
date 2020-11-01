@@ -1,0 +1,16 @@
+﻿settings:
+  - customerId: 144298
+    geoSl: "004008001019000093"
+    objectCategory: 1
+    radiusInKm: 10
+    limit: 100
+  - customerId: 144298
+    geoSl: "004008001019000085"
+    objectCategory: 1
+    radiusInKm: 12
+    limit: 100
+  - customerId: 33371
+    geoSl: "004008001018000079"
+    objectCategory: 1
+    radiusInKm: 12
+    limit: 100

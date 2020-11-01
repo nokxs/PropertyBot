@@ -24,7 +24,7 @@ namespace PropertyBot.Provider.KSK
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            var settingsContainer = await _settingsReader.ReadSettings("providers/ImmoscoutLists.yml");
+            var settingsContainer = await _settingsReader.ReadSettings("providers/KSK.yml");
 
             var properties = new List<Property>();
             foreach (var setting in settingsContainer.Settings)
