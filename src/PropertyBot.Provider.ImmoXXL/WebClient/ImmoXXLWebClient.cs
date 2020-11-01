@@ -19,7 +19,11 @@ namespace PropertyBot.Provider.ImmoXXL.WebClient
 
         public ImmoXXLWebClient()
         {
-            _client = new HttpClient();
+            var handler = new HttpClientHandler();
+            handler.ClientCertificateOptions = ClientCertificateOption.Manual;
+            handler.ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => true;
+
+            _client = new HttpClient(handler);
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
@@ -32,7 +36,7 @@ namespace PropertyBot.Provider.ImmoXXL.WebClient
             do
             {
                 var page = await GetRawPage(options, currentPage++);
-                pageProperties = ParseRawPage(page, options.BaseUri).ToList();
+                pageProperties = ParseRawPage(page, options.BaseUrl).ToList();
                 allProperties.AddRange(pageProperties);
             } while (pageProperties.Count != 0);
             
@@ -43,7 +47,7 @@ namespace PropertyBot.Provider.ImmoXXL.WebClient
         {
             var cursor = page * PageItemCount;
             return await _client.GetStringAsync(
-                    $"{options.BaseUri}/index.php4?cmd=searchResults&alias=suchmaske&kaufartids={options.BuyIds}&kategorieids={options.CategoryIds}&objq[cursor]={cursor}");
+                    $"{options.BaseUrl}/index.php4?cmd=searchResults&alias=suchmaske&kaufartids={options.BuyIds}&kategorieids={options.CategoryIds}&objq[cursor]={cursor}");
         }
 
         private IEnumerable<ImmoXXLImmoProperty> ParseRawPage(string content, string baseUrl)

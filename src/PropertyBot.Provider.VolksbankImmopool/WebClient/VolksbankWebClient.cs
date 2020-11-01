@@ -20,32 +20,21 @@ namespace PropertyBot.Provider.VolksbankImmopool.WebClient
 
         public async Task<IEnumerable<VolksbankProperty>> GetObjects(VolksbankWebClientOptions options)
         {
-            var properties = new List<VolksbankProperty>();
-
-            for (int i = 0; i < options.CustomerId.Count(); i++)
-            {
-                var customerId = options.CustomerId.Skip(i).First();
-                var searchRadius = options.radiusInKm.Skip(i).First();
-                var geoSl= options.GeoSl.Skip(i).First();
-
-                var resultString = await GetRawPage(options, customerId, searchRadius, geoSl);
-                properties.AddRange(ParseHtml(resultString));
-            }
-
-            return properties;
+            var resultString = await GetRawPage(options);
+            return ParseHtml(resultString);
         }
 
-        private async Task<string> GetRawPage(VolksbankWebClientOptions options, int customerId, int searchRadius, string geoSL)
+        private async Task<string> GetRawPage(VolksbankWebClientOptions options)
         {
             var content = new Dictionary<string, string>
             {
-                {"kdnr", customerId.ToString()},
+                {"kdnr", options.CustomerId.ToString()},
                 {"version", "3"},
                 {"pageSize", options.Limit.ToString()},
                 {"pageIndex", "0"},
                 {"objkat", options.ObjectCategory.ToString()}, // house
-                {"geosl", geoSL},
-                {"umkreis", searchRadius.ToString()},
+                {"geosl", options.GeoSl},
+                {"umkreis", options.RadiusInKm.ToString()},
                 {"sortOrder", "0_1"}
             };
 

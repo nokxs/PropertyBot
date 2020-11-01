@@ -21,17 +21,14 @@ namespace PropertyBot.Provider.KSK.WebClient
         {
             var estates = new List<Estate>();
 
-            foreach (var marketingUsageObjectType in options.MarketingUsageObjectType)
+            var firstPage = await GetPage(options, 1, options.MarketingUsageObjectType);
+
+            estates.AddRange(firstPage.Embedded.Estate);
+
+            for (int page = 2; page <= firstPage.PageCount; page++)
             {
-                var firstPage = await GetPage(options, 1, marketingUsageObjectType);
-
-                estates.AddRange(firstPage.Embedded.Estate);
-
-                for (int page = 2; page <= firstPage.PageCount; page++)
-                {
-                    var pageContent = await GetPage(options, page, marketingUsageObjectType);
-                    estates.AddRange(pageContent.Embedded.Estate);
-                }
+                var pageContent = await GetPage(options, page, options.MarketingUsageObjectType);
+                estates.AddRange(pageContent.Embedded.Estate);
             }
             
             return estates;

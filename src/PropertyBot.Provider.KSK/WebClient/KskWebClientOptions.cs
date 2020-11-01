@@ -12,6 +12,6 @@ namespace PropertyBot.Provider.KSK.WebClient
 
         public long RegioClientId { get; set; }
 
-        public IEnumerable<string> MarketingUsageObjectType { get; set; }
+        public string MarketingUsageObjectType { get; set; }
     }
 }

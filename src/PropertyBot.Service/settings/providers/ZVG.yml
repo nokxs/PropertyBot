@@ -1,4 +1,4 @@
 ﻿settings:
   - stateId: 4    # Baden-Württemberg
     courtIds: "35,4,5,49"
-    objectKinds: "159,114,49,86,105"
+    objectKindIds: "159,114,49,86,105"
