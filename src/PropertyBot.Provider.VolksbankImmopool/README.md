@@ -7,15 +7,15 @@ This provider crawles the properties of different Volksbank branches, which use 
 
 ## Configuration
 
-The provider can be configured with the following environment variables. See the provided docker-compose.yml for examples.
+The provider can be configured via `settings/providers/VolksbankImmopool.yml`. The following values are available:
 
-| Environment Variable                      | Description                                    | Mandatory | Default   |
-|-------------------------------------------|------------------------------------------------|-----------|-----------| 
-| PROVIDER_VBANK_STUTTGART_GEOSL            | The GeoSL of the city to use. Separate multiple GeoSLs with a "," | no | 004008001019000093 |
-| PROVIDER_VBANK_STUTTGART_PERIMETERS_IN_KM | The radius in km arround the provided GeoSL    | no        | 10        |
-| PROVIDER_VBANK_STUTTGART_OBJECT_CATEGORY  | The object category. Must be an int            | no        | 1 (House) |
-| PROVIDER_VBANK_STUTTGART_CUSTOMER_ID      | The customer id for immopool.de                | no        | 144298    |
-| PROVIDER_VBANK_STUTTGART_LIMIT            | The number of properties to load 			     | no        | 100       |
+| Variable                                  | Description                                    |
+|-------------------------------------------|------------------------------------------------|
+| customerId                                | The customer id for immopool.de |
+| geoSl                                     | The GeoSL of the city to use |
+| objectCategory                            | The object category. Must be an int |
+| radiusInKm                                | The radius in km arround the provided GeoSL |
+| limit                                     | The number of properties to load 	 |
 
 ## Available GeoSLs
 

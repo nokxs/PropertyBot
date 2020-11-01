@@ -4,9 +4,10 @@ This provider crawles [Gut Immobilien](https://www.gutimmo.de/Angebote.htm) for 
 
 ## Configuration
 
-The provider can be configured with the following environment variables.
+The provider can be configured via `settings/providers/ImmoXXL.yml`. The following values are available:
 
-| Environment Variable                      | Description                                    | Mandatory | Default   |
-|-------------------------------------------|------------------------------------------------|-----------|-----------| 
-| PROVIDER_GUT_IMMO_BUY_IDS                 | The buy ids                                    | no        | 1         |
-| PROVIDER_GUT_IMMO_CATEGORY_IDS            | the category ids                               | no        | 200       |
+| Variable                                  | Description                                    |
+|-------------------------------------------|------------------------------------------------|
+| baseUrl                                   | The url of the portal using the Immo XXL API   |
+| buyIds                                    | The buy ids                                    |
+| categoryIds                               | The category ids                               |

@@ -4,10 +4,17 @@ This provider crawles [wunschimmo.de](https://www.wunschimmo.de).mobilien/immobi
 
 ## Configuration
 
-The provider can be configured with the following environment variables. See the provided docker-compose.yml for examples.
+The provider can be configured via `settings/providers/Wunschimmo.yml`. The following values are available:
 
-| Environment Variable                      | Description                                    | Mandatory | Default   |
-|-------------------------------------------|------------------------------------------------|-----------|-----------| 
-| PROVIDER_WUNSCHIMMO_REGIONS               | The region to use. Take the value from the website | no | baden-wuerttemberg,stuttgart,stuttgart |
-| PROVIDER_WUNSCHIMMO_PERIMETERS_IN_KM      | The radius in km arround the provided region   | no        | 20        |
-| PROVIDER_WUNSCHIMMO_OBJECT_TYPES          | The object type                                | no        | haus-kaufen |
+| Variable                                  | Description                                    |
+|-------------------------------------------|------------------------------------------------|
+| region                                    | The region to use. Take the value from the website |
+| objectType                                | The object type |
+| radiusInKm                                | The radius in km arround the provided region |
+
+## Object Types
+
+* `haus-kaufen`
+* `grundstueck-kaufen`
+
+**Additional object types can be retrieved from the website**

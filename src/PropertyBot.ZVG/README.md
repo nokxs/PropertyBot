@@ -4,12 +4,19 @@ This provider crawles [ZVG.com](http://zvg.com) for new properties.
 
 ## Configuration
 
+The provider can be configured via `settings/providers/VolksbankFlowfact.yml`. The following values are available:
+
+| Variable                                  | Description                                    |
+|-------------------------------------------|------------------------------------------------|
+| stateId                                   | The state in germany, which shall be crawled. Accepts only a single integer |
+| courtIds                                  | The courts, which shall be crawled. Accepts multiple integeres delmited by a comma |
+| objectKindIds                             | The kind of objects, which shall be crawled. Accepts multiple integeres delmited by a comma |
+
+
 The provider can be configured with the following environment variables. See the provided docker-compose.yml for examples.
 
 
-### PROVIDER_ZVG_STATE_ID
-
-The state in germany, which shall be crawled. Accepts only a single integer. *Example: 4*
+### State IDs
 
 The values to use can be found [here](https://www.zvg.com/appl/infomail.prg?act=getForm&dhxr1597057849986=1).
 
@@ -27,15 +34,11 @@ The values to use can be found [here](https://www.zvg.com/appl/infomail.prg?act=
 | 31 | Reinhland-Pfalz        |
 
 
-### PROVIDER_ZVG_COURT_IDS
-
-The courts, which shall be crawled. Accepts multiple integeres delmited by a comma. *Example: 23,26,31*
+### Court IDs
 
 The values to use can be found [here](https://www.zvg.com/appl/suche.prg?act=getComboAG&dhxr1597057851258=1).
 
 
-### PROVIDER_ZVG_OBJECT_KIND_ID
-
-The kind of objects, which shall be crawled. Accepts multiple integeres delmited by a comma. *Example: 171,148*
+### Object Kind IDs
 
 The values to use can be found [here](https://www.zvg.com/appl/suche.prg?act=getComboOA&dhxr1597057850786=1).

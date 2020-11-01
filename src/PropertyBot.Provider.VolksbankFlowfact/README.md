@@ -6,14 +6,14 @@ This provider crawles the properties of from any Volksbank supporting the flowfa
 
 The provider can be configured via `settings/providers/VolksbankFlowfact.yml`. The following values are available:
 
-| Variable                                  | Description                                    | Mandatory | Default   |
-|-------------------------------------------|------------------------------------------------|-----------|-----------| 
-| inputMask                                 | The input mask define which type of properties are crawled. | yes | - |
-| clientId                                  | The client id of the volksbank to crawl from.  | yes | - |
-| zipTown                                   | The ZIP and Name of the city to search arround it. | yes | - |
-| latitude                                  | The latitude of the city which is the center for the search.  | yes | - |
-| longitude                                 | The longitude of the city which is the center for the search.  | yes | - |
-| radius                                    | The radius to search arround the given city.  | yes | - |
+| Variable                                  | Description                                    |
+|-------------------------------------------|------------------------------------------------|
+| inputMask                                 | The input mask define which type of properties are crawled. |
+| clientId                                  | The client id of the volksbank to crawl from.  |
+| zipTown                                   | The ZIP and Name of the city to search arround it. |
+| latitude                                  | The latitude of the city which is the center for the search.  |
+| longitude                                 | The longitude of the city which is the center for the search.  |
+| radius                                    | The radius to search arround the given city.  |
 
 ## Available Input Masks (as of 29.10.2020)
 
