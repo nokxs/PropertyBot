@@ -1,0 +1,11 @@
+﻿settings:
+  - limit: 9
+    marketingUsageObjectType: "buy_residential_property"
+    radiusInKm: 15
+    regioClientId: 60350130 # KSK Böblingen
+    zip: 70173
+  - limit: 9
+    marketingUsageObjectType: "buy_residential_house"
+    radiusInKm: 15
+    regioClientId: 60350130 # KSK Böblingen
+    zip: 70173
