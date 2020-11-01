@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PropertyBot.Provider.Base.ImmoXXL.Entity
+namespace PropertyBot.Provider.ImmoXXL.Entity
 {
     internal class ImmoXXLImmoProperty
     {

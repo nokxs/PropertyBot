@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using PropertyBot.Provider.Base.ImmoXXL.Entity;
+using PropertyBot.Provider.ImmoXXL.Entity;
 
-namespace PropertyBot.Provider.Base.ImmoXXL.WebClient
+namespace PropertyBot.Provider.ImmoXXL.WebClient
 {
     internal interface IImmoXXLWebClient
     {

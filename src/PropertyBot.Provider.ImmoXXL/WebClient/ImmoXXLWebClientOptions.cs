@@ -1,4 +1,4 @@
-﻿namespace PropertyBot.Provider.Base.ImmoXXL.WebClient
+﻿namespace PropertyBot.Provider.ImmoXXL.WebClient
 {
     public class ImmoXXLWebClientOptions
     {

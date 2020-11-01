@@ -17,6 +17,7 @@
     <ProjectReference Include="..\PropertyBot.Persistence\PropertyBot.Persistence.MongoDB.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.Base.ImmoXXL\PropertyBot.Provider.ImmoXXL.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.ImmoscoutLists\PropertyBot.Provider.ImmoscoutLists.csproj" />
+    <ProjectReference Include="..\PropertyBot.Provider.ImmoXXL\PropertyBot.Provider.ImmoXXL.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.Interface\PropertyBot.Interface.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.KSK\PropertyBot.Provider.KSK.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.VolksbankFlowfact\PropertyBot.Provider.VolksbankFlowfact.csproj" />
@@ -27,6 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="settings\providers\ImmoscoutLists.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="settings\providers\ImmoXXL.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

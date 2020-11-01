@@ -7,9 +7,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using PropertyBot.Common;
-using PropertyBot.Provider.Base.ImmoXXL.Entity;
+using PropertyBot.Provider.ImmoXXL.Entity;
 
-namespace PropertyBot.Provider.Base.ImmoXXL.WebClient
+namespace PropertyBot.Provider.ImmoXXL.WebClient
 {
     internal class ImmoXXLWebClient : IImmoXXLWebClient
     {

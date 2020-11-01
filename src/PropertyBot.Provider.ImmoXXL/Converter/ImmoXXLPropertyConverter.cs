@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using PropertyBot.Interface;
-using PropertyBot.Provider.Base.ImmoXXL.Entity;
+using PropertyBot.Provider.ImmoXXL.Entity;
 
-namespace PropertyBot.Provider.Base.ImmoXXL.Converter
+namespace PropertyBot.Provider.ImmoXXL.Converter
 {
     internal class ImmoXXLPropertyConverter : IImmoXXLPropertyConverter
     {

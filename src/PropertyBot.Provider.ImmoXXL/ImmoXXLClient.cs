@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using PropertyBot.Common;
 using PropertyBot.Interface;
-using PropertyBot.Provider.Base.ImmoXXL.Converter;
-using PropertyBot.Provider.Base.ImmoXXL.WebClient;
+using PropertyBot.Provider.ImmoXXL.Converter;
+using PropertyBot.Provider.ImmoXXL.WebClient;
 
-namespace PropertyBot.Provider.Base.ImmoXXL
+namespace PropertyBot.Provider.ImmoXXL
 {
     public class ImmoXXLClient : IPropertyProvider
     {
