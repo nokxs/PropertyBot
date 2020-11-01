@@ -61,13 +61,11 @@ namespace PropertyBot.Service
                     
         private async IAsyncEnumerable<Property> GetAllProperties()
         {
-            foreach (var provider in _propertyProviders)
+            var propertyGets = _propertyProviders.Select(provider =>
             {
-                IEnumerable<Property> properties = Enumerable.Empty<Property>();
-
                 try
                 {
-                    properties = await provider.GetProperties();
+                    return provider.GetProperties();
                 }
                 catch (Exception e)
                 {
@@ -78,8 +76,14 @@ namespace PropertyBot.Service
                         _alreadySendExceptions.Add(e.StackTrace);
                         _messageSenders.ForEach(sender => sender.SendMessage($"Couldn't retrieve properties from provider '{provider.Name}.\n\n{e.Message}\n\n{e.StackTrace}'"));
                     }
-                }                
-                
+                }
+
+                return Task.FromResult(Enumerable.Empty<Property>());
+            });
+            var propertyLists = await Task.WhenAll(propertyGets);
+
+            foreach (var properties in propertyLists)
+            {
                 foreach (var property in properties)
                 {
                     yield return property;
