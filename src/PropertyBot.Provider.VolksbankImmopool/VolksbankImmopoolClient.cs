@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using PropertyBot.Common;
 using PropertyBot.Interface;
@@ -13,37 +11,29 @@ namespace PropertyBot.Provider.VolksbankImmopool
     {
         private readonly IVolksbankWebClient _webClient;
         private readonly IVolksbankConverter _volksbankConverter;
+        private readonly SettingsReader<VolksbankWebClientOptions> _settingsReader;
 
-        internal VolksbankImmopoolClient(IVolksbankWebClient webClient, IVolksbankConverter volksbankConverter)
+        internal VolksbankImmopoolClient(IVolksbankWebClient webClient, IVolksbankConverter volksbankConverter, SettingsReader<VolksbankWebClientOptions> settingsReader)
         {
             _webClient = webClient;
             _volksbankConverter = volksbankConverter;
+            _settingsReader = settingsReader;
         }
 
         public string Name { get; } = "Volksbank (Immopool)";
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            var customerIds = EnvironmentConstants.PROVIDER_VOLKSBANK_IMMOPOOL_CUSTOMER_ID.GetAsOptionalEnvironmentVariable("144298").Split(",").Select(id => id.ToInt()).ToList();
-            var geoSls = EnvironmentConstants.PROVIDER_VOLKSBANK_IMMOPOOL_GEOSL.GetAsOptionalEnvironmentVariable("004008001019000093").Split(",");
-            var perimetersInKm = EnvironmentConstants.PROVIDER_VOLKSBANK_IMMOPOOL_PERIMETERS_IN_KM.GetAsOptionalEnvironmentVariable("10").Split(",").Select(perimeter => perimeter.ToInt()).ToList();
-            var objectCategory = EnvironmentConstants.PROVIDER_VOLKSBANK_IMMOPOOL_OBJECT_CATEGORY.GetAsOptionalEnvironmentVariable("1").ToInt();
-            var limit = EnvironmentConstants.PROVIDER_VOLKSBANK_IMMOPOOL_LIMIT.GetAsOptionalEnvironmentVariable("100").ToInt();
+            var settingsContainer = await _settingsReader.ReadSettings("providers/VolksbankImmopool.yml");
 
-            AssertValuesValid(customerIds, geoSls, perimetersInKm);
-
-            var webClientOptions = new VolksbankWebClientOptions(geoSls, perimetersInKm, limit, customerIds, objectCategory);
-
-            var volksbankProperties = await _webClient.GetObjects(webClientOptions);
-            return _volksbankConverter.ToProperties(volksbankProperties);
-        }
-
-        private void AssertValuesValid(IEnumerable<int> customerIds, IEnumerable<string> geoSls, IEnumerable<int> perimetersInKm)
-        {
-            if (!(customerIds.Count() == geoSls.Count() && customerIds.Count() == perimetersInKm.Count()))
+            var properties = new List<Property>();
+            foreach (var setting in settingsContainer.Settings)
             {
-                throw new ArgumentException("The number of customer ids, GeoSLs and perimeters in km have to match");
+                var volksbankProperties = await _webClient.GetObjects(setting);
+                properties.AddRange(_volksbankConverter.ToProperties(volksbankProperties));
             }
+
+            return properties;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using PropertyBot.Common;
 using PropertyBot.Interface;
@@ -12,25 +11,25 @@ namespace PropertyBot.Provider.ImmoscoutLists
     {
         private readonly IImmoscoutListWebClient _webClient;
         private readonly IImmoscoutListConverter _immoscoutListConverter;
+        private readonly SettingsReader<ImmoscoutListWebClientOptions> _settingsReader;
 
-        internal ImmoscoutListClient(IImmoscoutListWebClient webClient, IImmoscoutListConverter immoscoutListConverter)
+        internal ImmoscoutListClient(IImmoscoutListWebClient webClient, IImmoscoutListConverter immoscoutListConverter, SettingsReader<ImmoscoutListWebClientOptions> settingsReader)
         {
             _webClient = webClient;
             _immoscoutListConverter = immoscoutListConverter;
+            _settingsReader = settingsReader;
         }
 
         public string Name { get; } = "Immoscout List";
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            var ids = EnvironmentConstants.PROVIDER_IMMOSCOUT_LIST_IDS.GetAsMandatoryEnvironmentVariableList().ToList();
+            var settingsContainer = await _settingsReader.ReadSettings("providers/ImmoscoutLists.yml");
+            
             var properties = new List<Property>();
-
-            foreach (var id in ids)
+            foreach (var setting in settingsContainer.Settings)
             {
-                var webClientOptions = new ImmoscoutListWebClientOptions(id);
-                var immoscoutListProperties = await _webClient.GetObjects(webClientOptions);
-
+                var immoscoutListProperties = await _webClient.GetObjects(setting);
                 properties.AddRange(_immoscoutListConverter.ToProperties(immoscoutListProperties));
             }
 

@@ -1,0 +1,7 @@
+﻿settings:
+  - region: "baden-wuerttemberg,stuttgart,stuttgart"
+    objectType: "haus-kaufen"
+    radiusInKm: 10
+  - region: "baden-wuerttemberg,stuttgart,stuttgart"
+    objectType: "grundstueck-kaufen"
+    radiusInKm: 10   

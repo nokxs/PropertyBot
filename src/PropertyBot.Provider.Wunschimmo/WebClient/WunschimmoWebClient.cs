@@ -43,7 +43,7 @@ namespace PropertyBot.Provider.Wunschimmo.WebClient
 
         private async Task<string> GetRawPage(WunschimmoWebClientOptions options, int pageNr)
         {
-            var requestUri = $"{BaseUrl}/suche/{options.Region}/{options.ObjectType}?page={pageNr}&umkreis={options.PerimeterInKm}";
+            var requestUri = $"{BaseUrl}/suche/{options.Region}/{options.ObjectType}?page={pageNr}&umkreis={options.RadiusInKm}";
             return await _client.GetStringAsync(requestUri);
         }
 

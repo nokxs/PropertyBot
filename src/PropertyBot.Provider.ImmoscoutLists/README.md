@@ -4,8 +4,8 @@ This provider crawles the properties from the list view of [immobilienscout24](h
 
 ## Configuration
 
-The provider can be configured with the following environment variables. See the provided docker-compose.yml for examples.
+The provider can be configured via `settings/providers/ImmoscoutLists.yml`. The following values are available:
 
-| Environment Variable                      | Description                                    | Mandatory | Default   |
-|-------------------------------------------|------------------------------------------------|-----------|-----------| 
-| PROVIDER_IMMOSCOUT_LIST_IDS               | The ids of the lists. Can be found in the url. Multiple ids can be separated via comma. | yes | - |
+| Variable                                  | Description                                    |
+|-------------------------------------------|------------------------------------------------|
+| listId                                    | The ids of the lists. Can be found in the url. |

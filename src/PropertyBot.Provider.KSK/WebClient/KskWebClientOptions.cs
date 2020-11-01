@@ -4,25 +4,14 @@ namespace PropertyBot.Provider.KSK.WebClient
 {
     internal class KskWebClientOptions
     {
-        internal KskWebClientOptions(int zipRadiusSearch, int perimeterInKm, int limit, long regioClientId, IEnumerable<string> marketingUsageObjectType)
-        {
-            ZipRadiusSearch = zipRadiusSearch;
-            PerimeterInKm = perimeterInKm;
-            Limit = limit;
-            RegioClientId = regioClientId;
-            MarketingUsageObjectType = marketingUsageObjectType;
-        }
+        public int Zip { get; set; }
 
-        public int ZipRadiusSearch { get; }
+        public int RadiusInKm { get; set; }
 
-        public int PerimeterInKm { get; }
+        public int Limit { get; set; }
 
-        public int Limit { get; }
+        public long RegioClientId { get; set; }
 
-        public long RegioClientId { get; }
-
-        public IEnumerable<string> MarketingUsageObjectType { get; }
-
-
+        public string MarketingUsageObjectType { get; set; }
     }
 }

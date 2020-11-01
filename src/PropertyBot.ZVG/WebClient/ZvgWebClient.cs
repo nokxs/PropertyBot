@@ -15,7 +15,7 @@ namespace PropertyBot.Provider.ZVG.WebClient
             _client = new HttpClient { BaseAddress = new Uri("https://www.zvg.com") };
         }
 
-        public async Task<ZvgRows> GetZvgObjects(ZvgWebClientOptions options)
+        public async Task<ZvgRows> GetObjects(ZvgWebClientOptions options)
         {
             var streamTask = _client.GetStreamAsync($"appl/termine.prg?act=getGridData&vt=&id_b={options.StateId}&ids={options.ObjectKindIds}&ido={options.CourtIds}&sort=a");
             return await JsonSerializer.DeserializeAsync<ZvgRows>(await streamTask);

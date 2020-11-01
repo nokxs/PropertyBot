@@ -1,4 +1,5 @@
-﻿using PropertyBot.Interface;
+﻿using PropertyBot.Common;
+using PropertyBot.Interface;
 using PropertyBot.Provider.VolksbankImmopool.Converter;
 using PropertyBot.Provider.VolksbankImmopool.WebClient;
 
@@ -10,8 +11,9 @@ namespace PropertyBot.Provider.VolksbankImmopool
         {
             var webClient = new VolksbankWebClient();
             var converter = new VolksbankConverter();
+            var settingsReader = new SettingsReader<VolksbankWebClientOptions>();
 
-            return new VolksbankImmopoolClient(webClient, converter);
+            return new VolksbankImmopoolClient(webClient, converter, settingsReader);
         }
     }
 }

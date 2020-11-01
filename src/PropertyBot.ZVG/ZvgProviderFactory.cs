@@ -1,6 +1,6 @@
-﻿using PropertyBot.Interface;
+﻿using PropertyBot.Common;
+using PropertyBot.Interface;
 using PropertyBot.Provider.ZVG.Converter;
-using PropertyBot.Provider.ZVG.Options;
 using PropertyBot.Provider.ZVG.WebClient;
 
 namespace PropertyBot.Provider.ZVG
@@ -9,11 +9,11 @@ namespace PropertyBot.Provider.ZVG
     {
         public static IPropertyProvider CreateProvider()
         {
-            IZvgWebClient webClient = new ZvgWebClient();
-            IZvgOptionsReader optionsReader = new ZvgOptionsReader();
-            IZvgObjectConverter converter = new ZvgObjectConverter();
+            var webClient = new ZvgWebClient();
+            var converter = new ZvgObjectConverter();
+            var settingsReader = new SettingsReader<ZvgWebClientOptions>();
 
-            return new ZvgClient(webClient, optionsReader, converter);
+            return new ZvgClient(webClient, converter, settingsReader);
         }
     }
 }
