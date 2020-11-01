@@ -27,10 +27,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="settings\providers\ImmoscoutLists.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="settings\providers\Wunschimmo.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="settings\providers\KSK.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="settings\providers\ImmoscoutLists.yml">
+    <None Update="settings\providers\ZVG.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="settings\providers\ImmoXXL.yml">

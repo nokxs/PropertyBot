@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
@@ -62,7 +61,7 @@ namespace PropertyBot.Provider.KSK.WebClient
             using var request = new HttpRequestMessage(new HttpMethod("POST"),
                 "https://www.kskbb.de/content/myif/ksk-boeblingen/work/filiale/de/home/misc/vps/gate/_jcr_content.bin/sip/api");
             request.Content = new StringContent(
-                $"{{\"route\":\"estate\",\"page\":\"{page}\",\"zip_city_estate_id\":\"{options.ZipRadiusSearch}\",\"marketing_usage_object_type\":\"{marketingUsageObjectType}\",\"perimeter\":\"{options.PerimeterInKm}\",\"sort_by\":\"distance_asc\",\"limit\":\"{options.Limit}\",\"regio_client_id\":\"{options.RegioClientId}\",\"return_data\":\"overview\"}}");
+                $"{{\"route\":\"estate\",\"page\":\"{page}\",\"zip_city_estate_id\":\"{options.Zip}\",\"marketing_usage_object_type\":\"{marketingUsageObjectType}\",\"perimeter\":\"{options.RadiusInKm}\",\"sort_by\":\"distance_asc\",\"limit\":\"{options.Limit}\",\"regio_client_id\":\"{options.RegioClientId}\",\"return_data\":\"overview\"}}");
             request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
             var result = await _client.SendAsync(request);

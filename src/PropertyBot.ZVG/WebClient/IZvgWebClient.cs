@@ -5,6 +5,6 @@ namespace PropertyBot.Provider.ZVG.WebClient
 {
     internal interface IZvgWebClient
     {
-        Task<ZvgRows> GetZvgObjects(ZvgWebClientOptions options);
+        Task<ZvgRows> GetObjects(ZvgWebClientOptions options);
     }
 }

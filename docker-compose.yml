@@ -13,14 +13,6 @@ services:
 
       MONGO_DB_USER: crawler
       MONGO_DB_PASSWORD: crawlerPassword
-
-      PROVIDER_ZVG_STATE_ID: 4
-      PROVIDER_ZVG_COURT_IDS: "35,4,5,49"
-      PROVIDER_ZVG_OBJECT_KIND_ID: "159,114,49,86,105"
-
-      PROVIDER_WUNSCHIMMO_OBJECT_TYPES: "haus-kaufen,grundstueck-kaufen"
-      PROVIDER_WUNSCHIMMO_PERIMETERS_IN_KM: "20,20"
-      PROVIDER_WUNSCHIMMO_REGIONS: "baden-wuerttemberg,stuttgart,stuttgart;baden-wuerttemberg,stuttgart,stuttgart"
     depends_on:
       - mongo
   

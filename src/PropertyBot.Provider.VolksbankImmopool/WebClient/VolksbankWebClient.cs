@@ -22,11 +22,11 @@ namespace PropertyBot.Provider.VolksbankImmopool.WebClient
         {
             var properties = new List<VolksbankProperty>();
 
-            for (int i = 0; i < options.CustomerIds.Count(); i++)
+            for (int i = 0; i < options.CustomerId.Count(); i++)
             {
-                var customerId = options.CustomerIds.Skip(i).First();
-                var searchRadius = options.GeoSlRadiusSearch.Skip(i).First();
-                var geoSl= options.GeoSls.Skip(i).First();
+                var customerId = options.CustomerId.Skip(i).First();
+                var searchRadius = options.radiusInKm.Skip(i).First();
+                var geoSl= options.GeoSl.Skip(i).First();
 
                 var resultString = await GetRawPage(options, customerId, searchRadius, geoSl);
                 properties.AddRange(ParseHtml(resultString));
