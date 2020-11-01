@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 
 namespace PropertyBot.Common
@@ -11,10 +10,6 @@ namespace PropertyBot.Common
         public static string GetAsMandatoryEnvironmentVariable(this string variable)
         {
             return Environment.GetEnvironmentVariable(variable) ?? throw new ArgumentException($"The mandatory environment variable {variable} is not set.");
-        }
-        public static IEnumerable<string> GetAsMandatoryEnvironmentVariableList(this string variable)
-        {
-            return Environment.GetEnvironmentVariable(variable)?.Replace(" ", string.Empty).Split(",") ?? throw new ArgumentException($"The mandatory environment variable {variable} is not set.");
         }
 
         public static string GetAsOptionalEnvironmentVariable(this string variable, string defaultValue)
