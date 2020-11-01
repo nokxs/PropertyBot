@@ -1,6 +1,6 @@
 ﻿# Wunschimmo.de Data Provider
 
-This provider crawles [wunschimmo.de](https://www.wunschimmo.de).mobilien/immobilien-finden/immobilien-finden.html)
+This provider crawles [wunschimmo.de](https://www.wunschimmo.de)
 
 ## Configuration
 

@@ -18,6 +18,7 @@ The following property data providers are currently supported:
 - [Gut Immobilien](https://www.gutimmo.de/Angebote.htm): [Readme](src/PropertyBot.Provider.ImmoXXL/README.md)
 - [RJ Immobau Immobilien](http://www.rjimmobau.de/Angebote.htm): [Readme](src/PropertyBot.Provider.ImmoXXL/README.md)
 - [Immobilienscout24 Lists](https://portal.immobilienscout24.de/ergebnisliste/14652716): [Readme](src/PropertyBot.Provider.ImmoscoutLists/README.md)
+- [Wunschimmo](https://www.wunschimmo.de/): [Readme](src/PropertyBot.Provider.Wunschimmo/README.md)
 
 ### Configuration
 

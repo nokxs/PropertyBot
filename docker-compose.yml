@@ -7,10 +7,10 @@ services:
       context: .
       dockerfile: src/PropertyBot.Service/Dockerfile
     environment:
-      MongoDB__Host: mongo
       PROPERTY_POLLING_INTERVAL_IN_SECONDS: 60
       TELEGRAM_API_TOKEN: 12345
-
+      
+      MongoDB__Host: mongo
       MONGO_DB_USER: crawler
       MONGO_DB_PASSWORD: crawlerPassword
     depends_on:
