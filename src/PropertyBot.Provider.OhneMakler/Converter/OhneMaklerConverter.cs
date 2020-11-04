@@ -9,12 +9,12 @@ namespace PropertyBot.Provider.OhneMakler.Converter
 {
     internal class OhneMaklerConverter : IOhneMaklerConverter
     {
-        public IEnumerable<Property> ToProperties(long clientId, IEnumerable<OhneMaklerProperty> volksbankProperties)
+        public IEnumerable<Property> ToProperties(IEnumerable<OhneMaklerProperty> volksbankProperties)
         {
-            return volksbankProperties.Select(property => ToProperty(clientId, property));
+            return volksbankProperties.Select(ToProperty);
         }
 
-        private Property ToProperty(long clientId, OhneMaklerProperty ohneMaklerProperty)
+        private Property ToProperty(OhneMaklerProperty ohneMaklerProperty)
         {
             var details = new Dictionary<string, string>
             {

@@ -26,13 +26,13 @@ namespace PropertyBot.Provider.OhneMakler
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            var settingsContainer = await _settingsReader.ReadSettings("providers/VolksbankFlowfact.yml");
+            var settingsContainer = await _settingsReader.ReadSettings("providers/OhneMakler.yml");
             var properties = new List<Property>();
 
             foreach (var setting in settingsContainer.Settings)
             {
                 var volksbankProperties = await _webClient.GetObjects(setting);
-                properties.AddRange(_ohneMaklerConverter.ToProperties(setting.ClientId, volksbankProperties));
+                properties.AddRange(_ohneMaklerConverter.ToProperties(volksbankProperties));
             }
 
             return properties;

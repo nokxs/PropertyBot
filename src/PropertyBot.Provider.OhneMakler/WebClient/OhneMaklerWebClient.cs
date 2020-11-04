@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
+using PropertyBot.Common;
 using PropertyBot.Provider.OhneMakler.Entity;
 
 namespace PropertyBot.Provider.OhneMakler.WebClient
@@ -36,7 +38,7 @@ namespace PropertyBot.Provider.OhneMakler.WebClient
 
         private async Task<string> GetRawPage(OhneMaklerClientOptions options, int pageNr)
         {
-            return await _client.GetStringAsync($"https://{options.ClientId}.flowfact-webparts.net/index.php/estates?inputMask={options.InputMask}&page={pageNr}&zipTown={options.ZipTown}&lat={options.Latitude}&lng={options.Longitude}&radius={options.Radius}");
+            return await _client.GetStringAsync($"https://www.ohne-makler.net/immobilie/list/?page={pageNr}&class={options.ObjectType}&marketing={options.MarketingType}&q={options.Location}&radius={options.Radius}&state={options.State}");
         }
 
         private IEnumerable<OhneMaklerProperty> ParseHtml(string htmlString)

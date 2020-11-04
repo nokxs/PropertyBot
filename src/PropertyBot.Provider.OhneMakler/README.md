@@ -1,6 +1,6 @@
-﻿# Volksbank Flowfact Provider
+﻿# Ohne Makler Provider
 
-This provider crawles the properties of from any Volksbank supporting the flowfact API. One example is the [Volksbank Neckar-Enz](https://www.vorne.de/immobilien/immobilien-finden.html).
+This provider crawles the properties of from the website [ohne-makler.net](https://www.ohne-makler.net/immobilie/list).
 
 ## Configuration
 
@@ -8,29 +8,59 @@ The provider can be configured via `settings/providers/VolksbankFlowfact.yml`. T
 
 | Variable                                  | Description                                    |
 |-------------------------------------------|------------------------------------------------|
-| inputMask                                 | The input mask define which type of properties are crawled. |
-| clientId                                  | The client id of the volksbank to crawl from.  |
-| zipTown                                   | The ZIP and Name of the city to search arround it. |
-| latitude                                  | The latitude of the city which is the center for the search.  |
-| longitude                                 | The longitude of the city which is the center for the search.  |
+| marketingType                             | See "Available Marketing Types". |
+| objectType                                | See "Available Object Types. |
+| location                                  | The ZIP or Name of the city to search arround it. |
+| stateId                                   | See "Available State Ids". |
 | radius                                    | The radius to search arround the given city.  |
 
-## Available Input Masks (as of 29.10.2020)
+## Available Object Types (as of 04.11.2020)
 
-| Input Mask | Type |
+| Object Type | Description |
 |------------|------|
-| 9AB30EBD-096C-492E-88E3-D4F779518E91 | Wohnung kaufen |
-| DA42D4E4-D160-44A1-A69E-246A39095EFE | Haus kaufen |
-| 479CF1DE-F316-4CAD-88AA-8D34B207E7E0 | Grundstück kaufen |
-| 37FCE1F4-E2FD-4ADF-9A7C-A7F10DC8AB54 | Garage/Stellplatz kaufen |
-| 2F70B9A2-0A32-45E9-8089-7122F89EF678 | Renditeobjekt |
-| 909D6406-C71C-4305-A94B-083B8BC07724 | Sonstige Gew.Immobilie mieten |
+| [empty] | All |
+| BURO | Büro und Praxisräume |
+| EHDL | Einzelhandel |
+| GSTR | Gastronomie / Beherbergung |
+| GEWF | Gewerbliche Freizeitimobilie |
+| GRND | Grundstück |
+| HAUS | Haus |
+| LNDW | Land- / Forstwirtschaftliches Objekt |
+| PROD | Produktions- / Lager- / Gewerbehalle |
+| WHNG | Wohnung |
+| ZIMM | Zimmer |
+| ZNSR | Zinshaus oder Renditeobjekt |
+| MWHN | Möbeliertes Wohnen / Wohnen auf Zeit |
+| MISC | Garage, Stellplätze |
 
 *These values are taken directly from the dropdown of the website.*
 
-## Knonw client IDs (as of 29.10.2020)
+## Available Marketing Types (as of 04.11.2020)
 
-| Client ID | Bank |
+| Marketing Type | Description |
 |-----------|------|
-| 60491430  | Volksbank Neckar-Enz |
-| 62090100  | Volksbank Heilbronn |
+| ALL | Alles |
+| SELL | Kaufen |
+| RENT | Mieten |
+
+## Available State Ids (as of 04.11.2020)
+
+| State Id | Description |
+|-----------|------|
+| [empty] | Undefined |
+| 1  | Baden-Württemberg |
+| 2 | Bayern |
+| 3 | Berlin |
+| 4 | Brandenburg |
+| 5 | Bremen |
+| 6 | Hamburg |
+| 7 | Hessen |
+| 8 | Mecklenburg-Vorpommern |
+| 9 | Niedersachsen |
+| 10 | Nordrhein-Westfalen |
+| 11 | Rheinland-Pfalz |
+| 12 | Saarland |
+| 13 | Sachsen |
+| 14 | Sachsen-Anhalt |
+| 15 | Schleswig-Holstein |
+| 16 | Thüringen |

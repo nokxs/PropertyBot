@@ -2,15 +2,13 @@
 {
     internal class OhneMaklerClientOptions
     {
-        public string InputMask { get; set; }
+        public string MarketingType { get; set; }
 
-        public long ClientId { get; set; }
+        public string ObjectType { get; set; }
 
-        public string ZipTown { get; set; }
+        public string Location { get; set; }
 
-        public string Latitude { get; set; }
-
-        public string Longitude { get; set; }
+        public int State { get; set; }
 
         public int Radius { get; set; }
     }

@@ -6,6 +6,6 @@ namespace PropertyBot.Provider.OhneMakler.Converter
 {
     internal interface IOhneMaklerConverter
     {
-        public IEnumerable<Property> ToProperties(long clientId, IEnumerable<OhneMaklerProperty> volksbankProperties);
+        public IEnumerable<Property> ToProperties(IEnumerable<OhneMaklerProperty> volksbankProperties);
     }
 }
