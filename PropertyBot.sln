@@ -38,6 +38,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.Volksb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.ImmoscoutLists", "src\PropertyBot.Provider.ImmoscoutLists\PropertyBot.Provider.ImmoscoutLists.csproj", "{DCE2FF3E-D347-4AA9-B3C8-E9C9BD2484A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyBot.Provider.OhneMakler", "src\PropertyBot.Provider.OhneMakler\PropertyBot.Provider.OhneMakler.csproj", "{6767F6C2-ADB4-4421-9154-A69C3A45BFCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,6 +102,10 @@ Global
 		{DCE2FF3E-D347-4AA9-B3C8-E9C9BD2484A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCE2FF3E-D347-4AA9-B3C8-E9C9BD2484A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCE2FF3E-D347-4AA9-B3C8-E9C9BD2484A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6767F6C2-ADB4-4421-9154-A69C3A45BFCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6767F6C2-ADB4-4421-9154-A69C3A45BFCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6767F6C2-ADB4-4421-9154-A69C3A45BFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6767F6C2-ADB4-4421-9154-A69C3A45BFCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
