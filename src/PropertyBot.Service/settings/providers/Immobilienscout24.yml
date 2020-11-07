@@ -1,0 +1,11 @@
+﻿settings:
+  - type: "haus-kaufen"
+    location: "Ditzingen;71254"
+    latitude: "48.82434"
+    longitude: "9.06856"
+    radius: 20
+  - type: "grundstueck-kaufen"
+    location: "Ditzingen;71254"
+    latitude: "48.82434"
+    longitude: "9.06856"
+    radius: 20

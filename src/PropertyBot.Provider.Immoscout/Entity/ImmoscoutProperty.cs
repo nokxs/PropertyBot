@@ -4,7 +4,7 @@ namespace PropertyBot.Provider.Immoscout.Entity
 {
     internal class ImmoscoutProperty
     {
-        public ImmoscoutProperty(string id, string description, string location, int price, double roomCount, double livingArea, Uri imageUri, Uri detailsUri)
+        public ImmoscoutProperty(string id, string description, string location, int price, double roomCount, double livingArea, double plotArea, Uri imageUri, Uri detailsUri)
         {
             Id = id;
             Description = description;
@@ -12,6 +12,7 @@ namespace PropertyBot.Provider.Immoscout.Entity
             Price = price;
             RoomCount = roomCount;
             LivingArea = livingArea;
+            PlotArea = plotArea;
             ImageUri = imageUri;
             DetailsUri = detailsUri;
         }
@@ -27,7 +28,9 @@ namespace PropertyBot.Provider.Immoscout.Entity
         public double RoomCount { get; }
 
         public double LivingArea { get; }
-
+        
+        public double PlotArea { get; }
+        
         public Uri ImageUri { get; }
 
         public Uri DetailsUri { get; }

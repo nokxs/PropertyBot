@@ -20,7 +20,8 @@ namespace PropertyBot.Provider.Immoscout.Converter
             {
                 {"Ort", immoscoutProperty.Location},
                 {"Zimmer", immoscoutProperty.RoomCount.Format()},
-                {"Wohnfläche", $"{immoscoutProperty.LivingArea.Format()} m²"}
+                {"Wohnfläche", $"{immoscoutProperty.LivingArea.Format()} m²"},
+                {"Grundstücksfläche", $"{immoscoutProperty.PlotArea.Format()} m²"}
             };
 
             return new Property(
@@ -32,7 +33,7 @@ namespace PropertyBot.Provider.Immoscout.Converter
                 details,
                 immoscoutProperty.DetailsUri,
                 MessageFormat.Html,
-                "Immoscout List");
+                "Immobilienscout24");
         }
     }
 }
