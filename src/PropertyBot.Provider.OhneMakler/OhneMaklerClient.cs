@@ -31,8 +31,8 @@ namespace PropertyBot.Provider.OhneMakler
 
             foreach (var setting in settingsContainer.Settings)
             {
-                var volksbankProperties = await _webClient.GetObjects(setting);
-                properties.AddRange(_ohneMaklerConverter.ToProperties(volksbankProperties));
+                var ohneMaklerProperties = await _webClient.GetObjects(setting);
+                properties.AddRange(_ohneMaklerConverter.ToProperties(ohneMaklerProperties));
             }
 
             return properties;
