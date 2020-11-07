@@ -20,7 +20,9 @@ namespace PropertyBot.Provider.OhneMakler.Converter
             {
                 {"Ort", ohneMaklerProperty.Location},
                 {"Zimmer", ohneMaklerProperty.RoomCount.Format()},
-                {"Wohnfläche", $"{ohneMaklerProperty.LivingArea.Format()} m²"}
+                {"Wohnfläche", $"{ohneMaklerProperty.LivingArea.Format()} m²"},
+                {"Grundstücksfläche", $"{ohneMaklerProperty.PlotArea.Format()} m²"},
+                {"Typ", ohneMaklerProperty.Type}
             };
 
             return new Property(
@@ -30,9 +32,9 @@ namespace PropertyBot.Provider.OhneMakler.Converter
                 DateTime.Now, 
                 ohneMaklerProperty.Price,
                 details,
-                new Uri($"https://{clientId}.flowfact-webparts.net/index.php/estates/{ohneMaklerProperty.Id}"), 
+                ohneMaklerProperty.DetailsUri, 
                 MessageFormat.Html,
-                "Volksbank Flowfact");
+                "Ohne-Makler.net");
         }
     }
 }

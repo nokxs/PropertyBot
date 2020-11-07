@@ -8,7 +8,7 @@
 
         public string Location { get; set; }
 
-        public int State { get; set; }
+        public int StateId { get; set; }
 
         public int Radius { get; set; }
     }

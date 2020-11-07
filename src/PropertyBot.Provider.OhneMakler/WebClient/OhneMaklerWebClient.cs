@@ -38,7 +38,7 @@ namespace PropertyBot.Provider.OhneMakler.WebClient
 
         private async Task<string> GetRawPage(OhneMaklerClientOptions options, int pageNr)
         {
-            return await _client.GetStringAsync($"https://www.ohne-makler.net/immobilie/list/?page={pageNr}&class={options.ObjectType}&marketing={options.MarketingType}&q={options.Location}&radius={options.Radius}&state={options.State}");
+            return await _client.GetStringAsync($"https://www.ohne-makler.net/immobilie/list/?page={pageNr}&class={options.ObjectType}&marketing={options.MarketingType}&q={options.Location}&radius={options.Radius}&state={options.StateId}");
         }
 
         private IEnumerable<OhneMaklerProperty> ParseHtml(string htmlString)
@@ -46,9 +46,9 @@ namespace PropertyBot.Provider.OhneMakler.WebClient
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(htmlString);
 
-            var propertyNodes = htmlDoc.DocumentNode.SelectNodes("//section[contains(@class, 'estate-view-grid')]");
+            var propertyNodes = htmlDoc.DocumentNode.SelectNodes("//table[contains(@class, 'table')]/tr");
 
-            return propertyNodes?.Select(ConvertToProperty).ToList() ?? Enumerable.Empty<OhneMaklerProperty>();
+            return propertyNodes?.Where(node => node.ChildNodes.Count == 7).Select(ConvertToProperty).ToList() ?? Enumerable.Empty<OhneMaklerProperty>();
         }
 
         private OhneMaklerProperty ConvertToProperty(HtmlNode node)
@@ -64,60 +64,84 @@ namespace PropertyBot.Provider.OhneMakler.WebClient
                 GetPrice(htmlDoc.DocumentNode),
                 GetRoomCount(htmlDoc.DocumentNode),
                 GetLivingArea(htmlDoc.DocumentNode),
-                GetImageUri(htmlDoc.DocumentNode));
+                GetPlotArea(htmlDoc.DocumentNode),
+                GetImageUri(htmlDoc.DocumentNode),
+                GetDetailsUri(htmlDoc.DocumentNode));
         }
 
         private string GetId(HtmlNode node)
         {
-            var estateNode = node.SelectSingleNode("//section[contains(@class, 'estate-view-grid')]");
-            return estateNode?.Attributes.First(attribute => attribute.Name == "data-estate-id").Value;
+            var idNode = node.SelectSingleNode("//strong[contains(text(), 'Objekt-Nr')]");
+            return idNode?.NextSibling.InnerText.RemoveRNT();
         }
 
         private string GetDescription(HtmlNode node)
         {
-            var descriptionNode = node.SelectSingleNode("//h2[contains(@class, 'headline-tiles')]");
-            return descriptionNode?.InnerText.Replace("\n", string.Empty).Replace("\t", string.Empty) ?? string.Empty;
+            var descriptionNode = node.SelectSingleNode("//a[contains(@class, 'red')]");
+            return descriptionNode?.InnerText.RemoveRNT() ?? string.Empty;
         }
 
         private string GetType(HtmlNode node)
         {
-            var typeNode = node.SelectSingleNode("//li[contains(@class, 'ion-home')]");
-            return typeNode?.InnerText ?? string.Empty;
+            var typeNode = node.SelectSingleNode("//td[1]");
+            return typeNode?.ChildNodes[3].InnerText.RemoveRNT() ?? string.Empty;
         }
 
         private string GetLocation(HtmlNode node)
         {
-            var locationNode = node.SelectSingleNode("//li[contains(@class, 'ion-ios-location')]");
-            return locationNode?.InnerText ?? string.Empty;
+            var idNode = node.SelectSingleNode("//strong[contains(text(), 'Adresse')]");
+            return idNode?.NextSibling.InnerText.RemoveRNT();
         }
 
         private int GetPrice(HtmlNode node)
         {
-            var priceNode = node.SelectSingleNode("//div[contains(@class, 'estate-price')]");
-            return (priceNode?.InnerText.Replace("EUR", string.Empty) ?? string.Empty).ToIntSafe();
+            var priceNode = node.SelectSingleNode("//td/span[contains(@class, 'red')]");
+
+            var priceText = priceNode?.InnerText ?? string.Empty;
+            var priceMatch = Regex.Match(priceText, @"[^\d]*(\d*\.\d*) €.*");
+
+            if (priceMatch.Success)
+            {
+                if (priceMatch.Groups.Count > 1)
+                {
+                    var price = priceMatch.Groups[1].Value;
+                    return price.ToIntSafe();
+                }
+            }
+
+            return 0;
         }
 
         private double GetLivingArea(HtmlNode node)
         {
-            var detailsNode = node.SelectSingleNode("//li[contains(@class, 'ion-arrow-resize')]");
-            var match = Regex.Match(detailsNode.InnerText ?? "", @"(\d*?(,|.)?(\d*)) m&sup2;");
-
-            return match.Groups.Count >= 2 ? match.Groups[1].Value.ToDoubleSafe() : 0;
+            var idNode = node.SelectSingleNode("//strong[contains(text(), 'Wohnfläche')]");
+            return idNode?.NextSibling.InnerText.RemoveRNT().Replace("m²", string.Empty).ToDoubleSafe() ?? 0;
         }
 
         private double GetRoomCount(HtmlNode node)
         {
-            var detailsNode = node.SelectSingleNode("//li[contains(@class, 'ion-arrow-resize')]");
-            var match = Regex.Match(detailsNode.InnerText ?? "", @"(\d*?(,|.)?(\d*)) Zimmer");
-
-            return match.Groups.Count >= 2 ? match.Groups[1].Value.ToDoubleSafe() : 0;
+            var idNode = node.SelectSingleNode("//strong[contains(text(), 'Zimmer')]");
+            return idNode?.NextSibling.InnerText.RemoveRNT().Replace("m²", string.Empty).ToDoubleSafe() ?? 0;
         }
-        
+
+        private double GetPlotArea(HtmlNode node)
+        {
+            var idNode = node.SelectSingleNode("//strong[contains(text(), 'Grundstücksfläche')]");
+            return idNode?.NextSibling.InnerText.RemoveRNT().Replace("m²", string.Empty).ToDoubleSafe() ?? 0;
+        }
+
         private Uri GetImageUri(HtmlNode node)
         {
-            var imageNode = node.SelectSingleNode("//div[contains(@class, 'estate-image')]/a/img");
-            var imageUriString = imageNode?.Attributes.First(attribute => attribute.Name == "src")?.Value ?? "https://upload.wikimedia.org/wikipedia/commons/2/26/512pxIcon-sunset_photo_not_found.png"; 
-            return new Uri(imageUriString);
+            var imageNode = node.SelectSingleNode("//td[1]/a/img");
+            var uriString = imageNode?.Attributes.First(attribute => attribute.Name == "src")?.Value.Replace("/thumb/", "/full/") ?? "https://upload.wikimedia.org/wikipedia/commons/2/26/512pxIcon-sunset_photo_not_found.png";
+            return new Uri($"https://www.ohne-makler.net{uriString}");
+        }
+
+        private Uri GetDetailsUri(HtmlNode node)
+        {
+            var detailsNode = node.SelectSingleNode("//td[1]/a");
+            var uriString = detailsNode?.Attributes.First(attribute => attribute.Name == "href")?.Value ?? string.Empty;
+            return new Uri($"https://www.ohne-makler.net{uriString}");
         }
 
         private int GetPageCount(string htmlString)
@@ -125,8 +149,8 @@ namespace PropertyBot.Provider.OhneMakler.WebClient
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(htmlString);
 
-            var pageNode = htmlDoc.DocumentNode.SelectSingleNode("//span[contains(@class, 'sum')]");
-            return pageNode?.InnerText.ToIntSafe() ?? 1;
+            var pageNode = htmlDoc.DocumentNode.SelectNodes("//div[contains(@class, 'pagination')]/ul/li");
+            return pageNode?.Count - 2 ?? 1; // subtract next and previous buttons
         }
     }
 }

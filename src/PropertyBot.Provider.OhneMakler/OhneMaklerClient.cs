@@ -22,7 +22,7 @@ namespace PropertyBot.Provider.OhneMakler
             _settingsReader = settingsReader;
         }
 
-        public string Name { get; } = "Volksbank Flowfact";
+        public string Name { get; } = "Ohne-Makler.net";
 
         public async Task<IEnumerable<Property>> GetProperties()
         {

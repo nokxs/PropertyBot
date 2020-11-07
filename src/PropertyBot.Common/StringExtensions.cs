@@ -37,6 +37,16 @@ namespace PropertyBot.Common
             return double.TryParse(s?.Trim(), GetNumberStyles(), GermanCulture, out var parsedResult) ? parsedResult : 0;
         }
 
+        public static string RemoveRNT(this string s)
+        {
+            return s?
+                   .Replace("\r", string.Empty)
+                   .Replace("\n", string.Empty)
+                   .Replace("\t", string.Empty)
+                   .Trim()
+                    ?? string.Empty;
+        }
+
         private static NumberStyles GetNumberStyles()
         {
             return NumberStyles.AllowCurrencySymbol | NumberStyles.Number;
