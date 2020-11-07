@@ -1,0 +1,6 @@
+﻿settings:
+  - marketingType: "SELL"
+    objectType: "HAUS"
+    location: "71254"
+    stateId: "1"
+    radius: 25

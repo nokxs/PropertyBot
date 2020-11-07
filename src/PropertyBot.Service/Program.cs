@@ -5,6 +5,7 @@ using PropertyBot.Persistence.MongoDB;
 using PropertyBot.Provider.ImmoscoutLists;
 using PropertyBot.Provider.ImmoXXL;
 using PropertyBot.Provider.KSK;
+using PropertyBot.Provider.OhneMakler;
 using PropertyBot.Provider.VolksbankFlowfact;
 using PropertyBot.Provider.VolksbankImmopool;
 using PropertyBot.Provider.Wunschimmo;
@@ -48,6 +49,7 @@ namespace PropertyBot.Service
             services.AddSingleton(WunschimmoProviderFactory.CreateProvider());
             services.AddSingleton(VolksbankFlowfactProviderFactory.CreateProvider());
             services.AddSingleton(ImmoscoutListProviderFactory.CreateProvider());
+            services.AddSingleton(OhneMaklerProviderFactory.CreateProvider());
         }
 
         private static void RegisterMessageSenders(IServiceCollection services)
