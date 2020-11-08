@@ -13,6 +13,8 @@ namespace PropertyBot.Provider.Immoscout
         private readonly IImmoscoutConverter _immoscoutConverter;
         private readonly SettingsReader<ImmoscoutWebClientOptions> _settingsReader;
 
+        private int lastPage = 1;
+
         internal ImmoscoutClient(IImmoscoutWebClient webClient, IImmoscoutConverter immoscoutConverter, SettingsReader<ImmoscoutWebClientOptions> settingsReader)
         {
             _webClient = webClient;
@@ -29,8 +31,9 @@ namespace PropertyBot.Provider.Immoscout
             var properties = new List<Property>();
             foreach (var setting in settingsContainer.Settings)
             {
-                var immoscoutListProperties = await _webClient.GetObjects(setting, 1);
-                properties.AddRange(_immoscoutConverter.ToProperties(immoscoutListProperties.ImmoscoutProperties));
+                var result = await _webClient.GetObjects(setting, lastPage);
+                lastPage = result.FirstBlockedPage;
+                properties.AddRange(_immoscoutConverter.ToProperties(result.ImmoscoutProperties));
             }
 
             return properties;
