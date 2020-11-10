@@ -98,7 +98,7 @@ namespace PropertyBot.Provider.OhneMakler.WebClient
             var priceNode = node.SelectSingleNode("//td/span[contains(@class, 'red')]");
 
             var priceText = priceNode?.InnerText ?? string.Empty;
-            var priceMatch = Regex.Match(priceText, @"[^\d]*(\d*\.\d*) €.*");
+            var priceMatch = Regex.Match(priceText, @"[^\d]*(\d*\.?\d*\.?\d*\.\d*) €.*");
 
             if (priceMatch.Success)
             {
