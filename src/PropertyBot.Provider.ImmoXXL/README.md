@@ -1,6 +1,13 @@
-﻿# Gut Immobilien Provider
+﻿# ImmoXXL Provider
 
-This provider crawles [Gut Immobilien](https://www.gutimmo.de/Angebote.htm) for new properties.
+This provider crawles website using the ImmoXXL Api.
+
+Known websites are
+
+- [RJImmobau](https://www.gutimmo.de)
+- [Link Immobilien](https://www.link-immobilien.info)
+- [Lang Immobilien](https://www.langeimmo.de)
+- [Fein Immo](http://www.feinimmo.de)
 
 ## Configuration
 
