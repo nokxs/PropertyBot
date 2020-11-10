@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using PropertyBot.Provider.Immoscout.Entity;
+﻿using System.Threading.Tasks;
 
 namespace PropertyBot.Provider.Immoscout.WebClient
 {
