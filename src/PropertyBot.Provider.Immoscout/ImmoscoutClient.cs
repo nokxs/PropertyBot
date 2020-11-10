@@ -32,7 +32,7 @@ namespace PropertyBot.Provider.Immoscout
             foreach (var setting in settingsContainer.Settings)
             {
                 var result = await _webClient.GetObjects(setting, lastPage);
-                lastPage = result.FirstBlockedPage;
+                lastPage = result.NextPageNumber;
                 properties.AddRange(_immoscoutConverter.ToProperties(result.ImmoscoutProperties));
             }
 

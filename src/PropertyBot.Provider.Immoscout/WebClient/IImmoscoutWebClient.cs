@@ -4,6 +4,6 @@ namespace PropertyBot.Provider.Immoscout.WebClient
 {
     internal interface IImmoscoutWebClient
     {
-        public Task<WebClientResult> GetObjects(ImmoscoutWebClientOptions options, int firstPage);
+        public Task<WebClientResult> GetObjects(ImmoscoutWebClientOptions options, int pageNumber);
     }
 }

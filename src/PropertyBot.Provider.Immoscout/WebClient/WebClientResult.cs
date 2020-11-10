@@ -5,12 +5,12 @@ namespace PropertyBot.Provider.Immoscout.WebClient
 {
     internal class WebClientResult
     {
-        public WebClientResult(int firstBlockedPage, IEnumerable<ImmoscoutProperty> immoscoutProperties)
+        public WebClientResult(int nextPageNumber, IEnumerable<ImmoscoutProperty> immoscoutProperties)
         {
-            FirstBlockedPage = firstBlockedPage;
+            NextPageNumber = nextPageNumber;
             ImmoscoutProperties = immoscoutProperties;
         }
-        public int FirstBlockedPage { get; }
+        public int NextPageNumber { get; }
 
         public IEnumerable<ImmoscoutProperty> ImmoscoutProperties { get; }
     }
