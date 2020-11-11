@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace PropertyBot.Provider.KSK.WebClient
+﻿namespace PropertyBot.Provider.KSK.WebClient
 {
     internal class KskWebClientOptions
     {

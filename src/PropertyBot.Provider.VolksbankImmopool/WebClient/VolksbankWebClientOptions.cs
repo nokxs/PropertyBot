@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace PropertyBot.Provider.VolksbankImmopool.WebClient
+﻿namespace PropertyBot.Provider.VolksbankImmopool.WebClient
 {
     internal class VolksbankWebClientOptions
     {

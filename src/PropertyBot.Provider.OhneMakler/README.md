@@ -4,7 +4,7 @@ This provider crawles the properties of from the website [ohne-makler.net](https
 
 ## Configuration
 
-The provider can be configured via `settings/providers/VolksbankFlowfact.yml`. The following values are available:
+The provider can be configured via `settings/providers/OhneMakler.yml`. The following values are available:
 
 | Variable                                  | Description                                    |
 |-------------------------------------------|------------------------------------------------|
