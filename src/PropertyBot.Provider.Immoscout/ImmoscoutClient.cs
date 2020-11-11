@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using PropertyBot.Common;
 using PropertyBot.Interface;
@@ -13,7 +14,8 @@ namespace PropertyBot.Provider.Immoscout
         private readonly IImmoscoutConverter _immoscoutConverter;
         private readonly SettingsReader<ImmoscoutWebClientOptions> _settingsReader;
 
-        private int lastPage = 1;
+        private readonly IDictionary<ImmoscoutWebClientOptions, int> _optionsToLastPageDictionary = new Dictionary<ImmoscoutWebClientOptions, int>();
+        private ImmoscoutWebClientOptions _lastUsedOptions;
 
         internal ImmoscoutClient(IImmoscoutWebClient webClient, IImmoscoutConverter immoscoutConverter, SettingsReader<ImmoscoutWebClientOptions> settingsReader)
         {
@@ -27,16 +29,38 @@ namespace PropertyBot.Provider.Immoscout
         public async Task<IEnumerable<Property>> GetProperties()
         {
             var settingsContainer = await _settingsReader.ReadSettings("providers/Immobilienscout24.yml");
-            
-            var properties = new List<Property>();
-            foreach (var setting in settingsContainer.Settings)
+
+            var optionToUse = GetOptionsToUse(settingsContainer.Settings);
+            var result = await _webClient.GetObjects(optionToUse.options, optionToUse.page);
+
+            _optionsToLastPageDictionary[optionToUse.options] = result.NextPageNumber;
+            _lastUsedOptions = optionToUse.options;
+
+            return _immoscoutConverter.ToProperties(result.ImmoscoutProperties);
+        }
+
+        private (ImmoscoutWebClientOptions options, int page) GetOptionsToUse(IEnumerable<ImmoscoutWebClientOptions> settings)
+        {
+            if (_optionsToLastPageDictionary.Any())
             {
-                var result = await _webClient.GetObjects(setting, lastPage);
-                lastPage = result.NextPageNumber;
-                properties.AddRange(_immoscoutConverter.ToProperties(result.ImmoscoutProperties));
+                var nextOption = GetNextOption();
+                return (nextOption.Key, nextOption.Value);
             }
 
-            return properties;
+            return (settings.First(), 1);
+        }
+
+        private KeyValuePair<ImmoscoutWebClientOptions, int> GetNextOption()
+        {
+            var remainingOptions = _optionsToLastPageDictionary.SkipWhile(kv => kv.Key != _lastUsedOptions).ToList();
+
+            if (remainingOptions.Any() && remainingOptions.Count() == 1)
+            {
+                // Element was last element in list
+                return _optionsToLastPageDictionary.First();
+            }
+
+            return remainingOptions.ElementAt(1);
         }
     }
 }
