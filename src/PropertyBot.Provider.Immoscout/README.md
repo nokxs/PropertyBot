@@ -1,6 +1,7 @@
 ﻿# Immobilienscout24 Provider
 
-This provider crawles the properties from the normal search of [immobilienscout24](https://immobilienscout24.de).
+This provider crawles the properties from the normal search of [immobilienscout24](https://immobilienscout24.de). It is not as reliable as other providers, because Immoscout 
+is trying to detect bots and sometimes requests are blocked. This is the reason why every time the crawler runs, only one page is crawled.
 
 ## Configuration
 
