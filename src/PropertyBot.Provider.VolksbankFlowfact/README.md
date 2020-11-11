@@ -34,3 +34,4 @@ The provider can be configured via `settings/providers/VolksbankFlowfact.yml`. T
 |-----------|------|
 | 60491430  | Volksbank Neckar-Enz |
 | 62090100  | Volksbank Heilbronn |
+| 60390000  | Die Bank |
