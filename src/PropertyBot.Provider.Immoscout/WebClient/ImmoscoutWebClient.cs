@@ -119,14 +119,21 @@ namespace PropertyBot.Provider.Immoscout.WebClient
         private double GetRoomCount(HtmlNode node)
         {
             var primaryNode = node.SelectSingleNode("//dl[contains(@class, 'result-list-entry__primary-criterion')]/dd/span/span[contains(@class, 'onlyLarge')]");
-            return primaryNode.PreviousSibling.InnerText.ToDoubleSafe();
+            return primaryNode.PreviousSibling.InnerText.Replace("Zi.", string.Empty).ToDoubleSafe();
         }
 
         private Uri GetImageUri(HtmlNode node)
         {
             var imageNode = node.SelectSingleNode("//img[contains(@class, 'gallery__image')]");
-            var imageUriString = imageNode?.Attributes.First(attribute => attribute.Name == "src" || attribute.Name == "data-lazy-src")?.Value ?? "https://upload.wikimedia.org/wikipedia/commons/2/26/512pxIcon-sunset_photo_not_found.png";
+            var imageUriString = GetImageUriString(imageNode) ?? "https://upload.wikimedia.org/wikipedia/commons/2/26/512pxIcon-sunset_photo_not_found.png";
+
             return new Uri(imageUriString);
+        }
+
+        private static string GetImageUriString(HtmlNode imageNode)
+        {
+            var imageUri = imageNode?.Attributes.First(attribute => attribute.Name == "src" || attribute.Name == "data-lazy-src")?.Value;
+            return imageUri?.Substring(0, imageUri.IndexOf("/ORIG", StringComparison.Ordinal));
         }
 
         private Uri GetDetailsUri(HtmlNode node)
