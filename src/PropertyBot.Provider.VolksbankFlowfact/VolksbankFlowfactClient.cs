@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using PropertyBot.Common.Logging;
 using PropertyBot.Common.Settings;
 using PropertyBot.Interface;
 using PropertyBot.Provider.VolksbankFlowfact.Converter;
@@ -11,15 +12,18 @@ namespace PropertyBot.Provider.VolksbankFlowfact
     {
         private readonly IVolksbankWebClient _webClient;
         private readonly IVolksbankConverter _volksbankConverter;
-        private readonly SettingsReader<VolksbankWebClientOptions> _settingsReader;
+        private readonly ISettingsReader<VolksbankWebClientOptions> _settingsReader;
+        private readonly ILogger<VolksbankFlowfactClient> _logger;
 
         internal VolksbankFlowfactClient(IVolksbankWebClient webClient,
             IVolksbankConverter volksbankConverter,
-            SettingsReader<VolksbankWebClientOptions> settingsReader)
+            ISettingsReader<VolksbankWebClientOptions> settingsReader,
+            ILogger<VolksbankFlowfactClient> logger)
         {
             _webClient = webClient;
             _volksbankConverter = volksbankConverter;
             _settingsReader = settingsReader;
+            _logger = logger;
         }
 
         public string Name { get; } = "Volksbank Flowfact";
@@ -34,6 +38,8 @@ namespace PropertyBot.Provider.VolksbankFlowfact
                 var volksbankProperties = await _webClient.GetObjects(setting);
                 properties.AddRange(_volksbankConverter.ToProperties(setting.ClientId, volksbankProperties));
             }
+
+            _logger.LogInfo($"Found {properties.Count} properties");
 
             return properties;
         }

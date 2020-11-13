@@ -53,18 +53,17 @@ namespace PropertyBot.Service
 
         private static void RegisterPropertyProviders(IServiceCollection services)
         {
-            services.AddSingleton(ZvgProviderFactory.CreateProvider());
-            services.AddSingleton(KskProviderFactory.CreateProvider());
-            services.AddSingleton(VolksbankImmopoolProviderFactory.CreateProvider());
-            services.AddSingleton(WunschimmoProviderFactory.CreateProvider());
-            services.AddSingleton(VolksbankFlowfactProviderFactory.CreateProvider());
-            services.AddSingleton(OhneMaklerProviderFactory.CreateProvider());
-
             var iocContainer = new IocContainer(services);
 
             ImmoscoutProviderBootstrapper.Register(iocContainer);
             ImmoscoutListProviderBootstrapper.Register(iocContainer);
             ImmoXXLProviderBootstrapper.Register(iocContainer);
+            KskProviderBootstrapper.Register(iocContainer);
+            OhneMaklerProviderBoostrapper.Register(iocContainer);
+            VolksbankFlowfactProviderBootstrapper.Register(iocContainer);
+            VolksbankImmopoolProviderBootstrapper.Register(iocContainer);
+            WunschimmoProviderBootstrapper.Register(iocContainer);
+            ZvgProviderBootstrapper.Register(iocContainer);
         }
 
         private static void RegisterMessageSenders(IServiceCollection services)

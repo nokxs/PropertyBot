@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using PropertyBot.Common.Logging;
 using PropertyBot.Common.Settings;
 using PropertyBot.Interface;
 using PropertyBot.Provider.Wunschimmo.Converter;
@@ -11,13 +12,15 @@ namespace PropertyBot.Provider.Wunschimmo
     {
         private readonly IWunschimmoWebClient _webClient;
         private readonly IWunschimmoConverter _wunschimmoConverter;
-        private readonly SettingsReader<WunschimmoWebClientOptions> _settingsReader;
+        private readonly ISettingsReader<WunschimmoWebClientOptions> _settingsReader;
+        private readonly ILogger<WunschimmoClient> _logger;
 
-        internal WunschimmoClient(IWunschimmoWebClient webClient, IWunschimmoConverter wunschimmoConverter, SettingsReader<WunschimmoWebClientOptions> settingsReader)
+        internal WunschimmoClient(IWunschimmoWebClient webClient, IWunschimmoConverter wunschimmoConverter, ISettingsReader<WunschimmoWebClientOptions> settingsReader, ILogger<WunschimmoClient> logger)
         {
             _webClient = webClient;
             _wunschimmoConverter = wunschimmoConverter;
             _settingsReader = settingsReader;
+            _logger = logger;
         }
 
         public string Name { get; } = "Wunschimmo";
@@ -32,6 +35,8 @@ namespace PropertyBot.Provider.Wunschimmo
                 var volksbankProperties = await _webClient.GetObjects(setting);
                 properties.AddRange(_wunschimmoConverter.ToProperties(volksbankProperties));
             }
+
+            _logger.LogInfo($"Found {properties.Count} properties");
 
             return properties;
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using PropertyBot.Common.Logging;
 using PropertyBot.Common.Settings;
 using PropertyBot.Interface;
 using PropertyBot.Provider.OhneMakler.Converter;
@@ -11,15 +12,18 @@ namespace PropertyBot.Provider.OhneMakler
     {
         private readonly IOhneMaklerWebClient _webClient;
         private readonly IOhneMaklerConverter _ohneMaklerConverter;
-        private readonly SettingsReader<OhneMaklerClientOptions> _settingsReader;
+        private readonly ISettingsReader<OhneMaklerClientOptions> _settingsReader;
+        private readonly ILogger<OhneMaklerClient> _logger;
 
         internal OhneMaklerClient(IOhneMaklerWebClient webClient,
             IOhneMaklerConverter ohneMaklerConverter,
-            SettingsReader<OhneMaklerClientOptions> settingsReader)
+            ISettingsReader<OhneMaklerClientOptions> settingsReader,
+            ILogger<OhneMaklerClient> logger)
         {
             _webClient = webClient;
             _ohneMaklerConverter = ohneMaklerConverter;
             _settingsReader = settingsReader;
+            _logger = logger;
         }
 
         public string Name { get; } = "Ohne-Makler.net";
@@ -34,6 +38,8 @@ namespace PropertyBot.Provider.OhneMakler
                 var ohneMaklerProperties = await _webClient.GetObjects(setting);
                 properties.AddRange(_ohneMaklerConverter.ToProperties(ohneMaklerProperties));
             }
+            
+            _logger.LogInfo($"Found {properties.Count} properties");
 
             return properties;
         }

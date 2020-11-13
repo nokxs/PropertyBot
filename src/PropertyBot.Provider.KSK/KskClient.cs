@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using PropertyBot.Common.Logging;
 using PropertyBot.Common.Settings;
 using PropertyBot.Interface;
 using PropertyBot.Provider.KSK.Converter;
@@ -11,13 +12,15 @@ namespace PropertyBot.Provider.KSK
     {
         private readonly IKskWebClient _webClient;
         private readonly IKskEstateConverter _kskEstateConverter;
-        private readonly SettingsReader<KskWebClientOptions> _settingsReader;
+        private readonly ISettingsReader<KskWebClientOptions> _settingsReader;
+        private readonly ILogger<KskWebClient> _logger;
 
-        internal KskClient(IKskWebClient webClient, IKskEstateConverter kskEstateConverter, SettingsReader<KskWebClientOptions> settingsReader)
+        internal KskClient(IKskWebClient webClient, IKskEstateConverter kskEstateConverter, ISettingsReader<KskWebClientOptions> settingsReader, ILogger<KskWebClient> logger)
         {
             _webClient = webClient;
             _kskEstateConverter = kskEstateConverter;
             _settingsReader = settingsReader;
+            _logger = logger;
         }
 
         public string Name { get; } = "Kreissparkasse";
@@ -32,6 +35,8 @@ namespace PropertyBot.Provider.KSK
                 var kskProperties = await _webClient.GetObjects(setting);
                 properties.AddRange(_kskEstateConverter.ToProperties(kskProperties));
             }
+            
+            _logger.LogInfo($"Found {properties.Count} properties");
 
             return properties;
         }
