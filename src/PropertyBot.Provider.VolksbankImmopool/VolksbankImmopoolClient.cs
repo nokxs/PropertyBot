@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using PropertyBot.Common;
+using PropertyBot.Common.Settings;
 using PropertyBot.Interface;
 using PropertyBot.Provider.VolksbankImmopool.Converter;
 using PropertyBot.Provider.VolksbankImmopool.WebClient;

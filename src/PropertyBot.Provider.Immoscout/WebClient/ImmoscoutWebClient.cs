@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using HtmlAgilityPack;
 using PropertyBot.Common;
+using PropertyBot.Common.Extensions;
 using PropertyBot.Common.Logging;
 using PropertyBot.Provider.Immoscout.Entity;
 

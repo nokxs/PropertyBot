@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using PropertyBot.Common;
+using PropertyBot.Common.Extensions;
 using PropertyBot.Interface;
 using Telegram.Bot;
 using Telegram.Bot.Types.Enums;

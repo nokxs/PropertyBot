@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PropertyBot.Common;
 using PropertyBot.Common.Logging;
+using PropertyBot.Common.Settings;
 using PropertyBot.Interface;
 using PropertyBot.Provider.Immoscout.Converter;
 using PropertyBot.Provider.Immoscout.WebClient;

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace PropertyBot.Common
+namespace PropertyBot.Common.Settings
 {
     public class SettingsReader<TSetting>
     {

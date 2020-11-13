@@ -1,4 +1,5 @@
 ﻿using PropertyBot.Common;
+using PropertyBot.Common.Settings;
 using PropertyBot.Interface;
 using PropertyBot.Provider.KSK.Converter;
 using PropertyBot.Provider.KSK.WebClient;

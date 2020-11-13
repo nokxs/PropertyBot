@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using PropertyBot.Common;
+using PropertyBot.Common.Extensions;
 using PropertyBot.Provider.VolksbankFlowfact.Entity;
 
 namespace PropertyBot.Provider.VolksbankFlowfact.WebClient

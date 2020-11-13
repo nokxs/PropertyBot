@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MoreLinq;
 using PropertyBot.Common;
+using PropertyBot.Common.Extensions;
 using PropertyBot.Interface;
 
 namespace PropertyBot.Service

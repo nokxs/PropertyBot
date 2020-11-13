@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using PropertyBot.Common;
 using PropertyBot.Common.Ioc;
+using PropertyBot.Common.Settings;
 using PropertyBot.Interface;
 using PropertyBot.Provider.Immoscout.Converter;
 using PropertyBot.Provider.Immoscout.WebClient;
