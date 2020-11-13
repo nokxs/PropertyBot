@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using PropertyBot.Common;
+using PropertyBot.Common.Logging;
 using PropertyBot.Common.Settings;
 using PropertyBot.Interface;
 using PropertyBot.Provider.ImmoscoutLists.Converter;
@@ -13,12 +13,18 @@ namespace PropertyBot.Provider.ImmoscoutLists
         private readonly IImmoscoutListWebClient _webClient;
         private readonly IImmoscoutListConverter _immoscoutListConverter;
         private readonly SettingsReader<ImmoscoutListWebClientOptions> _settingsReader;
+        private readonly ILogger<ImmoscoutListClient> _logger;
 
-        internal ImmoscoutListClient(IImmoscoutListWebClient webClient, IImmoscoutListConverter immoscoutListConverter, SettingsReader<ImmoscoutListWebClientOptions> settingsReader)
+        internal ImmoscoutListClient(
+            IImmoscoutListWebClient webClient,
+            IImmoscoutListConverter immoscoutListConverter,
+            SettingsReader<ImmoscoutListWebClientOptions> settingsReader,
+            ILogger<ImmoscoutListClient> logger)
         {
             _webClient = webClient;
             _immoscoutListConverter = immoscoutListConverter;
             _settingsReader = settingsReader;
+            _logger = logger;
         }
 
         public string Name { get; } = "Immoscout List";
@@ -33,6 +39,8 @@ namespace PropertyBot.Provider.ImmoscoutLists
                 var immoscoutListProperties = await _webClient.GetObjects(setting);
                 properties.AddRange(_immoscoutListConverter.ToProperties(immoscoutListProperties));
             }
+
+            _logger.LogInfo($"Found {properties.Count} properties");
 
             return properties;
         }

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PropertyBot.Common;
 using PropertyBot.Common.Logging;
 using PropertyBot.Common.Settings;
 using PropertyBot.Interface;

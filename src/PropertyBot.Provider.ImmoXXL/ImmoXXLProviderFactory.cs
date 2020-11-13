@@ -1,5 +1,4 @@
-﻿using PropertyBot.Common;
-using PropertyBot.Common.Settings;
+﻿using PropertyBot.Common.Settings;
 using PropertyBot.Interface;
 using PropertyBot.Provider.ImmoXXL.Converter;
 using PropertyBot.Provider.ImmoXXL.WebClient;

@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using PropertyBot.Common;
-using PropertyBot.Common.Ioc;
-using PropertyBot.Common.Settings;
+﻿using PropertyBot.Common.Ioc;
 using PropertyBot.Interface;
 using PropertyBot.Provider.Immoscout.Converter;
 using PropertyBot.Provider.Immoscout.WebClient;
@@ -14,7 +11,6 @@ namespace PropertyBot.Provider.Immoscout
         {
             iocContainer.AddSingleton<IImmoscoutWebClient, ImmoscoutWebClient>();
             iocContainer.AddSingleton<IImmoscoutConverter, ImmoscouttConverter>();
-            iocContainer.AddSingleton<SettingsReader<ImmoscoutWebClientOptions>>();
             iocContainer.AddSingleton<IPropertyProvider, ImmoscoutClient>();
         }
     }

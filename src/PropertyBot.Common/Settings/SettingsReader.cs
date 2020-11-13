@@ -5,7 +5,7 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace PropertyBot.Common.Settings
 {
-    public class SettingsReader<TSetting>
+    public class SettingsReader<TSetting> : ISettingsReader<TSetting>
     {
         public async Task<SettingsContainer<TSetting>> ReadSettings(string path)
         {

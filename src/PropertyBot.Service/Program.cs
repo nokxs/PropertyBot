@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PropertyBot.Common.Ioc;
 using PropertyBot.Common.Logging;
+using PropertyBot.Common.Settings;
 using PropertyBot.Interface;
 using PropertyBot.Persistence.MongoDB;
 using PropertyBot.Provider.Immoscout;
@@ -28,14 +29,19 @@ namespace PropertyBot.Service
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
-
+                    RegisterCommon(services);
                     RegisterPropertyProviders(services);
                     RegisterMessageSenders(services);
                     RegisterDataProviders(services);
 
                     services.AddHostedService<Worker>();
                 });
+
+        private static void RegisterCommon(IServiceCollection services)
+        {
+            services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
+            services.AddSingleton(typeof(ISettingsReader<>), typeof(SettingsReader<>));
+        }
 
         private static void RegisterDataProviders(IServiceCollection services)
         {
@@ -53,12 +59,12 @@ namespace PropertyBot.Service
             services.AddSingleton(ImmoXXLProviderFactory.CreateProvider());
             services.AddSingleton(WunschimmoProviderFactory.CreateProvider());
             services.AddSingleton(VolksbankFlowfactProviderFactory.CreateProvider());
-            services.AddSingleton(ImmoscoutListProviderFactory.CreateProvider());
             services.AddSingleton(OhneMaklerProviderFactory.CreateProvider());
 
             var iocContainer = new IocContainer(services);
 
             ImmoscoutProviderBootstrapper.Register(iocContainer);
+            ImmoscoutListProviderBootstrapper.Register(iocContainer);
         }
 
         private static void RegisterMessageSenders(IServiceCollection services)
