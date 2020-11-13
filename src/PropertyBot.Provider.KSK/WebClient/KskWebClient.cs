@@ -7,7 +7,7 @@ using PropertyBot.Provider.KSK.Entity;
 
 namespace PropertyBot.Provider.KSK.WebClient
 {
-    internal class KskWebClient : IKskWebClient
+    public class KskWebClient : IKskWebClient
     {
         private readonly HttpClient _client;
 

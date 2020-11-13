@@ -17,7 +17,7 @@ namespace PropertyBot.Provider.ImmoXXL
 
         public string Name { get; } = "Immo XXL";
 
-        internal ImmoXXLClient(
+        public ImmoXXLClient(
             IImmoXXLWebClient webClient,
             IImmoXXLPropertyConverter gutImmoPropertyConverter,
             ISettingsReader<ImmoXXLWebClientOptions> settingsReader,

@@ -2,7 +2,7 @@
 
 namespace PropertyBot.Provider.ImmoXXL.Entity
 {
-    internal class ImmoXXLImmoProperty
+    public class ImmoXXLImmoProperty
     {
         public ImmoXXLImmoProperty(string id, string roomCount, int livingArea, string propertyType, string description, string location, int price, Uri imageUrl, Uri detailUrl, string providerName)
         {

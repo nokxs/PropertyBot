@@ -15,7 +15,7 @@ namespace PropertyBot.Provider.OhneMakler
         private readonly ISettingsReader<OhneMaklerClientOptions> _settingsReader;
         private readonly ILogger<OhneMaklerClient> _logger;
 
-        internal OhneMaklerClient(IOhneMaklerWebClient webClient,
+        public OhneMaklerClient(IOhneMaklerWebClient webClient,
             IOhneMaklerConverter ohneMaklerConverter,
             ISettingsReader<OhneMaklerClientOptions> settingsReader,
             ILogger<OhneMaklerClient> logger)

@@ -15,7 +15,11 @@ namespace PropertyBot.Provider.KSK
         private readonly ISettingsReader<KskWebClientOptions> _settingsReader;
         private readonly ILogger<KskWebClient> _logger;
 
-        internal KskClient(IKskWebClient webClient, IKskEstateConverter kskEstateConverter, ISettingsReader<KskWebClientOptions> settingsReader, ILogger<KskWebClient> logger)
+        public KskClient(
+            IKskWebClient webClient,
+            IKskEstateConverter kskEstateConverter,
+            ISettingsReader<KskWebClientOptions> settingsReader,
+            ILogger<KskWebClient> logger)
         {
             _webClient = webClient;
             _kskEstateConverter = kskEstateConverter;

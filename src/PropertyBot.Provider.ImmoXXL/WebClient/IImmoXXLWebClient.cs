@@ -4,7 +4,7 @@ using PropertyBot.Provider.ImmoXXL.Entity;
 
 namespace PropertyBot.Provider.ImmoXXL.WebClient
 {
-    internal interface IImmoXXLWebClient
+    public interface IImmoXXLWebClient
     {
         public Task<IEnumerable<ImmoXXLImmoProperty>> GetObjects(ImmoXXLWebClientOptions options);
     }

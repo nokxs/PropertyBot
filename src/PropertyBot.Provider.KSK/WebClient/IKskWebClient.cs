@@ -4,7 +4,7 @@ using PropertyBot.Provider.KSK.Entity;
 
 namespace PropertyBot.Provider.KSK.WebClient
 {
-    internal interface IKskWebClient
+    public interface IKskWebClient
     {
         public Task<IEnumerable<Estate>> GetObjects(KskWebClientOptions options);
     }

@@ -15,7 +15,7 @@ namespace PropertyBot.Provider.VolksbankFlowfact
         private readonly ISettingsReader<VolksbankWebClientOptions> _settingsReader;
         private readonly ILogger<VolksbankFlowfactClient> _logger;
 
-        internal VolksbankFlowfactClient(IVolksbankWebClient webClient,
+        public VolksbankFlowfactClient(IVolksbankWebClient webClient,
             IVolksbankConverter volksbankConverter,
             ISettingsReader<VolksbankWebClientOptions> settingsReader,
             ILogger<VolksbankFlowfactClient> logger)

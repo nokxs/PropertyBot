@@ -15,7 +15,7 @@ namespace PropertyBot.Provider.VolksbankImmopool
         private readonly ISettingsReader<VolksbankWebClientOptions> _settingsReader;
         private readonly ILogger<VolksbankImmopoolClient> _logger;
 
-        internal VolksbankImmopoolClient(
+        public VolksbankImmopoolClient(
             IVolksbankWebClient webClient,
             IVolksbankConverter volksbankConverter,
             ISettingsReader<VolksbankWebClientOptions> settingsReader,

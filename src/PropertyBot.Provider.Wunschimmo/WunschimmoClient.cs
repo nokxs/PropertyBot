@@ -15,7 +15,7 @@ namespace PropertyBot.Provider.Wunschimmo
         private readonly ISettingsReader<WunschimmoWebClientOptions> _settingsReader;
         private readonly ILogger<WunschimmoClient> _logger;
 
-        internal WunschimmoClient(IWunschimmoWebClient webClient, IWunschimmoConverter wunschimmoConverter, ISettingsReader<WunschimmoWebClientOptions> settingsReader, ILogger<WunschimmoClient> logger)
+        public WunschimmoClient(IWunschimmoWebClient webClient, IWunschimmoConverter wunschimmoConverter, ISettingsReader<WunschimmoWebClientOptions> settingsReader, ILogger<WunschimmoClient> logger)
         {
             _webClient = webClient;
             _wunschimmoConverter = wunschimmoConverter;
