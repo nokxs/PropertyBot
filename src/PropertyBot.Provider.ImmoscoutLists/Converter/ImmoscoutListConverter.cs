@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PropertyBot.Common;
+using PropertyBot.Common.Extensions;
 using PropertyBot.Interface;
 using PropertyBot.Provider.ImmoscoutLists.Entity;
 

@@ -1,6 +1,6 @@
 ﻿namespace PropertyBot.Provider.KSK.WebClient
 {
-    internal class KskWebClientOptions
+    public class KskWebClientOptions
     {
         public int Zip { get; set; }
 

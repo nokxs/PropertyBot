@@ -4,7 +4,7 @@ using PropertyBot.Provider.KSK.Entity;
 
 namespace PropertyBot.Provider.KSK.Converter
 {
-    internal interface IKskEstateConverter
+    public interface IKskEstateConverter
     {
         public IEnumerable<Property> ToProperties(IEnumerable<Estate> estates);
     }

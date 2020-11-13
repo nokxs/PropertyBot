@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
-using PropertyBot.Common;
+using PropertyBot.Common.Extensions;
 using PropertyBot.Provider.Wunschimmo.Entity;
 
 namespace PropertyBot.Provider.Wunschimmo.WebClient

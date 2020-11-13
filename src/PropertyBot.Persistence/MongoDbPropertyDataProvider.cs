@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Driver;
-using PropertyBot.Common;
+using PropertyBot.Common.Extensions;
 using PropertyBot.Interface;
 
 namespace PropertyBot.Persistence.MongoDB

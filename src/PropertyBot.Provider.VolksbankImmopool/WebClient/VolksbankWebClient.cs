@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
-using PropertyBot.Common;
+using PropertyBot.Common.Extensions;
 using PropertyBot.Provider.VolksbankImmopool.Entity;
 
 namespace PropertyBot.Provider.VolksbankImmopool.WebClient

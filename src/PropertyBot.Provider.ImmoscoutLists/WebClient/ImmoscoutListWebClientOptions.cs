@@ -1,6 +1,6 @@
 ﻿namespace PropertyBot.Provider.ImmoscoutLists.WebClient
 {
-    internal class ImmoscoutListWebClientOptions
+    internal record ImmoscoutListWebClientOptions
     {
         public string ListId { get; set; }
     }

@@ -1,3 +1,4 @@
+using PropertyBot.Common.Extensions;
 using Xunit;
 
 namespace PropertyBot.Common.Test.DoubleExtensionsTest

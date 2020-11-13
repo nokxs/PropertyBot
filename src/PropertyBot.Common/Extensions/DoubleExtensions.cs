@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace PropertyBot.Common
+namespace PropertyBot.Common.Extensions
 {
     public static class DoubleExtensions
     {

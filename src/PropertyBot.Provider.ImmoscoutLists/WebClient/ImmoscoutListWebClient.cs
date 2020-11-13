@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using HtmlAgilityPack;
-using PropertyBot.Common;
+using PropertyBot.Common.Extensions;
 using PropertyBot.Provider.ImmoscoutLists.Entity;
 
 namespace PropertyBot.Provider.ImmoscoutLists.WebClient

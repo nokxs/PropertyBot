@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using PropertyBot.Common;
+using PropertyBot.Common.Logging;
+using PropertyBot.Common.Settings;
 using PropertyBot.Interface;
 using PropertyBot.Provider.VolksbankImmopool.Converter;
 using PropertyBot.Provider.VolksbankImmopool.WebClient;
@@ -11,13 +12,19 @@ namespace PropertyBot.Provider.VolksbankImmopool
     {
         private readonly IVolksbankWebClient _webClient;
         private readonly IVolksbankConverter _volksbankConverter;
-        private readonly SettingsReader<VolksbankWebClientOptions> _settingsReader;
+        private readonly ISettingsReader<VolksbankWebClientOptions> _settingsReader;
+        private readonly ILogger<VolksbankImmopoolClient> _logger;
 
-        internal VolksbankImmopoolClient(IVolksbankWebClient webClient, IVolksbankConverter volksbankConverter, SettingsReader<VolksbankWebClientOptions> settingsReader)
+        public VolksbankImmopoolClient(
+            IVolksbankWebClient webClient,
+            IVolksbankConverter volksbankConverter,
+            ISettingsReader<VolksbankWebClientOptions> settingsReader,
+            ILogger<VolksbankImmopoolClient> logger)
         {
             _webClient = webClient;
             _volksbankConverter = volksbankConverter;
             _settingsReader = settingsReader;
+            _logger = logger;
         }
 
         public string Name { get; } = "Volksbank (Immopool)";
@@ -32,6 +39,8 @@ namespace PropertyBot.Provider.VolksbankImmopool
                 var volksbankProperties = await _webClient.GetObjects(setting);
                 properties.AddRange(_volksbankConverter.ToProperties(volksbankProperties));
             }
+            
+            _logger.LogInfo($"Found {properties.Count} properties");
 
             return properties;
         }

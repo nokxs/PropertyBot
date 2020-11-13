@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
-using PropertyBot.Common;
+using PropertyBot.Common.Extensions;
 using PropertyBot.Provider.OhneMakler.Entity;
 
 namespace PropertyBot.Provider.OhneMakler.WebClient
