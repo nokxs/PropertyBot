@@ -17,6 +17,13 @@ namespace PropertyBot.Common.Ioc
             _serviceCollection.AddSingleton<TService>();
         }
 
+        public void AddSingleton<TService, TImplementation>()
+            where TService : class
+            where TImplementation : class, TService
+        {
+            _serviceCollection.AddSingleton<TService, TImplementation>();
+        }
+
         public void AddSingleton<TService>(TService service) where TService : class
         {
             _serviceCollection.AddSingleton(service);

@@ -3,11 +3,11 @@ using Microsoft.Extensions.Logging;
 
 namespace PropertyBot.Common.Logging
 {
-    public class Logger<T> : ILogger
+    public class Logger<T> : ILogger<T>
     {
-        private readonly ILogger<T> _logger;
+        private readonly Microsoft.Extensions.Logging.ILogger<T> _logger;
 
-        public Logger(ILogger<T> logger)
+        public Logger(Microsoft.Extensions.Logging.ILogger<T> logger)
         {
             _logger = logger;
         }

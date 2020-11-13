@@ -6,18 +6,22 @@ using System.Threading.Tasks;
 using System.Web;
 using HtmlAgilityPack;
 using PropertyBot.Common;
+using PropertyBot.Common.Logging;
 using PropertyBot.Provider.Immoscout.Entity;
 
 namespace PropertyBot.Provider.Immoscout.WebClient
 {
     internal class ImmoscoutWebClient : IImmoscoutWebClient
     {
+        private readonly ILogger<ImmoscoutWebClient> _logger;
         private const string InvalidPage = "--- Invalid Result ---";
 
         private readonly HttpClient _client;
 
-        public ImmoscoutWebClient()
+        public ImmoscoutWebClient(ILogger<ImmoscoutWebClient> logger)
         {
+            _logger = logger;
+
             _client = new HttpClient();
             _client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko/20100101 Firefox/82.0");
             _client.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
@@ -29,23 +33,34 @@ namespace PropertyBot.Provider.Immoscout.WebClient
 
         public async Task<WebClientResult> GetObjects(ImmoscoutWebClientOptions options, int pageNumber)
         {
+            _logger.LogDebug($"Retrieving properties for page '{pageNumber}' with the following options: {options}");
+
             var rawPage = await GetRawPage(options, pageNumber);
 
             if (rawPage != InvalidPage)
             {
                 var pageCount = GetPageCount(rawPage);
-                var properties = ParseHtml(rawPage);
+                var properties = ParseHtml(rawPage).ToList();
                 var nextPageNumber = pageCount == pageNumber ? 1 : ++pageNumber;
+                _logger.LogInfo($"Found {properties.Count} properties");
                 return new WebClientResult(nextPageNumber, properties);
             }
 
+            _logger.LogWarning($"Retrieving properties was not successful. Received an invalid page.");
             return new WebClientResult(1, Enumerable.Empty<ImmoscoutProperty>());
         }
 
         private async Task<string> GetRawPage(ImmoscoutWebClientOptions options, int pageNr)
         {
-            var rawPage = await _client.GetStringAsync($"https://www.immobilienscout24.de/Suche/radius/{options.Type}?centerofsearchaddress={options.Location};;;;&geocoordinates={options.Latitude};{options.Longitude};{options.Radius}&pagenumber={pageNr}");
-            return rawPage.Contains("Mensch aus Fleisch und Blut") ? InvalidPage : rawPage;
+            var response = await _client.GetAsync($"https://www.immobilienscout24.de/Suche/radius/{options.Type}?centerofsearchaddress={options.Location};;;;&geocoordinates={options.Latitude};{options.Longitude};{options.Radius}&pagenumber={pageNr}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var rawPage = await response.Content.ReadAsStringAsync();
+                return rawPage.Contains("Mensch aus Fleisch und Blut") ? InvalidPage : rawPage;
+            }
+
+            return InvalidPage;
         }
 
         private IEnumerable<ImmoscoutProperty> ParseHtml(string htmlString)

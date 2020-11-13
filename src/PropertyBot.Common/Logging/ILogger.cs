@@ -2,7 +2,7 @@
 
 namespace PropertyBot.Common.Logging
 {
-    public interface ILogger
+    public interface ILogger<T>
     {
         void LogDebug(string message, params object[] args);
         void LogInfo(string message, params object[] args);

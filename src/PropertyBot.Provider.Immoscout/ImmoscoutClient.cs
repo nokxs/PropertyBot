@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using PropertyBot.Common;
+using PropertyBot.Common.Logging;
 using PropertyBot.Interface;
 using PropertyBot.Provider.Immoscout.Converter;
 using PropertyBot.Provider.Immoscout.WebClient;
@@ -13,15 +14,17 @@ namespace PropertyBot.Provider.Immoscout
         private readonly IImmoscoutWebClient _webClient;
         private readonly IImmoscoutConverter _immoscoutConverter;
         private readonly SettingsReader<ImmoscoutWebClientOptions> _settingsReader;
+        private readonly ILogger<ImmoscoutClient> _logger;
 
         private readonly IDictionary<ImmoscoutWebClientOptions, int> _optionsToLastPageDictionary = new Dictionary<ImmoscoutWebClientOptions, int>();
         private ImmoscoutWebClientOptions _lastUsedOptions;
 
-        internal ImmoscoutClient(IImmoscoutWebClient webClient, IImmoscoutConverter immoscoutConverter, SettingsReader<ImmoscoutWebClientOptions> settingsReader)
+        public ImmoscoutClient(IImmoscoutWebClient webClient, IImmoscoutConverter immoscoutConverter, SettingsReader<ImmoscoutWebClientOptions> settingsReader, ILogger<ImmoscoutClient> logger)
         {
             _webClient = webClient;
             _immoscoutConverter = immoscoutConverter;
             _settingsReader = settingsReader;
+            _logger = logger;
         }
 
         public string Name { get; } = "Immobilienscout24";
@@ -30,7 +33,7 @@ namespace PropertyBot.Provider.Immoscout
         {
             var settingsContainer = await _settingsReader.ReadSettings("providers/Immobilienscout24.yml");
 
-            var optionToUse = GetOptionsToUse(settingsContainer.Settings);
+            var optionToUse = GetOptionsToUse(settingsContainer.Settings.ToList());
             var result = await _webClient.GetObjects(optionToUse.options, optionToUse.page);
 
             _optionsToLastPageDictionary[optionToUse.options] = result.NextPageNumber;
@@ -39,8 +42,10 @@ namespace PropertyBot.Provider.Immoscout
             return _immoscoutConverter.ToProperties(result.ImmoscoutProperties);
         }
 
-        private (ImmoscoutWebClientOptions options, int page) GetOptionsToUse(IEnumerable<ImmoscoutWebClientOptions> settings)
+        private (ImmoscoutWebClientOptions options, int page) GetOptionsToUse(ICollection<ImmoscoutWebClientOptions> settings)
         {
+            SynchronizeSettingsWithDict(settings);
+
             if (_optionsToLastPageDictionary.Any())
             {
                 var nextOption = GetNextOption();
@@ -50,17 +55,34 @@ namespace PropertyBot.Provider.Immoscout
             return (settings.First(), 1);
         }
 
+        private void SynchronizeSettingsWithDict(ICollection<ImmoscoutWebClientOptions> settings)
+        {
+            var settingsNotInDict = settings.Where(setting => !_optionsToLastPageDictionary.Keys.Contains(setting));
+            foreach (var setting in settingsNotInDict)
+            {
+                _logger.LogInfo($"Found new setting, which will be added: {setting}");
+                _optionsToLastPageDictionary[setting] = 1;
+            }
+
+            var settingsOnlyInDict = _optionsToLastPageDictionary.Keys.Where(option => !settings.Contains(option));
+            foreach (var setting in settingsOnlyInDict)
+            {
+                _logger.LogInfo($"Found obsolete setting, which will be removed: {setting}.");
+                _optionsToLastPageDictionary.Remove(setting);
+            }
+        }
+
         private KeyValuePair<ImmoscoutWebClientOptions, int> GetNextOption()
         {
             var remainingOptions = _optionsToLastPageDictionary.SkipWhile(kv => kv.Key != _lastUsedOptions).ToList();
 
-            if (remainingOptions.Any() && remainingOptions.Count() == 1)
+            if (remainingOptions.Count > 1)
             {
-                // Element was last element in list
-                return _optionsToLastPageDictionary.First();
+                return remainingOptions.ElementAt(1);
             }
 
-            return remainingOptions.ElementAt(1);
+            // Element was last element in list or the last used option is not found
+            return _optionsToLastPageDictionary.First();
         }
     }
 }

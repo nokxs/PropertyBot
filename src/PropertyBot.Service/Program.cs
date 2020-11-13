@@ -1,5 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PropertyBot.Common.Ioc;
+using PropertyBot.Common.Logging;
 using PropertyBot.Interface;
 using PropertyBot.Persistence.MongoDB;
 using PropertyBot.Provider.Immoscout;
@@ -26,6 +28,8 @@ namespace PropertyBot.Service
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
+
                     RegisterPropertyProviders(services);
                     RegisterMessageSenders(services);
                     RegisterDataProviders(services);
@@ -51,7 +55,10 @@ namespace PropertyBot.Service
             services.AddSingleton(VolksbankFlowfactProviderFactory.CreateProvider());
             services.AddSingleton(ImmoscoutListProviderFactory.CreateProvider());
             services.AddSingleton(OhneMaklerProviderFactory.CreateProvider());
-            services.AddSingleton(ImmoscoutProviderFactory.CreateProvider());
+
+            var iocContainer = new IocContainer(services);
+
+            ImmoscoutProviderBootstrapper.Register(iocContainer);
         }
 
         private static void RegisterMessageSenders(IServiceCollection services)
