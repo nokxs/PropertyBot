@@ -12,7 +12,7 @@ namespace PropertyBot.Provider.ImmoscoutLists
     {
         private readonly IImmoscoutListWebClient _webClient;
         private readonly IImmoscoutListConverter _immoscoutListConverter;
-        private readonly SettingsReader<ImmoscoutListWebClientOptions> _settingsReader;
+        private readonly ISettingsReader<ImmoscoutListWebClientOptions> _settingsReader;
         private readonly ILogger<ImmoscoutListClient> _logger;
 
         internal ImmoscoutListClient(

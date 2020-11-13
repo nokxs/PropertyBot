@@ -56,7 +56,6 @@ namespace PropertyBot.Service
             services.AddSingleton(ZvgProviderFactory.CreateProvider());
             services.AddSingleton(KskProviderFactory.CreateProvider());
             services.AddSingleton(VolksbankImmopoolProviderFactory.CreateProvider());
-            services.AddSingleton(ImmoXXLProviderFactory.CreateProvider());
             services.AddSingleton(WunschimmoProviderFactory.CreateProvider());
             services.AddSingleton(VolksbankFlowfactProviderFactory.CreateProvider());
             services.AddSingleton(OhneMaklerProviderFactory.CreateProvider());
@@ -65,6 +64,7 @@ namespace PropertyBot.Service
 
             ImmoscoutProviderBootstrapper.Register(iocContainer);
             ImmoscoutListProviderBootstrapper.Register(iocContainer);
+            ImmoXXLProviderBootstrapper.Register(iocContainer);
         }
 
         private static void RegisterMessageSenders(IServiceCollection services)

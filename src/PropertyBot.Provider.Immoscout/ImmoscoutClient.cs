@@ -13,13 +13,17 @@ namespace PropertyBot.Provider.Immoscout
     {
         private readonly IImmoscoutWebClient _webClient;
         private readonly IImmoscoutConverter _immoscoutConverter;
-        private readonly SettingsReader<ImmoscoutWebClientOptions> _settingsReader;
+        private readonly ISettingsReader<ImmoscoutWebClientOptions> _settingsReader;
         private readonly ILogger<ImmoscoutClient> _logger;
 
         private readonly IDictionary<ImmoscoutWebClientOptions, int> _optionsToLastPageDictionary = new Dictionary<ImmoscoutWebClientOptions, int>();
         private ImmoscoutWebClientOptions _lastUsedOptions;
 
-        public ImmoscoutClient(IImmoscoutWebClient webClient, IImmoscoutConverter immoscoutConverter, SettingsReader<ImmoscoutWebClientOptions> settingsReader, ILogger<ImmoscoutClient> logger)
+        public ImmoscoutClient(
+            IImmoscoutWebClient webClient,
+            IImmoscoutConverter immoscoutConverter,
+            ISettingsReader<ImmoscoutWebClientOptions> settingsReader,
+            ILogger<ImmoscoutClient> logger)
         {
             _webClient = webClient;
             _immoscoutConverter = immoscoutConverter;
