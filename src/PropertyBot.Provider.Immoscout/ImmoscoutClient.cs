@@ -42,6 +42,8 @@ namespace PropertyBot.Provider.Immoscout
 
             _optionsToLastPageDictionary[optionToUse.options] = result.NextPageNumber;
             _lastUsedOptions = optionToUse.options;
+            
+            _logger.LogInfo($"Found {result.ImmoscoutProperties.Count()} properties");
 
             return _immoscoutConverter.ToProperties(result.ImmoscoutProperties);
         }
