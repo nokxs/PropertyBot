@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PropertyBot.Common;
 using PropertyBot.Common.Ioc;
 using PropertyBot.Common.Logging;
 using PropertyBot.Common.Settings;
@@ -41,6 +42,7 @@ namespace PropertyBot.Service
         {
             services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
             services.AddSingleton(typeof(ISettingsReader<>), typeof(SettingsReader<>));
+            services.AddSingleton<IHtmlPaginationHelper, HtmlPaginationHelper>();
         }
 
         private static void RegisterDataProviders(IServiceCollection services)
