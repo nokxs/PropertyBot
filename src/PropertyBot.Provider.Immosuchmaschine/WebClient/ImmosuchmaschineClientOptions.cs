@@ -1,15 +1,23 @@
-﻿namespace PropertyBot.Provider.OhneMakler.WebClient
+﻿using System.Collections.Generic;
+
+namespace PropertyBot.Provider.OhneMakler.WebClient
 {
-    internal class ImmosuchmaschineClientOptions
+    internal record ImmosuchmaschineClientOptions
     {
-        public string MarketingType { get; set; }
+        public IEnumerable<string> DistrictIds { get; set; }
 
-        public string ObjectType { get; set; }
+        public IEnumerable<string> MuncipalIds { get; set; }
+        
+        public IEnumerable<string> ProvinceIds { get; set; }
 
-        public string Location { get; set; }
+        public string Type { get; set; }
 
-        public int StateId { get; set; }
+        public int PriceFrom { get; set; }
 
-        public int Radius { get; set; }
+        public int PriceTo { get; set; }
+
+        public int SizeFrom { get; set; }
+
+        public int SizeTo { get; set; }
     }
 }
