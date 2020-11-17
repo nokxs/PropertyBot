@@ -1,8 +1,0 @@
-﻿settings:
-  - provinceIds:
-    - 8
-    districtIds:
-    - district_8115 # Böblingen
-    - district_8118 # Ludwigsburg
-    - district_8111 # Stuttgart
-    type: "3_1"

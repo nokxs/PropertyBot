@@ -35,8 +35,8 @@ namespace PropertyBot.Provider.OhneMakler
 
             foreach (var setting in settingsContainer.Settings)
             {
-                var ohneMaklerProperties = await _webClient.GetObjects(setting);
-                properties.AddRange(_immosuchmaschineConverter.ToProperties(ohneMaklerProperties));
+                var immosuchmaschineProperties = await _webClient.GetObjects(setting);
+                properties.AddRange(_immosuchmaschineConverter.ToProperties(immosuchmaschineProperties));
             }
             
             _logger.LogInfo($"Found {properties.Count} properties");

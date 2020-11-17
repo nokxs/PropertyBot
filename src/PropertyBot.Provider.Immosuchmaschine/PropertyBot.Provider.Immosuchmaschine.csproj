@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,12 +12,6 @@
   <ItemGroup>
     <ProjectReference Include="..\PropertyBot.Common\PropertyBot.Common.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.Interface\PropertyBot.Interface.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="settings\providers\Immosuchmaschine.yml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

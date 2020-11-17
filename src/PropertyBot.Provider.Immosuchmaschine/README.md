@@ -100,9 +100,16 @@ Multiple muncipals can be search at once.
 | muni_8118070 | Steinheim an der Murr |
 | muni_8118071 | Tamm |
 | muni_8118073 | Vaihingen an der Enz |
-| muni_8118074 | Walheim|
+| muni_8118074 | Walheim |
+| muni_8115003 | Böblingen |
+| muni_8115028 | Leonberg |
+| muni_8115029 | Magstadt |
+| muni_8115041 | Renningen |
+| muni_8115042 | Rutesheim |
+| muni_8115052 | Weissach |
+| muni_8115050 | Weil der Stadt |
 
-*This list is not complete. It contains only the muncipals of Ludwigsburg. Retrieve the values for any other munciapl from the website. Tip: Inspect the filter dropdown*
+*This list is not complete. It contains only the muncipals of Ludwigsburg and some from Böblingen. Retrieve the values for any other munciapl from the website. Tip: Inspect the filter dropdown*
 
 ## Available Types (as of 15.11.2020)
 

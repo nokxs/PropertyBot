@@ -28,7 +28,7 @@ namespace PropertyBot.Provider.OhneMakler.WebClient
 
         private async Task<string> GetRawPage(ImmosuchmaschineClientOptions options, int pageNr)
         {
-            return await _client.GetStringAsync($"https://www.immosuchmaschine.de/suche/?form_page=search&newsearch=1{GetDistricts(options.DistrictIds)}{GetMuncipals(options.MuncipalIds)}{GetProvinces(options.ProvinceIds)}&objpay_type={options.Type}&price_from={options.PriceFrom.ToSetString()}&price_to={options.PriceTo.ToSetString()}&size_from={options.SizeFrom.ToSetString()}&size_to={options.SizeTo.ToSetString()}");
+            return await _client.GetStringAsync($"https://www.immosuchmaschine.de/suche/?form_page=search&newsearch=1{GetDistricts(options.DistrictIds)}{GetMuncipals(options.MuncipalIds)}{GetProvinces(options.ProvinceIds)}&objpay_type={options.Type}&price_from={options.PriceFrom.ToSetString()}&price_to={options.PriceTo.ToSetString()}&size_from={options.SizeFrom.ToSetString()}&size_to={options.SizeTo.ToSetString()}&site={pageNr}");
         }
 
         private string GetDistricts(IEnumerable<string> values) => GetUrlParameter(values, "district_id");
