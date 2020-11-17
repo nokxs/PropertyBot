@@ -40,7 +40,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.Immosc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.OhneMakler", "src\PropertyBot.Provider.OhneMakler\PropertyBot.Provider.OhneMakler.csproj", "{6767F6C2-ADB4-4421-9154-A69C3A45BFCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyBot.Provider.Immoscout", "src\PropertyBot.Provider.Immoscout\PropertyBot.Provider.Immoscout.csproj", "{BE75F010-7ED1-479F-9C15-0931A8569227}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyBot.Provider.Immoscout", "src\PropertyBot.Provider.Immoscout\PropertyBot.Provider.Immoscout.csproj", "{BE75F010-7ED1-479F-9C15-0931A8569227}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyBot.Provider.Immosuchmaschine", "src\PropertyBot.Provider.Immosuchmaschine\PropertyBot.Provider.Immosuchmaschine.csproj", "{29440392-AED3-4CF2-A299-4F32BB348EFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -112,6 +114,10 @@ Global
 		{BE75F010-7ED1-479F-9C15-0931A8569227}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE75F010-7ED1-479F-9C15-0931A8569227}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE75F010-7ED1-479F-9C15-0931A8569227}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29440392-AED3-4CF2-A299-4F32BB348EFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29440392-AED3-4CF2-A299-4F32BB348EFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29440392-AED3-4CF2-A299-4F32BB348EFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29440392-AED3-4CF2-A299-4F32BB348EFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

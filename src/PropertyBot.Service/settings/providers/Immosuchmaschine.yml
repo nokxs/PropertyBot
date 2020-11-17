@@ -1,0 +1,27 @@
+﻿settings:
+  - provinceIds:
+    - 8 # Baden-Württemberg
+    districtIds:
+    - district_8115 # Böblingen
+    - district_8118 # Ludwigsburg
+    - district_8111 # Stuttgart
+    type: "3_1" # Grundstück kaufen
+  - provinceIds:
+    - 8 # Baden-Württemberg
+    districtIds:
+    - district_8118 # Ludwigsburg
+    - district_8111 # Stuttgart
+    type: "2_1" # Haus kaufen
+  - provinceIds:
+    - 8 # Baden-Württemberg
+    districtIds:
+    - district_8115 # Böblingen
+    muncipalIds:
+    - muni_8115003 # Böblingen
+    - muni_8115028 # Leonberg
+    - muni_8115029 # Magstadt
+    - muni_8115041 # Renningen
+    - muni_8115042 # Ruteshei,
+    - muni_8115052 # Weissach
+    - muni_8115050 # Weil der Stadt 
+    type: "2_1" # Haus kaufen

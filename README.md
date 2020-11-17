@@ -19,6 +19,7 @@ The following property data providers are currently supported:
 - [Immobilienscout24 Lists](https://portal.immobilienscout24.de/ergebnisliste/14652716): [Readme](src/PropertyBot.Provider.ImmoscoutLists/README.md)
 - [Wunschimmo](https://www.wunschimmo.de/): [Readme](src/PropertyBot.Provider.Wunschimmo/README.md)
 - [Ohne-Makler.net](https://www.ohne-makler.net/): [Readme](src/PropertyBot.Provider.OhneMakler/README.md)
+- [Immosuchmaschine.de](https://www.immosuchmaschine.de): [Readme](src/PropertyBot.Provider.Immosuchmaschine/README.md)
 
 ### Configuration
 

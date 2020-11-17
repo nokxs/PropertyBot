@@ -47,6 +47,18 @@ namespace PropertyBot.Common.Extensions
                     ?? string.Empty;
         }
 
+        public static string RemoveContent(this string s, params string[] contents)
+        {
+            var returnString = s;
+
+            foreach (var content in contents)
+            {
+                returnString = returnString.Replace(content, string.Empty);
+            }
+
+            return returnString;
+        }
+
         private static NumberStyles GetNumberStyles()
         {
             return NumberStyles.AllowCurrencySymbol | NumberStyles.Number;

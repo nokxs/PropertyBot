@@ -17,6 +17,7 @@
     <ProjectReference Include="..\PropertyBot.Persistence\PropertyBot.Persistence.MongoDB.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.ImmoscoutLists\PropertyBot.Provider.ImmoscoutLists.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.Immoscout\PropertyBot.Provider.Immoscout.csproj" />
+    <ProjectReference Include="..\PropertyBot.Provider.Immosuchmaschine\PropertyBot.Provider.Immosuchmaschine.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.ImmoXXL\PropertyBot.Provider.ImmoXXL.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.Interface\PropertyBot.Interface.csproj" />
     <ProjectReference Include="..\PropertyBot.Provider.KSK\PropertyBot.Provider.KSK.csproj" />
@@ -33,6 +34,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="settings\providers\Immobilienscout24.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="settings\providers\Immosuchmaschine.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="settings\providers\OhneMakler.yml">
