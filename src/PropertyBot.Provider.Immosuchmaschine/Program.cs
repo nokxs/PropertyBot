@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using PropertyBot.Common;
+using PropertyBot.Common.Settings;
 using PropertyBot.Provider.OhneMakler.WebClient;
 
 namespace PropertyBot.Provider.Immosuchmaschine
@@ -11,9 +13,9 @@ namespace PropertyBot.Provider.Immosuchmaschine
         {
             var helper = new HtmlPaginationHelper();
             var wc = new ImmosuchmaschineWebClient(helper);
-            var o = new ImmosuchmaschineClientOptions();
+            var o = await new SettingsReader<ImmosuchmaschineClientOptions>().ReadSettings("providers/Immosuchmaschine.yml");
 
-            var a = await wc.GetObjects(o);
+            var a = await wc.GetObjects(o.Settings.First());
         }
     }
 }

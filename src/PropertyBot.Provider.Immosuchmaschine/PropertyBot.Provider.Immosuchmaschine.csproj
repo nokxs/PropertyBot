@@ -14,4 +14,10 @@
     <ProjectReference Include="..\PropertyBot.Provider.Interface\PropertyBot.Interface.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="settings\providers\Immosuchmaschine.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

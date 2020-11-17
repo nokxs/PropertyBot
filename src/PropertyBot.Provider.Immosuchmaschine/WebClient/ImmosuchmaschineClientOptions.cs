@@ -4,11 +4,11 @@ namespace PropertyBot.Provider.OhneMakler.WebClient
 {
     internal record ImmosuchmaschineClientOptions
     {
-        public IEnumerable<string> DistrictIds { get; set; }
+        public IEnumerable<string> DistrictIds { get; set; } = new List<string>();
 
-        public IEnumerable<string> MuncipalIds { get; set; }
-        
-        public IEnumerable<string> ProvinceIds { get; set; }
+        public IEnumerable<string> MuncipalIds { get; set; } = new List<string>();
+
+        public IEnumerable<string> ProvinceIds { get; set; } = new List<string>();
 
         public string Type { get; set; }
 

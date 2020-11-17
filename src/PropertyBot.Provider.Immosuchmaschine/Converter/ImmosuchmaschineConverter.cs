@@ -21,12 +21,11 @@ namespace PropertyBot.Provider.OhneMakler.Converter
                 {"Ort", immosuchmaschineProperty.Location},
                 {"Zimmer", immosuchmaschineProperty.RoomCount.Format()},
                 {"Wohnfläche", $"{immosuchmaschineProperty.LivingArea.Format()} m²"},
-                {"Grundstücksfläche", $"{immosuchmaschineProperty.PlotArea.Format()} m²"},
-                {"Typ", immosuchmaschineProperty.Type}
+                {"Online seit", $"{immosuchmaschineProperty.DaysOnline} Tagen"},
             };
 
             return new Property(
-                immosuchmaschineProperty.Id,
+                $"immmosuchmaschine_{immosuchmaschineProperty.Id}",
                 immosuchmaschineProperty.Description,
                 immosuchmaschineProperty.ImageUri,
                 DateTime.Now, 

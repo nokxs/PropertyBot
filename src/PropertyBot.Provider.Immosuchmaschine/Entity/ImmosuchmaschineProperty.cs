@@ -2,17 +2,17 @@
 
 namespace PropertyBot.Provider.OhneMakler.Entity
 {
-    internal class ImmosuchmaschineProperty
+    internal record ImmosuchmaschineProperty
     {
-        public ImmosuchmaschineProperty(string id, string description, string type, string location, int price, double roomCount, double livingArea, double plotArea, Uri imageUri, Uri detailsUri) {
+        public ImmosuchmaschineProperty(string id, string description, string location, int price, double roomCount, double livingArea, int daysOnline, Uri imageUri, Uri detailsUri)
+        {
             Id = id;
             Description = description;
-            Type = type;
             Location = location;
             Price = price;
             RoomCount = roomCount;
             LivingArea = livingArea;
-            PlotArea = plotArea;
+            DaysOnline = daysOnline;
             ImageUri = imageUri;
             DetailsUri = detailsUri;
         }
@@ -20,8 +20,6 @@ namespace PropertyBot.Provider.OhneMakler.Entity
         public string Id { get;  }
 
         public string Description { get; }
-
-        public string Type { get; }
 
         public string Location { get; }
 
@@ -31,7 +29,7 @@ namespace PropertyBot.Provider.OhneMakler.Entity
 
         public double LivingArea { get; }
 
-        public double PlotArea { get; }
+        public int DaysOnline { get; }
 
         public Uri ImageUri { get; }
 
