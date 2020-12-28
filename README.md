@@ -1,5 +1,7 @@
 # Property Bot
 
+**This project is not maintained anymore, because we found the property we looked for :-).**
+
 This bot can crawl websites with properties and notify the user if something new with his search criteria is found.
 
 ## Docker image
