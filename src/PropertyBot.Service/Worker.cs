@@ -51,7 +51,7 @@ namespace PropertyBot.Service
                 }
                 catch (Exception e)
                 {
-                    _logger.LogCritical($"Unexpected exception", e);
+                    _logger.LogCritical(e, $"Unexpected exception");
                 }
 
                 await Task.Delay(pollingIntervalInSeconds * 1000, stoppingToken);
