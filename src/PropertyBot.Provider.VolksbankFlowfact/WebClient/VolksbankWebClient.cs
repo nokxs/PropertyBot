@@ -110,6 +110,10 @@ namespace PropertyBot.Provider.VolksbankFlowfact.WebClient
             var detailsNode = node.SelectSingleNode("//li[contains(@class, 'ion-arrow-resize')]");
             var match = Regex.Match(detailsNode.InnerText ?? "", @"(\d*?(,|.)?(\d*)) Zimmer");
 
+            if (!match) {
+                return 0;
+            }
+
             return match.Groups.Count >= 2 ? match.Groups[1].Value.ToDoubleSafe() : 0;
         }
         
