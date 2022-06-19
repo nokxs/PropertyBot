@@ -46,8 +46,12 @@ namespace PropertyBot.Provider.ImmoXXL.WebClient
         private async Task<string> GetRawPage(ImmoXXLWebClientOptions options, int page)
         {
             var cursor = page * PageItemCount;
-            return await _client.GetStringAsync(
-                    $"{options.BaseUrl}/index.php4?cmd=searchResults&alias=suchmaske&kaufartids={options.BuyIds}&kategorieids={options.CategoryIds}&objq[cursor]={cursor}");
+            var url = $"{options.BaseUrl}/index.php4?cmd=searchResults&alias=suchmaske&kaufartids={options.BuyIds}&kategorieids={options.CategoryIds}&objq[cursor]={cursor}";
+            try {
+                return await _client.GetStringAsync(url);
+            } catch (HttpRequestException e) {
+                throw new Exception($"Failed to get {url}.", e);
+            }
         }
 
         private IEnumerable<ImmoXXLImmoProperty> ParseRawPage(string content, string baseUrl)
