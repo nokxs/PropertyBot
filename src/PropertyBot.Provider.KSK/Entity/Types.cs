@@ -624,6 +624,7 @@ namespace PropertyBot.Provider.KSK.Entity
         [JsonPropertyName("waehrung")]
         public Waehrung Waehrung { get; set; }
 
+        [JsonIgnore]
         [JsonPropertyName("mieteinnahmen_ist")]
         public int? MieteinnahmenIst { get; set; }
     }
