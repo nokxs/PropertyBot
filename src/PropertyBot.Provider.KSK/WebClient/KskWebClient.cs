@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using PropertyBot.Provider.KSK.Entity;
 
 namespace PropertyBot.Provider.KSK.WebClient
@@ -11,11 +12,13 @@ namespace PropertyBot.Provider.KSK.WebClient
     public class KskWebClient : IKskWebClient
     {
         private readonly HttpClient _client;
+        private readonly ILogger<KskWebClient> _logger;
 
-        public KskWebClient()
+        public KskWebClient(ILogger<KskWebClient> logger)
         {
             _client = new HttpClient();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _logger = logger;
         }
 
         public async Task<IEnumerable<Estate>> GetObjects(KskWebClientOptions options)
@@ -49,6 +52,8 @@ namespace PropertyBot.Provider.KSK.WebClient
                     // sometimes the KSK doesn't send valid json. This is just ignored as it works mostly the next time
                     return new Root { Embedded = new Embedded { Estate = new List<Estate>() } };
                 }
+                
+                _logger.LogCritical($"Failed to parse JSON:{Environment.NewLine}{resultString}");
 
                 throw;
             }
