@@ -345,3 +345,4 @@ ASALocalRun/
 healthchecksdb
 
 mongo-db-data
+.env

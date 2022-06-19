@@ -6,13 +6,14 @@ services:
     build:
       context: .
       dockerfile: src/PropertyBot.Service/Dockerfile
+    restart: always
     environment:
       PROPERTY_POLLING_INTERVAL_IN_SECONDS: 60
-      TELEGRAM_API_TOKEN: 12345
+      TELEGRAM_API_TOKEN: ${TELEGRAM_API_TOKEN}
       
-      MongoDB__Host: mongo
-      MONGO_DB_USER: crawler
-      MONGO_DB_PASSWORD: crawlerPassword
+      MONGO_DB_HOST: ${MONGO_DB_HOST}
+      MONGO_DB_USER: ${MONGO_DB_USER}
+      MONGO_DB_PASSWORD: ${MONGO_DB_PASSWORD}
     depends_on:
       - mongo
   
@@ -20,10 +21,10 @@ services:
     image: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: crawler
-      MONGO_INITDB_ROOT_PASSWORD: crawlerPassword
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_PASSWORD}
     volumes:
-        - /docker/crawler/mongo:/data/db
+        - ./mongo-db-data:/data/db
 
   mongo-express:
     image: mongo-express
@@ -31,7 +32,7 @@ services:
     ports:
       - 12000:8081
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: crawler
-      ME_CONFIG_MONGODB_ADMINPASSWORD: crawlerPassword
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_DB_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_DB_PASSWORD}
     depends_on:
       - mongo
