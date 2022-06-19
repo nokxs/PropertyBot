@@ -16,12 +16,12 @@ namespace PropertyBot.Provider.KSK.Converter
                 var id = estate.Id;
                 var description = CreateDescription(estate);
                 var imageUrl = GetImageUri(estate);
-                var addDate = DateTime.Parse(estate.Sip.Created);
-                var price = estate.Preise.Kaufpreis ?? "0";
+                var addDate = estate.Sip.Created;
+                var price = estate.Preise.Kaufpreis;
                 var detailsUrl = new Uri($"https://www.kskbb.de/de/home/privatkunden/immobilien/detailansicht.html?eid={estate.Id}");
                 var additionalDetails = GetAdditionalDetails(estate);
                 
-                yield return new Property(id, description, imageUrl, addDate, price.ToInt(), additionalDetails, detailsUrl, MessageFormat.Html, "Kreissparkasse");
+                yield return new Property(id, description, imageUrl, addDate, price, additionalDetails, detailsUrl, MessageFormat.Html, "Kreissparkasse");
             }
         }
 
@@ -31,11 +31,11 @@ namespace PropertyBot.Provider.KSK.Converter
             {
                 {"Ort", $"{estate.Geo.Plz} {estate.Geo.Ort}"},
                 {"Courtage", estate.Preise.AussenCourtage},
-                {"Wohnfläche", $"{estate.Flaechen.Wohnflaeche} m²"},
+                //{"Wohnfläche", $"{estate.Flaechen.Wohnflaeche} m²"},
                 {"Grundstücksfläche", $"{estate.Flaechen.Grundstuecksflaeche} m²"},
-                {"Zimmer", estate.Flaechen.AnzahlZimmer},
-                {"Baujahr", estate.ZustandAngaben.Baujahr},
-                {"Modernisierung", estate.ZustandAngaben.Letztemodernisierung},
+                //{"Zimmer", estate.Flaechen.AnzahlZimmer},
+                //{"Baujahr", estate.ZustandAngaben.Baujahr},
+                //{"Modernisierung", estate.ZustandAngaben.Letztemodernisierung},
                 {"Anbieter", estate.Anbieter.Firma},
             };
         }
