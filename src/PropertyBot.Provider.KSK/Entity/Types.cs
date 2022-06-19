@@ -40,6 +40,9 @@ namespace PropertyBot.Provider.KSK.Entity
 
         [JsonPropertyName("format")]
         public string Format { get; set; }
+
+        [JsonPropertyName("daten")]
+        public string Daten { get; set; }
     }
 
     public class Attributes
@@ -47,14 +50,47 @@ namespace PropertyBot.Provider.KSK.Entity
         [JsonPropertyName("KAUF")]
         public bool KAUF { get; set; }
 
+        [JsonPropertyName("GARAGE")]
+        public bool GARAGE { get; set; }
+
+        [JsonPropertyName("FREIPLATZ")]
+        public bool? FREIPLATZ { get; set; }
+
+        [JsonPropertyName("CARPORT")]
+        public bool? CARPORT { get; set; }
+
+        [JsonPropertyName("SATTELDACH")]
+        public bool SATTELDACH { get; set; }
+
+        [JsonPropertyName("MASSIV")]
+        public bool MASSIV { get; set; }
+
+        [JsonPropertyName("HOLZ")]
+        public bool? HOLZ { get; set; }
+
+        [JsonPropertyName("EBK")]
+        public bool EBK { get; set; }
+
+        [JsonPropertyName("keller")]
+        public string Keller { get; set; }
+
+        [JsonPropertyName("zustand_art")]
+        public string ZustandArt { get; set; }
+
+        [JsonPropertyName("erschl_attr")]
+        public string ErschlAttr { get; set; }
+
+        [JsonPropertyName("alter_attr")]
+        public string AlterAttr { get; set; }
+
         [JsonPropertyName("WOHNEN")]
         public bool WOHNEN { get; set; }
 
         [JsonPropertyName("GEWERBE")]
-        public bool GEWERBE { get; set; }
+        public bool? GEWERBE { get; set; }
 
-        [JsonPropertyName("grundst_typ")]
-        public string GrundstTyp { get; set; }
+        [JsonPropertyName("haustyp")]
+        public string Haustyp { get; set; }
 
         [JsonPropertyName("iso_land")]
         public string IsoLand { get; set; }
@@ -62,20 +98,131 @@ namespace PropertyBot.Provider.KSK.Entity
         [JsonPropertyName("iso_waehrung")]
         public string IsoWaehrung { get; set; }
 
-        [JsonPropertyName("alter_attr")]
-        public string AlterAttr { get; set; }
+        [JsonPropertyName("FENSTER")]
+        public bool FENSTER { get; set; }
 
-        [JsonPropertyName("erschl_attr")]
-        public string ErschlAttr { get; set; }
+        [JsonPropertyName("DUSCHE")]
+        public bool? DUSCHE { get; set; }
+
+        [JsonPropertyName("WANNE")]
+        public bool? WANNE { get; set; }
+
+        [JsonPropertyName("FLIESEN")]
+        public bool FLIESEN { get; set; }
+
+        [JsonPropertyName("TEPPICH")]
+        public bool TEPPICH { get; set; }
+
+        [JsonPropertyName("PARKETT")]
+        public bool? PARKETT { get; set; }
+
+        [JsonPropertyName("DIELEN")]
+        public bool? DIELEN { get; set; }
+
+        [JsonPropertyName("LAMINAT")]
+        public bool? LAMINAT { get; set; }
+
+        [JsonPropertyName("ZENTRAL")]
+        public bool ZENTRAL { get; set; }
+
+        [JsonPropertyName("ETAGE")]
+        public bool? ETAGE { get; set; }
+
+        [JsonPropertyName("OFEN")]
+        public bool? OFEN { get; set; }
+
+        [JsonPropertyName("OEL")]
+        public bool OEL { get; set; }
+
+        [JsonPropertyName("GAS")]
+        public bool? GAS { get; set; }
+
+        [JsonPropertyName("ELEKTRO")]
+        public bool? ELEKTRO { get; set; }
+
+        [JsonPropertyName("FERN")]
+        public bool? FERN { get; set; }
     }
 
-    public class Attributes8
+    public class Attributes18
     {
         [JsonPropertyName("location")]
         public string Location { get; set; }
 
         [JsonPropertyName("gruppe")]
         public string Gruppe { get; set; }
+    }
+
+    public class Ausstattung
+    {
+        [JsonPropertyName("ausstatt_kategorie")]
+        public string AusstattKategorie { get; set; }
+
+        [JsonPropertyName("bad")]
+        public Bad Bad { get; set; }
+
+        [JsonPropertyName("boden")]
+        public Boden Boden { get; set; }
+
+        [JsonPropertyName("heizungsart")]
+        public Heizungsart Heizungsart { get; set; }
+
+        [JsonPropertyName("befeuerung")]
+        public Befeuerung Befeuerung { get; set; }
+
+        [JsonPropertyName("stellplatzart")]
+        public Stellplatzart Stellplatzart { get; set; }
+
+        [JsonPropertyName("gartennutzung")]
+        public bool Gartennutzung { get; set; }
+
+        [JsonPropertyName("dachform")]
+        public Dachform Dachform { get; set; }
+
+        [JsonPropertyName("bauweise")]
+        public Bauweise Bauweise { get; set; }
+
+        [JsonPropertyName("gaestewc")]
+        public bool? Gaestewc { get; set; }
+
+        [JsonPropertyName("kabel_sat_tv")]
+        public bool? KabelSatTv { get; set; }
+
+        [JsonPropertyName("kueche")]
+        public Kueche Kueche { get; set; }
+
+        [JsonPropertyName("unterkellert")]
+        public Unterkellert Unterkellert { get; set; }
+
+        [JsonPropertyName("seniorengerecht")]
+        public bool? Seniorengerecht { get; set; }
+
+        [JsonPropertyName("abstellraum")]
+        public bool? Abstellraum { get; set; }
+    }
+
+    public class Bad
+    {
+        [JsonPropertyName("attributes")]
+        public Attributes Attributes { get; set; }
+    }
+
+    public class Bauweise
+    {
+        [JsonPropertyName("attributes")]
+        public Attributes Attributes { get; set; }
+    }
+
+    public class Befeuerung
+    {
+        [JsonPropertyName("attributes")]
+        public Attributes Attributes { get; set; }
+    }
+
+    public class Boden
+    {
+        [JsonPropertyName("attributes")]
+        public Attributes Attributes { get; set; }
     }
 
     public class Broker
@@ -93,16 +240,7 @@ namespace PropertyBot.Provider.KSK.Entity
         public List<MainFact> MainFacts { get; set; }
     }
 
-    public class BuyBusinessProperty
-    {
-        [JsonPropertyName("object_type")]
-        public string ObjectType { get; set; }
-
-        [JsonPropertyName("main_facts")]
-        public List<MainFact> MainFacts { get; set; }
-    }
-
-    public class BuyResidentialProperty
+    public class BuyResidentialHouse
     {
         [JsonPropertyName("object_type")]
         public string ObjectType { get; set; }
@@ -126,6 +264,12 @@ namespace PropertyBot.Provider.KSK.Entity
         public string Privacy { get; set; }
     }
 
+    public class Dachform
+    {
+        [JsonPropertyName("attributes")]
+        public Attributes Attributes { get; set; }
+    }
+
     public class Datum
     {
         [JsonPropertyName("original")]
@@ -146,23 +290,53 @@ namespace PropertyBot.Provider.KSK.Entity
 
     public class DisplayData
     {
-        [JsonPropertyName("buy_residential_property")]
-        public BuyResidentialProperty BuyResidentialProperty { get; set; }
+        [JsonPropertyName("buy_residential_house")]
+        public BuyResidentialHouse BuyResidentialHouse { get; set; }
 
-        [JsonPropertyName("buy_business_property")]
-        public BuyBusinessProperty BuyBusinessProperty { get; set; }
+        [JsonPropertyName("specials")]
+        public List<string> Specials { get; set; }
 
         [JsonPropertyName("buy_business_others")]
         public BuyBusinessOthers BuyBusinessOthers { get; set; }
-
-        [JsonPropertyName("specials")]
-        public List<object> Specials { get; set; }
     }
 
     public class Embedded
     {
         [JsonPropertyName("estate")]
         public List<Estate> Estate { get; set; }
+    }
+
+    public class Energiepass
+    {
+        [JsonPropertyName("epart")]
+        public string Epart { get; set; }
+
+        [JsonPropertyName("gueltig_bis")]
+        public string GueltigBis { get; set; }
+
+        [JsonPropertyName("endenergiebedarf")]
+        public string Endenergiebedarf { get; set; }
+
+        [JsonPropertyName("primaerenergietraeger")]
+        public string Primaerenergietraeger { get; set; }
+
+        [JsonPropertyName("wertklasse")]
+        public string Wertklasse { get; set; }
+
+        [JsonPropertyName("baujahr")]
+        public string Baujahr { get; set; }
+
+        [JsonPropertyName("ausstelldatum")]
+        public string Ausstelldatum { get; set; }
+
+        [JsonPropertyName("jahrgang")]
+        public string Jahrgang { get; set; }
+
+        [JsonPropertyName("gebaeudeart")]
+        public string Gebaeudeart { get; set; }
+
+        [JsonPropertyName("epasstext")]
+        public string Epasstext { get; set; }
     }
 
     public class Erschliessung
@@ -188,8 +362,9 @@ namespace PropertyBot.Provider.KSK.Entity
         [JsonPropertyName("flaechen")]
         public Flaechen Flaechen { get; set; }
 
+        [JsonIgnore]
         [JsonPropertyName("ausstattung")]
-        public List<object> Ausstattung { get; set; }
+        public Ausstattung Ausstattung { get; set; }
 
         [JsonPropertyName("zustand_angaben")]
         public ZustandAngaben ZustandAngaben { get; set; }
@@ -216,10 +391,61 @@ namespace PropertyBot.Provider.KSK.Entity
         public string Id { get; set; }
     }
 
+    public class Eyecatcher
+    {
+        [JsonPropertyName("label")]
+        public string Label { get; set; }
+
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+    }
+
     public class Flaechen
     {
+        [JsonPropertyName("wohnflaeche")]
+        public double Wohnflaeche { get; set; }
+
         [JsonPropertyName("grundstuecksflaeche")]
         public int Grundstuecksflaeche { get; set; }
+
+        [JsonPropertyName("anzahl_zimmer")]
+        public double AnzahlZimmer { get; set; }
+
+        [JsonPropertyName("anzahl_badezimmer")]
+        public int AnzahlBadezimmer { get; set; }
+
+        [JsonPropertyName("anzahl_balkone")]
+        public int AnzahlBalkone { get; set; }
+
+        [JsonPropertyName("anzahl_terrassen")]
+        public int AnzahlTerrassen { get; set; }
+
+        [JsonPropertyName("anzahl_stellplaetze")]
+        public int AnzahlStellplaetze { get; set; }
+
+        [JsonPropertyName("nutzflaeche")]
+        public double? Nutzflaeche { get; set; }
+
+        [JsonPropertyName("anzahl_sep_wc")]
+        public int? AnzahlSepWc { get; set; }
+
+        [JsonPropertyName("einliegerwohnung")]
+        public bool? Einliegerwohnung { get; set; }
+
+        [JsonPropertyName("gesamtflaeche")]
+        public double? Gesamtflaeche { get; set; }
+
+        [JsonPropertyName("anzahl_schlafzimmer")]
+        public int? AnzahlSchlafzimmer { get; set; }
+
+        [JsonPropertyName("vermietbare_flaeche")]
+        public double? VermietbareFlaeche { get; set; }
+
+        [JsonPropertyName("anzahl_wohneinheiten")]
+        public int? AnzahlWohneinheiten { get; set; }
+
+        [JsonPropertyName("anzahl_gewerbeeinheiten")]
+        public int? AnzahlGewerbeeinheiten { get; set; }
     }
 
     public class Formats
@@ -266,6 +492,9 @@ namespace PropertyBot.Provider.KSK.Entity
         [JsonPropertyName("ort")]
         public string Ort { get; set; }
 
+        [JsonPropertyName("anzahl_etagen")]
+        public int AnzahlEtagen { get; set; }
+
         [JsonPropertyName("bundesland")]
         public string Bundesland { get; set; }
 
@@ -276,7 +505,13 @@ namespace PropertyBot.Provider.KSK.Entity
         public Land Land { get; set; }
     }
 
-    public class Grundstueck
+    public class Haus
+    {
+        [JsonPropertyName("attributes")]
+        public Attributes Attributes { get; set; }
+    }
+
+    public class Heizungsart
     {
         [JsonPropertyName("attributes")]
         public Attributes Attributes { get; set; }
@@ -301,12 +536,27 @@ namespace PropertyBot.Provider.KSK.Entity
     {
         [JsonPropertyName("60050101")]
         public bool _60050101 { get; set; }
+
+        [JsonPropertyName("90090159")]
+        public bool? _90090159 { get; set; }
+
+        [JsonPropertyName("60250010")]
+        public bool? _60250010 { get; set; }
+
+        [JsonPropertyName("60450050")]
+        public bool? _60450050 { get; set; }
     }
 
     public class Kontaktperson
     {
         [JsonPropertyName("email_feedback")]
         public string EmailFeedback { get; set; }
+    }
+
+    public class Kueche
+    {
+        [JsonPropertyName("attributes")]
+        public Attributes Attributes { get; set; }
     }
 
     public class Land
@@ -341,8 +591,8 @@ namespace PropertyBot.Provider.KSK.Entity
 
     public class Objektart
     {
-        [JsonPropertyName("grundstueck")]
-        public Grundstueck Grundstueck { get; set; }
+        [JsonPropertyName("haus")]
+        public Haus Haus { get; set; }
 
         [JsonPropertyName("objektart_zusatz")]
         public string ObjektartZusatz { get; set; }
@@ -373,6 +623,9 @@ namespace PropertyBot.Provider.KSK.Entity
 
         [JsonPropertyName("waehrung")]
         public Waehrung Waehrung { get; set; }
+
+        [JsonPropertyName("mieteinnahmen_ist")]
+        public int? MieteinnahmenIst { get; set; }
     }
 
     public class Root
@@ -417,7 +670,7 @@ namespace PropertyBot.Provider.KSK.Entity
         public List<string> MarketingUsageObjectTypes { get; set; }
 
         [JsonPropertyName("eyecatcher")]
-        public List<object> Eyecatcher { get; set; }
+        public List<Eyecatcher> Eyecatcher { get; set; }
 
         [JsonPropertyName("contact")]
         public Contact Contact { get; set; }
@@ -441,6 +694,24 @@ namespace PropertyBot.Provider.KSK.Entity
         public string PdfUrlDefault { get; set; }
     }
 
+    public class Stellplatzart
+    {
+        [JsonPropertyName("attributes")]
+        public Attributes Attributes { get; set; }
+    }
+
+    public class Unterkellert
+    {
+        [JsonPropertyName("attributes")]
+        public Attributes Attributes { get; set; }
+    }
+
+    public class UserDefinedAnyfield
+    {
+        [JsonPropertyName("exklusiv_objekt")]
+        public string ExklusivObjekt { get; set; }
+    }
+
     public class Vermarktungsart
     {
         [JsonPropertyName("attributes")]
@@ -452,11 +723,14 @@ namespace PropertyBot.Provider.KSK.Entity
         [JsonPropertyName("verfuegbar_ab")]
         public string VerfuegbarAb { get; set; }
 
-        [JsonPropertyName("vermietet")]
-        public bool Vermietet { get; set; }
-
         [JsonPropertyName("objektadresse_freigeben")]
         public string ObjektadresseFreigeben { get; set; }
+
+        [JsonPropertyName("user_defined_anyfield")]
+        public List<UserDefinedAnyfield> UserDefinedAnyfield { get; set; }
+
+        [JsonPropertyName("vermietet")]
+        public bool? Vermietet { get; set; }
     }
 
     public class VerwaltungTechn
@@ -469,6 +743,9 @@ namespace PropertyBot.Provider.KSK.Entity
 
         [JsonPropertyName("openimmo_obid")]
         public string OpenimmoObid { get; set; }
+
+        [JsonPropertyName("gruppen_kennung")]
+        public string GruppenKennung { get; set; }
     }
 
     public class Waehrung
@@ -477,18 +754,31 @@ namespace PropertyBot.Provider.KSK.Entity
         public Attributes Attributes { get; set; }
     }
 
+    public class Zustand
+    {
+        [JsonPropertyName("attributes")]
+        public Attributes Attributes { get; set; }
+    }
+
     public class ZustandAngaben
     {
+        [JsonIgnore]
         [JsonPropertyName("energiepass")]
-        public List<object> Energiepass { get; set; }
+        public Energiepass Energiepass { get; set; }
 
-        [JsonPropertyName("alter")]
-        public Alter Alter { get; set; }
+        [JsonPropertyName("baujahr")]
+        public int Baujahr { get; set; }
+
+        [JsonPropertyName("zustand")]
+        public Zustand Zustand { get; set; }
 
         [JsonPropertyName("erschliessung")]
         public Erschliessung Erschliessung { get; set; }
+
+        [JsonPropertyName("letztemodernisierung")]
+        public string Letztemodernisierung { get; set; }
+
+        [JsonPropertyName("alter")]
+        public Alter Alter { get; set; }
     }
-
-
-
 }
