@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
@@ -55,21 +56,24 @@ namespace PropertyBot.Provider.KSK.WebClient
 
         private async Task<string> GetRawPage(KskWebClientOptions options, int page, string marketingUsageObjectType)
         {
-            using var request = new HttpRequestMessage(new HttpMethod("POST"),
-                "https://www.kskbb.de/content/myif/ksk-boeblingen/work/filiale/de/home/misc/vps/gate/_jcr_content.bin/sip/api");
+            var url = "https://www.kskbb.de/content/myif/ksk-boeblingen/work/filiale/de/home/misc/vps/gate/_jcr_content.bin/sip/api";
+            using var request = new HttpRequestMessage(new HttpMethod("POST"), url);
             request.Content = new StringContent(
                 $"{{\"route\":\"estate\",\"page\":\"{page}\",\"zip_city_estate_id\":\"{options.Zip}\",\"marketing_usage_object_type\":\"{marketingUsageObjectType}\",\"perimeter\":\"{options.RadiusInKm}\",\"sort_by\":\"distance_asc\",\"limit\":\"{options.Limit}\",\"regio_client_id\":\"{options.RegioClientId}\",\"return_data\":\"overview\"}}");
             request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
-            var result = await _client.SendAsync(request);
-            var resultString = await result.Content.ReadAsStringAsync();
+            try {
+                var result = await _client.SendAsync(request);
+                var resultString = await result.Content.ReadAsStringAsync();
 
-            if (resultString.StartsWith("{\"pending"))
-            {
-                return await GetRawPage(options, page, marketingUsageObjectType);
+                if (resultString.StartsWith("{\"pending"))
+                {
+                    return await GetRawPage(options, page, marketingUsageObjectType);
+                }
+                return resultString;
+            } catch (Exception e) {
+                throw new Exception($"Failed to get {url}");
             }
-
-            return resultString;
         }
     }
 }
