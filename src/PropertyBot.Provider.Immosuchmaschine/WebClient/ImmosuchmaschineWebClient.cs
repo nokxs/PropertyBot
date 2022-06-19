@@ -124,14 +124,14 @@ namespace PropertyBot.Provider.OhneMakler.WebClient
         private Uri GetImageUri(HtmlNode node)
         {
             var imageNode = node.SelectSingleNode("//img[contains(@class, 'img-responsive')]");
-            var uriString = imageNode?.Attributes.First(attribute => attribute.Name == "src" || attribute.Name == "data-original")?.Value ?? "https://upload.wikimedia.org/wikipedia/commons/2/26/512pxIcon-sunset_photo_not_found.png";
+            var uriString = imageNode?.Attributes.FirstOrDefault(attribute => attribute.Name == "src" || attribute.Name == "data-original")?.Value ?? "https://upload.wikimedia.org/wikipedia/commons/2/26/512pxIcon-sunset_photo_not_found.png";
             return new Uri(uriString);
         }
 
         private Uri GetDetailsUri(HtmlNode node)
         {
             var detailsNode = node.SelectSingleNode("//a[contains(@class, 'objectLink')]");
-            var uriString = detailsNode?.Attributes.First(attribute => attribute.Name == "href")?.Value ?? string.Empty;
+            var uriString = detailsNode?.Attributes.FirstOrDefault(attribute => attribute.Name == "href")?.Value ?? string.Empty;
             return new Uri(uriString);
         }
 

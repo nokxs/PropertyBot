@@ -18,8 +18,9 @@ namespace PropertyBot.Persistence.MongoDB
         {
             var user = EnvironmentConstants.MONGO_DB_USER.GetAsMandatoryEnvironmentVariable();
             var password = EnvironmentConstants.MONGO_DB_PASSWORD.GetAsMandatoryEnvironmentVariable();
+            var host = EnvironmentConstants.MONGO_DB_HOST.GetAsMandatoryEnvironmentVariable();
 
-            _client = new MongoClient($"mongodb://{user}:{password}@mongo");
+            _client = new MongoClient($"mongodb://{user}:{password}@{host}");
             _database = _client.GetDatabase("propertyCrawler");
 
             var pack = new ConventionPack {new IgnoreExtraElementsConvention(true)};

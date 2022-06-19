@@ -1,7 +1,8 @@
 ﻿settings:
-  - baseUrl: "https://www.gutimmo.de"
-    buyIds: 1
-    categoryIds: 200
+  # Has changed completely:
+  # - baseUrl: "https://www.gutimmo.de"
+  #   buyIds: 1
+  #   categoryIds: 200
   - baseUrl: "https://www.rjimmobau.de"
     buyIds: 1
     categoryIds: 200
