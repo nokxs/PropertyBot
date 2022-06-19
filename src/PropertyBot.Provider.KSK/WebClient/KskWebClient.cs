@@ -72,7 +72,7 @@ namespace PropertyBot.Provider.KSK.WebClient
                 }
                 return resultString;
             } catch (Exception e) {
-                throw new Exception($"Failed to get {url}");
+                throw new Exception($"Failed to get {url}", e);
             }
         }
     }
